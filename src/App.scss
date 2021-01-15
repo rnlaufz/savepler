@@ -48,13 +48,23 @@ body, .container{
 }
 
 // Utility classes 
-.content-box {
+.content-card-out {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 11px;
+  background: linear-gradient(315deg, $box-gradient-start , $box-gradiend-end);
+  box-shadow:  -20px -20px 40px $shadow-top-left,
+                20px 20px 40px $shadow-bottom-right;
+}
+.content-card-inset {
+  position: relative;
   width: 200px;
   height: 200px;
   border-radius: 21px;
   background: linear-gradient(315deg, $box-gradient-start , $box-gradiend-end);
-  box-shadow:  -20px -20px 40px $shadow-top-left,
-                20px 20px 40px $shadow-bottom-right;
+  box-shadow: inset  -20px -20px 40px $shadow-top-left,
+              inset  20px 20px 40px $shadow-bottom-right;
 }
 
 .pos-flex {
@@ -176,9 +186,24 @@ body, .container{
 
 
   // Main content 
-  #main-box {
+  #content-box {
     width: 70%;
     height: 100%;
+    justify-content: space-between;
+
+
+    .curr-goal-card {
+      margin: 2rem;
+      padding: 20px;
+      text-align: center;
+      width: 600px;
+      height: 80px;
+
+      h2 {
+        color: $primary-contrast;
+      }
+    }
+
   }
 }
 
