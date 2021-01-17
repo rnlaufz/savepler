@@ -6,6 +6,8 @@ import './App.scss';
 import NavBar from './components/NavBar';
 import ContentBox from './components/ContentBox';
 import CurrentGoal from './components/CurrentGoal';
+import InfoCards from './components/InfoCards';
+import CallButtons from './components/CallButtons';
 
 const App = () => {
   return (
@@ -15,6 +17,8 @@ const App = () => {
       <NavBar />
       <ContentBox>
         <CurrentGoal/>
+        <InfoCards/>
+        <CallButtons />
       </ContentBox>  
       </div>
     </div>

@@ -54,17 +54,60 @@ body, .container{
   height: 200px;
   border-radius: 11px;
   background: linear-gradient(315deg, $box-gradient-start , $box-gradiend-end);
-  box-shadow:  -20px -20px 40px $shadow-top-left,
-                20px 20px 40px $shadow-bottom-right;
+  box-shadow:  -10px -10px 20px $shadow-top-left,
+                10px 10px 20px $shadow-bottom-right;
 }
 .content-card-inset {
   position: relative;
   width: 200px;
   height: 200px;
-  border-radius: 21px;
-  background: linear-gradient(315deg, $box-gradient-start , $box-gradiend-end);
-  box-shadow: inset  -20px -20px 40px $shadow-top-left,
-              inset  20px 20px 40px $shadow-bottom-right;
+  border-radius: 11px;
+  background-color: $primary-dark;
+  z-index: 1;
+}
+
+.content-card-inset::before{
+  content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 11px;
+    box-shadow: inset -10px -10px 15px $shadow-top-left-alpha,
+                inset 10px 10px 15px $shadow-bottom-right-alpha;
+    z-index: -1;
+}
+
+.content-money-card {
+  position: relative;
+  width: 200px;
+  height: 40px;
+  border-radius: 11px;
+  background-color: $primary-dark;
+  padding: 5px;
+  text-align: center;
+  z-index: 2;
+
+      span {
+        color: $primary-light;
+        letter-spacing: 3px;
+        font-weight: bolder;
+        font-size: 18px;
+      }
+}
+
+.content-money-card::before{
+  content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 11px;
+    box-shadow: inset -10px -10px 15px $shadow-top-left-alpha,
+                inset 10px 10px 15px $shadow-bottom-right-alpha;
+    z-index: -1;
 }
 
 .pos-flex {
@@ -189,21 +232,101 @@ body, .container{
   #content-box {
     width: 70%;
     height: 100%;
-    justify-content: space-between;
-
+    justify-content: flex-start;
 
     .curr-goal-card {
       margin: 2rem;
       padding: 20px;
       text-align: center;
       width: 600px;
-      height: 80px;
-
+      height: 120px;
+      z-index: 10;
       h2 {
         color: $primary-contrast;
       }
     }
 
+    .curr-goal-sum{
+      margin: 10px 0px;
+      padding: 5px;
+      text-align: center;
+      width: 200px;
+      height: 40px;
+      z-index: 2;
+      span {
+        color: $primary-light;
+        letter-spacing: 3px;
+        font-weight: bolder;
+      }
+    }
+
+    .info-cards {
+      padding: auto 5px;
+      width: 100%;
+      height: auto;
+      margin-top: 2rem;
+      justify-content: space-around;
+      .info-card {
+        width: 250px;
+        height: 150px;
+        padding: auto 5px ;
+        color: $primary-light;
+        font-size: 18px;
+
+        h4{
+          font-family: $title-font;
+          color: $secondary-contrast;
+          font-size: 20px;
+          padding-bottom: 10px;
+        }
+      }
+    }
+
+    .call-buttons-container {
+      margin-top: 5rem;
+      width: 200px;
+      height: 100px;
+      
+
+     hr{
+       border-color: $primary-contrast;
+       width: 100%;
+     }
+
+      div {
+        padding: 10px;
+        width: 100%;
+        height: 100%;
+        text-align: start;
+
+        a {
+          padding-left: 20px;
+          color: $primary-light;
+          font-size: 18px;
+          text-decoration: none;
+          width: 100%;
+          height: 100%;
+        }
+    
+          p{
+            display: inline;
+            width: 80%;
+         
+          }
+          span {
+            width: 20%;
+            height: 100%;
+            font-size: 24px;
+          }
+     
+
+        
+      }
+
+     
+    }
+
+    
   }
 }
 
