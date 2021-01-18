@@ -47,6 +47,10 @@ body, .container{
   text-align: center;
 }
 
+.clr {
+  clear: both;
+}
+
 // Utility classes 
 .content-card-out {
   position: relative;
@@ -131,6 +135,22 @@ body, .container{
 .title-sm {
   font-family: $title-font;
   font-size: 24px; /* Change if ness */
+}
+
+.form-control {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  font-family: $text-font;
+  font-size: 18px;
+  color: $primary-light;
+  background-color: $primary-dark;
+  box-shadow: inset -10px -10px 15px $shadow-top-left-alpha,
+                inset 10px 10px 15px $shadow-bottom-right-alpha;
+}
+
+.input-fix {
+  width: 450px !important;
 }
 
 // UI styling 
@@ -326,6 +346,118 @@ body, .container{
      
     }
 
+    .form-container {
+      margin-top: 40px;
+      width: 100%;
+      height: auto;
+      
+      form {
+        width: 100%;
+        height: auto;
+        margin: auto;
+        text-align: center;
+
+        div{
+          &:first-child{
+            margin-right: 5px;
+          }
+
+          input:focus, select:focus {
+            outline: none;
+          }
+
+          input[type=number] {
+            font-weight: bolder;
+            width: 300px;
+          }
+          input[type=number]::-webkit-inner-spin-button, 
+          input[type=number]::-webkit-outer-spin-button { 
+          -webkit-appearance: none; 
+          margin: 0; 
+}
+          input[type=number], select {
+            padding: 10px 25px;
+            border-radius: 5px;
+          }
+
+          select {
+            width: 150px;
+          }
+
+          input[type=submit], select {
+            cursor: pointer;
+          }
+          input[type=submit] {
+            margin-top: 10px;
+            width: 450px;
+            height: auto;
+            padding: 10px 30px;
+            border-radius: 5px;
+          }
+
+        }
+
+        
+      }
+
+      
+    }
+
+    .history-container {
+      position: relative;
+      // float: right;
+      // top: 0;
+      // right: 28%;
+      width: 100%;
+      height: 100%;
+      justify-self: flex-start;
+      align-self: flex-start;
+      text-align: start;
+
+      h2 {
+        font-size: 22px;
+        font-family: $title-font;
+        color: $primary-contrast;
+        margin-bottom: 10px;
+      }
+
+      ul {
+        text-align: start;
+        list-style-type: none;
+        li {
+         width: 100%;
+          height: 50px;
+          color: $primary-light;
+          font-size: 20px;
+  
+        .sign {
+          width: 50px;
+          height: auto;
+          font-size: 24px;
+          text-align: center;
+          color: $primary-contrast;
+          margin-right: 10px;
+          padding: 10px;
+        }
+
+        .sum {
+          margin: auto 5px;
+          width: 300px;
+          height: auto;
+          text-align: start;
+        }
+
+        .date {
+          width: 200px;
+          height: 22px;
+          text-align: end;
+          color: $secondary-dark;
+        }
+  
+        }
+      }
+
+    }
     
   }
 }
