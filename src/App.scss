@@ -28,7 +28,7 @@ $box-gradiend-end: #232323;
   box-sizing: border-box;
 }
 
-body, .container{
+html, body, .container{
   position: absolute;
   top: 0;
   bottom: 0;
@@ -36,20 +36,20 @@ body, .container{
   right: 0;
   width: 100%;
   height: 100%; 
+  z-index: 1000;
 }
 
 .container{
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 100%;
+  overflow: auto;
   font-family: $text-font;
   background: $primary-dark;
   text-align: center;
 }
 
-.clr {
-  clear: both;
-}
 
 // Utility classes 
 .content-card-out {
@@ -154,9 +154,14 @@ body, .container{
 }
 
 // UI styling 
+
+// Dashboard
 #content-container{
   width: 100%;
   height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  // overflow: auto;
 
   // Navigation
   #nav-box{
@@ -166,47 +171,60 @@ body, .container{
     flex-direction: column;
     width: 30%;
     height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    
     background-color: $primary-dark;
     z-index: 1;
     text-align: start;
 
     h2{
+      height: 10%;
       padding: 20px 10px 20px 40px;
       color: $primary-contrast;
     }
 
     #nav-list {
      padding: 20px;
-     list-style: none;
+     width: 100%;
+     height: 80%;
      flex: 85%;
 
-     li {
-       padding: 20px;
-       color: $primary-light;
-     }
+      ul{
+        height: 100%;
+        list-style: none;
 
-     a{
-       text-decoration: none;
-       color: $primary-light;
-       transition: color .3s ease;
-     }
+        li {
+          padding: 20px;
+          color: $primary-light;
+        }
+   
+        a{
+          text-decoration: none;
+          color: $primary-light;
+          transition: color .5s ease;
+        }
+   
+        a:hover{
+          color: $secondary-contrast;
+        }
+      }
 
-     a:hover{
-       color: $secondary-contrast;
-     }
+     
 
     }
 
     #nav-footer {
+      width: 100%;
       flex: 15%;
+      height: 12%;
       padding: 20px;
       text-align: center;
       color: $primary-light;
-     
       ul {
         list-style: none;
         padding-bottom: 20px;
-
+        height: 70%;
        
         li {
             padding: 5px 10px;
@@ -214,7 +232,7 @@ body, .container{
             a{
               text-decoration: none;
               color: $primary-light;
-              transition: all .3s ease;
+              transition: all .5s ease;
               opacity: 0.2;
             }
             a:hover{
@@ -226,6 +244,8 @@ body, .container{
       }
 
       p{
+        width: 100%;
+        height: 30%;
         font-size: 12px;
         opacity: 0.2;
       }
@@ -240,6 +260,8 @@ body, .container{
     left: 0;
     right: 0;
     bottom: 0;
+    width: 100%;
+    min-height: 102.5%;
     border-radius: 3px;
     box-shadow: inset -10px -10px 15px $shadow-top-left-alpha,
                 inset 10px 10px 15px $shadow-bottom-right-alpha;
@@ -251,7 +273,8 @@ body, .container{
   // Main content 
   #content-box {
     width: 70%;
-    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
     justify-content: flex-start;
 
     .curr-goal-card {
@@ -347,13 +370,13 @@ body, .container{
     }
 
     .form-container {
-      margin-top: 40px;
+      margin: 40px 0;
       width: 100%;
-      height: auto;
+      min-height: 100px;
       
       form {
         width: 100%;
-        height: auto;
+        height: 100%;
         margin: auto;
         text-align: center;
 
@@ -369,6 +392,8 @@ body, .container{
           input[type=number] {
             font-weight: bolder;
             width: 300px;
+            border-bottom: 2px solid $primary-contrast;
+            border-right: 2px solid $primary-contrast;
           }
           input[type=number]::-webkit-inner-spin-button, 
           input[type=number]::-webkit-outer-spin-button { 
@@ -382,6 +407,7 @@ body, .container{
 
           select {
             width: 150px;
+            border: $primary-contrast solid 2px;
           }
 
           input[type=submit], select {
@@ -392,6 +418,8 @@ body, .container{
             width: 450px;
             height: auto;
             padding: 10px 30px;
+            border-top: 2px solid $primary-contrast;
+            border-left: 2px solid $primary-contrast;
             border-radius: 5px;
           }
 
@@ -404,14 +432,10 @@ body, .container{
     }
 
     .history-container {
-      position: relative;
-      // float: right;
-      // top: 0;
-      // right: 28%;
       width: 100%;
-      height: 100%;
-      justify-self: flex-start;
-      align-self: flex-start;
+      min-height: 400px;
+      max-height: 400px;
+      margin-bottom: 20px;
       text-align: start;
 
       h2 {
@@ -462,3 +486,78 @@ body, .container{
   }
 }
 
+// Register and Login pages 
+.auth-form-container {
+  width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  color: $primary-light;
+  .form-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  flex-direction: column;
+  width: 500px;
+  height: 700px;
+  border-radius: 11px;
+  background: linear-gradient(315deg, $box-gradient-start , $box-gradiend-end);
+  box-shadow:  -10px -10px 20px $shadow-top-left,
+                10px 10px 20px $shadow-bottom-right;
+
+  h2 {
+    margin: 30px 0;
+    color: $primary-contrast;
+  }
+  
+  p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  form {
+    width: 80%;
+    height: 80%;
+    margin: 0, auto;
+    text-align: center;
+    input {
+      width: 100%;
+      height: 40px;
+      margin: 10px 0;
+      border-radius: 3px;
+      border-right: solid 1px $primary-contrast ;
+      border-bottom: solid 1px $primary-contrast ;
+    }
+
+    input:focus{
+      outline: none;
+      box-shadow: 0 0 10px $primary-contrast;
+      background-color: $primary-dark;
+    }
+
+    input[type=submit]{
+      cursor: pointer;
+      background-color: $secondary-contrast;
+      box-shadow: none;
+      border: $primary-contrast solid 1px;
+      font-weight: bold;
+      transition: background-color .5s ease;
+    }
+
+    input[type=submit]:hover{
+      background-color: $primary-contrast;
+    }
+  }
+
+  .links {
+    height: 20%;
+
+
+    a {
+      color: $primary-contrast;
+      text-decoration: none;
+    }
+
+  }
+                
+  }
+}
