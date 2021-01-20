@@ -15,6 +15,8 @@ import LatestHistory from './components/LatestHistory';
 // Import pages
 import Register from './components/pages/auth/Register';
 import Login from './components/pages/auth/Login';
+import About from './components/pages/About';
+import Contact from './components/pages/Contact';
 
 const App = () => {
   return (
@@ -24,6 +26,8 @@ const App = () => {
         <Switch>
             <Route exact path="/sign_in" render={props =>(<Login  />)}/>
             <Route exact path="/sign_up" render={props =>(<Register  /> )}/>
+            <Route exact path="/about_app" render={props =>(<About  /> )}/>
+            <Route exact path="/contact" render={props =>(<Contact  /> )}/>
              <Route exact path="/" render={(props) => 
                 <Fragment>
                  <NavBar />

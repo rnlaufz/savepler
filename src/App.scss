@@ -561,3 +561,104 @@ html, body, .container{
                 
   }
 }
+
+// About and Contact Pages
+.page-container {
+  width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  color: $primary-light;
+ 
+  // Utility components
+  // Nav bar
+    .page-nav {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+
+    
+    h2{
+      font-family: $title-font;
+      color: $primary-contrast;
+     }
+  
+      ul {
+        padding-top: 20px;
+        list-style-type: none;
+        justify-self: flex-end;
+        flex-direction: row;
+        text-align: end;
+
+        li {
+          padding: 10px;
+          height: auto;
+
+          a {
+            margin: 0 10px;
+            padding: 0;
+            text-decoration: none;
+            color: $primary-light;
+          }
+        }
+      }
+  
+
+      
+  }
+
+  .contact-content{
+    margin-top: 5rem;
+    align-self: center;
+    justify-self: center;
+
+    .info-cards {
+      .info-card {
+        margin: 20px;
+
+        h4{
+          font-size: 20px;
+          color: $primary-contrast;
+        }
+
+        p{
+          padding: 10px;
+        }
+
+        ul {
+          padding: 10px 0;
+          list-style: none;
+          text-align: start;
+
+          li {
+            color: $primary-light;
+
+            a {
+              color: $primary-light;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Footer
+  .footer {
+    position: fixed;
+    bottom: 0;
+    padding: 10px;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-size: 85%;
+    color: $primary-contrast;
+
+    p {
+      opacity: 0.3;
+      color: $primary-contrast;
+    }
+
+}
+
+}

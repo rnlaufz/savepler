@@ -20,8 +20,8 @@ import {v4 as uuid} from 'uuid';
          
           <div id="nav-footer">
             <ul id="nav-footer-list" className="pos-flex-split">
-              <li key={uuid()}><Link>About</Link></li>
-              <li key={uuid()}><Link>Contact</Link></li>
+              <li key={uuid()}><Link to="/about_app">About</Link></li>
+              <li key={uuid()}><Link to="/contact">Contact</Link></li>
             </ul>
             <p>&copy;All Rights Reserved
               <br/>
