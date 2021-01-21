@@ -6,9 +6,9 @@ import {v4 as uuid} from 'uuid';
 
  const NavBar = ()  => {
     return (
-        <div id="nav-box">
-          <h2 className="title-sm">Name</h2>
-          <div id="nav-list">
+        <div className="nav-box">
+          <h2>Regina</h2>
+          <div className="nav-list">
           <ul>
             <li key={uuid()}><Link to="/">Dashboard</Link></li>
             <li key={uuid()}><Link to="/my_goals">My Goals</Link></li>
@@ -18,12 +18,12 @@ import {v4 as uuid} from 'uuid';
           </ul>
              </div>
          
-          <div id="nav-footer">
-            <ul id="nav-footer-list" className="pos-flex-split">
+          <div className="nav-footer">
+            <ul className="pos-flex-split">
               <li key={uuid()}><Link to="/about_app">About</Link></li>
               <li key={uuid()}><Link to="/contact">Contact</Link></li>
             </ul>
-            <p>&copy;All Rights Reserved
+            <p>2021&copy;All Rights Reserved
               <br/>
               Build by /RZ</p>
           </div>

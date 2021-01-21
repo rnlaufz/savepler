@@ -11,6 +11,7 @@ import CallButtons from './components/CallButtons';
 import AddMoney from './components/AddMoney';
 import LendMoney from './components/LendMoney';
 import LatestHistory from './components/LatestHistory';
+import History from './components/History';
 
 // Import pages
 import Register from './components/pages/auth/Register';
@@ -21,8 +22,8 @@ import Contact from './components/pages/Contact';
 const App = () => {
   return (
     <Router>
-    <div className="container">
-      <div id="content-container" className="pos-flex-split">
+    <div className="container pos-flex-split">
+     
         <Switch>
             <Route exact path="/sign_in" render={props =>(<Login  />)}/>
             <Route exact path="/sign_up" render={props =>(<Register  /> )}/>
@@ -41,9 +42,17 @@ const App = () => {
                  </ContentBox> 
                 </Fragment>
         } />
+             <Route exact path="/history" render={(props) => 
+                <Fragment>
+                 <NavBar />
+                 <ContentBox>
+                    <History />
+                 </ContentBox> 
+                </Fragment>
+        } />
      </Switch>
       </div>
-    </div>
+
     </Router>
   );
 }
