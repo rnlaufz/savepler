@@ -4,7 +4,7 @@ import React, {Fragment} from 'react'
     //  The component shows five recent operations 
     // @TO_DO: UI move component to the left of the content box 
     return (
-        <Fragment>
+       
         <div className="history-container pos-flex">
             <h2>Latest Saving History:</h2>
             <ul className="history-list">
@@ -18,7 +18,7 @@ import React, {Fragment} from 'react'
                
             </ul>
         </div>
-       </Fragment>
+ 
     )
 }
 

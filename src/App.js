@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.scss';
 
+
 // Import components
 import NavBar from './components/NavBar';
 import ContentBox from './components/ContentBox';
@@ -22,26 +23,31 @@ import Contact from './components/pages/Contact';
 const App = () => {
   return (
     <Router>
-    <div className="container pos-flex-split">
+    <div className="container">
      
         <Switch>
             <Route exact path="/sign_in" render={props =>(<Login  />)}/>
             <Route exact path="/sign_up" render={props =>(<Register  /> )}/>
             <Route exact path="/about_app" render={props =>(<About  /> )}/>
             <Route exact path="/contact" render={props =>(<Contact  /> )}/>
+           
              <Route exact path="/" render={(props) => 
-                <Fragment>
+             
+                    <div className="wrapper">
                  <NavBar />
                  <ContentBox>
                     <CurrentGoal/>
                     <InfoCards/>
                     <CallButtons />
-                    <Route exact path="/add" render={(props) => <AddMoney />} />
-                    <Route exact path="/lend" render={(props) => <LendMoney />} />
+                    <AddMoney/>
+                    {/* <Route exact path="/add" render={(props) => <AddMoney />} />
+                    <Route exact path="/lend" render={(props) => <LendMoney />} /> */}
                     <LatestHistory />
                  </ContentBox> 
-                </Fragment>
+                 </div>
+             
         } />
+      
              <Route exact path="/history" render={(props) => 
                 <Fragment>
                  <NavBar />
