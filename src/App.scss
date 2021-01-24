@@ -22,21 +22,37 @@ $box-gradient-start: #1e1e1e;
 $box-gradiend-end: #232323;
 
 // General styling rules 
-*, *::before, *::after{
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body, .container, .wrapper, #root{
+html, body, .container{
   position: absolute;
-  width: 100vw;
-  height: 100vh;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
 }
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  font-family: $text-font;
+  background: $primary-dark;
+  text-align: center;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100% 
+}
+
 
 // Utility classes 
 .content-card-out {
@@ -73,7 +89,7 @@ html, body, .container, .wrapper, #root{
 .content-money-card {
   position: relative;
   width: 200px;
-  height: 40%;
+  height: 40px;
   border-radius: 11px;
   background-color: $primary-dark;
   padding: 5px;
@@ -143,22 +159,7 @@ html, body, .container, .wrapper, #root{
 // UI styling 
 
 // Dashboard
-.container{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: auto;
-  font-family: $text-font;
-  background: $primary-dark;
-  text-align: center;
 
-
-  .wrapper {
-    display: flex;
-    flex-direction: row ;
-    align-items: center;
-    justify-content: space-between;
-  
 
   // Navigation
   .nav-box{
@@ -266,17 +267,17 @@ html, body, .container, .wrapper, #root{
 
   // Main content 
   #content-box {
-    padding-top: 20px;
     width: 70%;
-    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
     justify-content: flex-start;
 
     .curr-goal-card {
-    //   margin: 2rem;
-      padding: 40px 0;
+      margin: 2rem;
+      padding: 20px;
       text-align: center;
       width: 600px;
-      height: 12%;
+      height: 120px;
       z-index: 10;
       h2 {
         color: $primary-contrast;
@@ -288,7 +289,7 @@ html, body, .container, .wrapper, #root{
       padding: 5px;
       text-align: center;
       width: 200px;
-      height: 1000%;
+      height: 40px;
       z-index: 2;
       span {
         color: $primary-light;
@@ -298,13 +299,14 @@ html, body, .container, .wrapper, #root{
     }
 
     .info-cards {
-      padding: 20px 5px;
+      padding: auto 5px;
       width: 100%;
-      height: 15%;
+      height: auto;
+      margin-top: 2rem;
       justify-content: space-around;
       .info-card {
         width: 250px;
-        height: 100%;
+        height: 150px;
         padding: auto 5px ;
         color: $primary-light;
         font-size: 18px;
@@ -319,10 +321,10 @@ html, body, .container, .wrapper, #root{
     }
 
     .call-buttons-container {
-    //   margin-top: 5rem;
+      margin-top: 5rem;
       width: 200px;
-      height: 10%;
-   
+      height: 100px;
+      
 
      hr{
        border-color: $primary-contrast;
@@ -363,14 +365,14 @@ html, body, .container, .wrapper, #root{
     }
 
     .form-container {
-      padding: 40px 0;
+      margin: 40px 0;
       width: 100%;
       min-height: 100px;
       
       form {
         width: 100%;
         height: 100%;
-        // margin: auto;
+        margin: auto;
         text-align: center;
 
         div{
@@ -407,11 +409,11 @@ html, body, .container, .wrapper, #root{
             cursor: pointer;
           }
           input[type=submit] {
-            margin-top: 1%;
+            margin-top: 10px;
             width: 450px;
             height: auto;
             padding: 10px 30px;
-            border-top: 1px solid $primary-contrast;
+            border-top: 2px solid $primary-contrast;
             border-left: 2px solid $primary-contrast;
             border-radius: 5px;
           }
@@ -475,7 +477,34 @@ html, body, .container, .wrapper, #root{
       }
 
     }
-  }
+
+    .settings-container {
+      width: 70%;
+      height: 100%
+
+      h2 {
+        margin: 3rem 0;
+        font-family: $title-font;
+        color: $primary-contrast;
+       }
+
+      ul {
+        list-style-type: none;
+
+        li {
+          padding: 5px;
+
+          a {
+            text-decoration: none;
+            color: $primary-light;
+          }
+        }
+
+      }
+
+
+    }
+    
   }
 
 
@@ -697,8 +726,6 @@ html, body, .container, .wrapper, #root{
       opacity: 0.3;
       color: $primary-contrast;
     }
-
-}
 
 }
 

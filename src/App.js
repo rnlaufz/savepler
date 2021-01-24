@@ -14,11 +14,13 @@ import LendMoney from './components/LendMoney';
 import LatestHistory from './components/LatestHistory';
 import History from './components/History';
 
+
 // Import pages
 import Register from './components/pages/auth/Register';
 import Login from './components/pages/auth/Login';
 import About from './components/pages/About';
 import Contact from './components/pages/Contact';
+import Settings from './components/pages/Settings';
 
 const App = () => {
   return (
@@ -53,6 +55,14 @@ const App = () => {
                  <NavBar />
                  <ContentBox>
                     <History />
+                 </ContentBox> 
+                </Fragment>
+        } />
+             <Route exact path="/settings" render={(props) => 
+                <Fragment>
+                 <NavBar />
+                 <ContentBox>
+                    <Settings />
                  </ContentBox> 
                 </Fragment>
         } />
