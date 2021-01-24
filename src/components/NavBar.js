@@ -11,7 +11,7 @@ import {v4 as uuid} from 'uuid';
           <div className="nav-list">
           <ul>
             <li key={uuid()}><Link to="/">Dashboard</Link></li>
-            <li key={uuid()}><Link to="/my_goals">Manage Goal</Link></li>
+            <li key={uuid()}><Link to="/edit">Manage Goal</Link></li>
             <li key={uuid()}><Link to="/history">Saving History</Link></li>
             <li key={uuid()}><Link to="/settings">Settings</Link></li>
             {/* Logout link */}
