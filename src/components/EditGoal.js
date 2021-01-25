@@ -2,10 +2,11 @@ import React from 'react'
 
  const EditGoal = () =>  {
     return (
-        <div className="goal-form">
-            <h2>Edit your goal</h2>
+        <div className="goal-form pos-flex">
+            <h2 className="title-l">Manage goal</h2>
+            <p>Edit name, money amount or the currency</p>
             <form>
-            <div className="pos-flex-split">
+            <div className='inputs'>
             <div>
                 <input className="form-control" type="text" placeholder="Goal Name"/>
             </div>
@@ -19,11 +20,12 @@ import React from 'react'
                     <option value="USD">USD</option>
                 </select>
             </div>
-            </div>
-           
             <div>
                 <input className="form-control" type="submit" value="Change Goal Data"/>
             </div>
+            </div>
+           
+            
             </form>
         </div>
     )

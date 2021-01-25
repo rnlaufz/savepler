@@ -21,6 +21,7 @@ import Login from './components/pages/auth/Login';
 import About from './components/pages/About';
 import Contact from './components/pages/Contact';
 import Settings from './components/pages/Settings';
+import NewGoal from './components/pages/goals/NewGoal';
 
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
             <Route exact path="/sign_up" render={props =>(<Register  /> )}/>
             <Route exact path="/about_app" render={props =>(<About  /> )}/>
             <Route exact path="/contact" render={props =>(<Contact  /> )}/>
+            <Route exact path="/set_goal" render={props =>(<NewGoal  /> )}/>
            
              <Route exact path="/" render={(props) => 
              
@@ -42,9 +44,9 @@ const App = () => {
                     <CurrentGoal/>
                     <InfoCards/>
                     <CallButtons />
-                    <AddMoney/>
-                    {/* <Route exact path="/add" render={(props) => <AddMoney />} />
-                    <Route exact path="/lend" render={(props) => <LendMoney />} /> */}
+                    {/* @TO_DO: action to show or hide lend or add  */}
+                    {/* <AddMoney /> 
+                    <LendMoney /> */}
                     <LatestHistory />
                  </ContentBox> 
                  </div>
@@ -59,14 +61,22 @@ const App = () => {
                  </ContentBox> 
                 </Fragment>
         } />
-             <Route exact path="/edit" render={(props) => 
+             {/* <Route exact path="/add" render={(props) => 
                 <Fragment>
                  <NavBar />
                  <ContentBox>
-                    <EditGoal />
+                    <AddMoney />
                  </ContentBox> 
                 </Fragment>
         } />
+             <Route exact path="/lend" render={(props) => 
+                <Fragment>
+                 <NavBar />
+                 <ContentBox>
+                    <LendMoney />
+                 </ContentBox> 
+                </Fragment>
+        } /> */}
              <Route exact path="/settings" render={(props) => 
                 <Fragment>
                  <NavBar />

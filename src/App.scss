@@ -133,10 +133,12 @@ html, body, .container{
 
 .title-l {
   font-family: $title-font;
+  color: $primary-contrast;
   font-size: 26px; /* Change if ness */
 }
 .title-sm {
   font-family: $title-font;
+  color: $secondary-contrast;
   font-size: 24px; /* Change if ness */
 }
 
@@ -268,46 +270,46 @@ html, body, .container{
   // Main content 
   #content-box {
     width: 70%;
+    padding: 30px 0;
     min-height: 100%;
     max-height: 100%;
     justify-content: flex-start;
 
     .curr-goal-card {
-      margin: 2rem;
       padding: 20px;
       text-align: center;
       width: 600px;
-      height: 120px;
+      height: 12%;
       z-index: 10;
       h2 {
         color: $primary-contrast;
       }
+      .curr-goal-sum{
+        padding: 5px;
+        text-align: center;
+        width: 200px;
+        height: 50%;
+        z-index: 2;
+        span {
+          color: $primary-light;
+          letter-spacing: 3px;
+          font-weight: bolder;
+        }
+      }
+
     }
 
-    .curr-goal-sum{
-      margin: 10px 0px;
-      padding: 5px;
-      text-align: center;
-      width: 200px;
-      height: 40px;
-      z-index: 2;
-      span {
-        color: $primary-light;
-        letter-spacing: 3px;
-        font-weight: bolder;
-      }
-    }
+    
 
     .info-cards {
-      padding: auto 5px;
+      padding: 20px 5px;
       width: 100%;
-      height: auto;
-      margin-top: 2rem;
+      height: 20%;
       justify-content: space-around;
       .info-card {
         width: 250px;
-        height: 150px;
-        padding: auto 5px ;
+        height: 100%;
+        padding: auto, 5px ;
         color: $primary-light;
         font-size: 18px;
 
@@ -321,9 +323,9 @@ html, body, .container{
     }
 
     .call-buttons-container {
-      margin-top: 5rem;
+      // margin-top: 5rem;
       width: 200px;
-      height: 100px;
+      height: 15%;
       
 
      hr{
@@ -365,13 +367,15 @@ html, body, .container{
     }
 
     .form-container {
-      margin: 40px 0;
+      padding: 40px 0;
       width: 100%;
-      min-height: 100px;
+      // min-height: 10%;
+      height: 25%;
       
       form {
         width: 100%;
         height: 100%;
+        padding-bottom: 20px;
         margin: auto;
         text-align: center;
 
@@ -428,47 +432,48 @@ html, body, .container{
 
     .history-container {
       width: 100%;
-      min-height: 400px;
-      max-height: 400px;
-      margin-bottom: 20px;
+      min-height: 10%;
+      padding: 10px 0;
       text-align: start;
 
       h2 {
         font-size: 22px;
         font-family: $title-font;
         color: $primary-contrast;
-        margin-bottom: 10px;
+        padding: 10px 0;
       }
 
       ul {
         text-align: start;
         list-style-type: none;
+        height: 100%;
+        width: 100%;
         li {
          width: 100%;
-          height: 50px;
+          height: 20%;
           color: $primary-light;
           font-size: 20px;
   
         .sign {
           width: 50px;
-          height: auto;
+          height: 5%;
           font-size: 24px;
           text-align: center;
           color: $primary-contrast;
-          margin-right: 10px;
+          padding-right: 10px;
           padding: 10px;
         }
 
         .sum {
-          margin: auto 5px;
+          padding: 0, 5px;
           width: 300px;
-          height: auto;
+          height: 12%;
           text-align: start;
         }
 
         .date {
           width: 200px;
-          height: 22px;
+          height: 12%;
           text-align: end;
           color: $secondary-dark;
         }
@@ -482,9 +487,8 @@ html, body, .container{
       width: 70%;
       height: 100%
 
-          h2 {
-
-          }
+        //Don't know why this happens, but if remove this empty h2 the next selector won't work 
+        h2{}
           h2{
             margin: 3rem 0;
             font-family: $title-font;
@@ -503,6 +507,78 @@ html, body, .container{
           }
           }
 
+    }
+
+    .goal-form {
+      width: 100%;
+      height: 100%;
+      // margin: auto;
+      padding: 15%;
+      align-items: center;
+      justify-content: center;
+
+      h2 {
+        padding: 30px auto;
+      }
+
+      p{
+        padding: 10px auto;
+        color: $primary-light;
+        font-size: 18px;
+      }
+
+      form {
+       height: 100%;
+       width: 100%;
+
+       .inputs {
+         padding: 10px;
+         width: 100%;
+         height: 100%;
+          div {
+          padding: 15px;
+          width: 100%;
+            input, select {
+            width: 100%;
+            padding: 10px;
+          }
+
+            select {
+            cursor: pointer;
+            border: 1px solid $primary-contrast;
+          }
+  
+            input:focus, select:focus{
+            outline: none;
+            box-shadow: 0 0 5px $secondary-contrast;
+          }
+
+          input[type=number]::-webkit-inner-spin-button, 
+          input[type=number]::-webkit-outer-spin-button { 
+          -webkit-appearance: none; 
+          margin: 0; 
+}
+  
+            input[type=text], input[type=number]{
+            height: 100%;
+            border-bottom: 2px solid $primary-contrast;
+            border-right: 1px solid $primary-contrast;
+          }
+
+            input[type=submit]{
+            height: 100%;
+            cursor: pointer;
+            border-top: 2px solid $primary-contrast;
+            border-left: 2px solid $primary-contrast;
+          }
+        }
+       }
+
+       
+
+       
+
+      }
     }
     
   }
@@ -708,6 +784,83 @@ html, body, .container{
       box-shadow:  -10px -10px 20px $shadow-top-left,
                 10px 10px 20px $shadow-bottom-right;
      
+    }
+  }
+
+  // New goal creation
+  .new-goal-form{
+    margin: auto;
+    width: 100%;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .goal-card {
+      width: 50%;
+      min-height: 70%;
+      border-radius: 11px;
+      box-shadow:  -10px -10px 15px $shadow-top-left-alpha,
+                   10px 10px 15px $shadow-bottom-right-alpha;
+
+      h1, h2 {
+        padding: 10px 0;
+      } 
+      
+      form {
+        height: 100%;
+        width: 100%;
+ 
+        .inputs {
+          padding: 10px;
+          width: 100%;
+          height: 100%;
+           div {
+           padding: 15px;
+           width: 100%;
+             input, select {
+             width: 100%;
+             padding: 10px;
+           }
+ 
+             select {
+             cursor: pointer;
+             border: 1px solid $primary-contrast;
+           }
+   
+             input:focus, select:focus{
+             outline: none;
+             box-shadow: 0 0 5px $secondary-contrast;
+           }
+
+           input[type=number]::-webkit-inner-spin-button, 
+           input[type=number]::-webkit-outer-spin-button { 
+           -webkit-appearance: none; 
+           margin: 0; 
+            }
+   
+             input[type=text], input[type=number]{
+             height: 100%;
+             border-bottom: 2px solid $primary-contrast;
+             border-right: 1px solid $primary-contrast;
+           }
+ 
+             input[type=submit]{
+             height: 100%;
+             cursor: pointer;
+             border-top: 2px solid $primary-contrast;
+             border-left: 2px solid $primary-contrast;
+           }
+         }
+        }
+ 
+        
+ 
+        
+ 
+       }
+      
     }
   }
 
