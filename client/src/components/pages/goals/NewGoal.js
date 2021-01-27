@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 
 // Import components
-import PagesNav from '../../pages/PagesNav';
-import PagesFooter from '../../pages/PagesFooter';
+import PagesNav from '../PagesNav';
+import PagesFooter from '../PagesFooter';
 
  const NewGoal = () =>  {
     const [compState, setCompState] = useState({
