@@ -1,4 +1,5 @@
 {
-    "mongoURI": "mongodb+srv://admin:adminadmin@sp.7bmlg.mongodb.net/test?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://admin:adminadmin@sp.7bmlg.mongodb.net/savepler?retryWrites=true&w=majority",
+    "secret": "secrettoken"
     
 }
