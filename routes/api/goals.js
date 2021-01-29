@@ -15,6 +15,9 @@ router.post('/',
 [
     auth, 
     [
+       check('goal', 'Goal is required').not().isEmpty(), 
+       check('sum', 'Goal is required').not().isEmpty(),
+       check('currency', 'Goal is required').not().isEmpty(), 
        check('goal', 'Goal is required').not().isEmpty() 
     ]
 ], 
@@ -24,16 +27,16 @@ async (req, res) => {
         return res.status(400).json({errors: errors.array()});
     }
 
-    const {goal, sum, currency, added, lended, residue} = req.body
+    const {goal, sum, currency, added} = req.body
 
     try {
         const createGoal = new Goal({
         goal,
         sum,
         currency,
-        added,
-        lended,
-        residue,
+        added: 0,
+        lended: 0,
+        residue: sum - added,
         user: req.user.id
 
         })
