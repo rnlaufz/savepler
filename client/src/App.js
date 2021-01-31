@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import store from './store';
 import './App.scss';
 
 
@@ -26,6 +28,7 @@ import NewGoal from './components/pages/goals/NewGoal';
 
 const App = () => {
   return (
+     <Provider store={store}>
     <Router>
     <div className="container">
      
@@ -89,6 +92,7 @@ const App = () => {
       </div>
 
     </Router>
+    </Provider>
   );
 }
 
