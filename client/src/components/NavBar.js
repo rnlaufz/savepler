@@ -1,10 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import {v4 as uuid} from 'uuid';
+import propTypes from 'prop-types';
+import { logout } from '../actions/user';
 
 // @TO_DO: create logout fubc
 
- const NavBar = ()  => {
+ const NavBar = ({logout})  => {
     return (
         <div className="nav-box">
           <h2>Regina</h2>
@@ -15,7 +18,7 @@ import {v4 as uuid} from 'uuid';
             <li key={uuid()}><Link to="/history">Saving History</Link></li>
             <li key={uuid()}><Link to="/settings">Settings</Link></li>
             {/* Logout link */}
-            <li key={uuid()}><Link to="javascript:;">Logout</Link></li>
+            <li key={uuid()}><a onClick={logout} href="!#">Logout</a></li>
           </ul>
              </div>
          
@@ -32,4 +35,8 @@ import {v4 as uuid} from 'uuid';
     )
 }
 
-export default NavBar;
+NavBar.propTypes = {
+  logout: propTypes.func.isRequired,
+}
+
+export default connect(null, {logout})(NavBar);

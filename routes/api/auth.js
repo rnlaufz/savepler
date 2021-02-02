@@ -30,7 +30,7 @@ router.get('/', auth, async (req, res) => {
 // @access  Public
 router.post('/', [
     check('email', 'Please enter a valid email').isEmail(),
-    // Make password validation more difficlt
+    // Make password validation more difficult
     check('password', 'Password required').exists()
 ], 
 

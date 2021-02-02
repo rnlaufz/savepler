@@ -1,18 +1,41 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, {useState} from 'react';
+import {Link, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+import propTypes from 'prop-types';
 
- const Login = () =>  {
+import {login} from '../../../actions/user';
+
+ const Login = ({login, isAuthenticated}) =>  {
+  const [formData, setFormData] = useState({
+    email:  "",
+    password: "",
+  });
+
+const {email, password} = formData;
+
+const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
+
+
+const onSubmit = async e => {
+    e.preventDefault();
+     login(email, password)
+}
+
+// Redirect if logged in
+if(isAuthenticated){
+    return <Redirect to="/" />
+}
     return (
         <div className="auth-form-container pos-flex">
         <div className="form-card">
             <h2>Savepler</h2>  
             <p>Money saving manager</p>
-        <form>
+        <form onSubmit={onSubmit}>
             <br/>
             <br/>
-              <input className="form-control" type="email" placeholder="Email Address"/>
+              <input className="form-control" type="email" placeholder="Email Address" name="email" onChange={onChange}/>
               <br/>
-              <input className="form-control" type="password" placeholder="Password"/>
+              <input className="form-control" type="password" placeholder="Password" name="password" onChange={onChange}/>
               <br/>
              
               <input className="form-control" type="submit" value="Sign Up"/>    
@@ -27,4 +50,13 @@ import {Link} from 'react-router-dom';
     )
 }
 
-export default Login;
+Login.propTypes = {
+  login: propTypes.func.isRequired,
+  isAuthenticated: propTypes.bool,
+}
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.user.isAuthenticated
+})
+
+export default connect(mapStateToProps, {login})(Login);
