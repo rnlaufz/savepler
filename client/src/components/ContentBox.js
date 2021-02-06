@@ -8,6 +8,7 @@ import {getGoal} from '../actions/goal';
 import CurrentGoal from './CurrentGoal';
 import InfoCards from './InfoCards';
 import LatestHistory from './LatestHistory';
+import History from './History';
 import NavBar from './NavBar';
 
  const ContentBox = ({children, getGoal, goal:{uGoal}, })  => {
@@ -26,6 +27,11 @@ import NavBar from './NavBar';
                      </Fragment> ): null}
                     
             </Fragment>
+            } />
+            <Route exact path="/history" component = {(props) => 
+            <Fragment>
+                <History />
+             </Fragment>
             } />
        
         </div>
