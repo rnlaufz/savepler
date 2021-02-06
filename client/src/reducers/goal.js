@@ -1,7 +1,7 @@
 import {ADD_GOAL, GET_GOAL, UPDATE_GOAL, DELETE_GOAL, GOAL_ERROR} from '../actions/types';
 
 const initialState = {
-    goal: null,
+    uGoal: [],
     loading: true,
     error: {}
 }
@@ -14,7 +14,7 @@ export default function(state = initialState, action){
         case UPDATE_GOAL:        
             return {
                 ...state,
-                goal: payload,
+                uGoal: payload,
                 loading: false
 
             };

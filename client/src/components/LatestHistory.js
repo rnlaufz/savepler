@@ -1,20 +1,22 @@
-import React, {Fragment} from 'react'
+import React, {Fragment, useEffect} from 'react';
+import {connect} from 'react-redux';
+import {v4 as uuid} from 'uuid';
 
- const LatestHistory = () => {
+import { getLatestRecords } from "../actions/history";
+import HistoryItem from './HistoryItem';
+
+ const LatestHistory = ({getLatestRecords, history:{recentRecords}}) => {
     //  The component shows five recent operations 
     // @TO_DO: UI move component to the left of the content box 
+    useEffect(() => {
+        getLatestRecords()
+    }, [getLatestRecords, recentRecords])
     return (
        
         <div className="history-container pos-flex">
             <h2>Latest Saving History:</h2>
             <ul className="history-list">
-                {/* Map state with records and render HistoryItem */}
-                {/* Tempo Dummy Code */}
-                <li className="history-item"><p className="pos-flex-split"><span className="sign">+{/* @TO_DO: Plus or minus depending on operatiion */}</span> <span className="sum">1000 <span>&#8381;</span></span><span className="date">1.01.21 {/* @TO_DO: date of operation */}</span></p></li>
-                <li className="history-item"><p className="pos-flex-split"><span className="sign">+{/* @TO_DO: Plus or minus depending on operatiion */}</span> <span className="sum">100000 <span>&#8381;</span></span> <span className="date">1.01.21 {/* @TO_DO: date of operation */}</span></p></li>
-                <li className="history-item"><p className="pos-flex-split"><span className="sign">+{/* @TO_DO: Plus or minus depending on operatiion */}</span> <span className="sum">100 <span>&#36;</span></span> <span className="date">1.01.21 {/* @TO_DO: date of operation */}</span></p></li>
-                <li className="history-item"><p className="pos-flex-split"><span className="sign">-{/* @TO_DO: Plus or minus depending on operatiion */}</span> <span className="sum">10 <span>&euro;</span></span> <span className="date">1.01.21 {/* @TO_DO: date of operation */}</span></p></li>
-                <li className="history-item"><p className="pos-flex-split"><span className="sign">{/* @TO_DO: Plus or minus depending on operatiion */}-</span><span className="sum">1000 <span>&#8381;</span></span> <span className="date">1.01.21 {/* @TO_DO: date of operation */}</span></p></li>
+               {recentRecords.map((record) => (<HistoryItem id={uuid()} key={uuid()} record={record} />))}
                
             </ul>
         </div>
@@ -22,4 +24,8 @@ import React, {Fragment} from 'react'
     )
 }
 
-export default LatestHistory;
+const mapStateToProps = state => ({
+    history: state.history
+})
+
+export default connect(mapStateToProps, {getLatestRecords})(LatestHistory);

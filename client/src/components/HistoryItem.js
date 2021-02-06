@@ -1,9 +1,10 @@
-import React from 'react'
-
- const HistoryItem = () => {
+import React from 'react';
+import Moment from 'react-moment'
+;
+ const HistoryItem = ({record: {action, amount, currency, date}}) => {
     // Tempo dummy code 
     return (
-        <li className="history-item"><p className="pos-flex-split"><span className="sign">+{/* @TO_DO: Plus or minus depending on operatiion */}</span> <span className="sum">1000 <span>&#8381;</span></span><span className="date">1.01.21 {/* @TO_DO: date of operation */}</span></p></li>
+        <li className="history-item"><p className="pos-flex-split"><span className="sign">{action === 'add' ? "+" : "-"}</span> <span className="sum">{amount} <span>&#8381;</span></span><span className="date"><Moment format="YYYY.MM.DD" date={date} /></span></p></li>
     )
 }
 
