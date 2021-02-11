@@ -21,3 +21,7 @@ export const GOAL_ERROR = "GOAL_ERROR";
 export const GET_HISTORY = "GET_HISTORY";
 export const GET_RECENT_HISTORY = "GET_RECENT_HISTORY";
 export const HISTORY_ERROR = "HISTORY_ERROR";
+
+// UI 
+export const CALL_ADD = "CALL_ADD";
+export const CALL_LEND = "CALL_LEND";

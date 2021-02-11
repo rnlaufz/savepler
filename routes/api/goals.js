@@ -89,12 +89,16 @@ router.post('/:action', auth, async (req, res) => {
         const goalData = await Goal.find({user: req.user.id});
         // goalData is an array
         // Since there could be one goal at a time index finding is permittable
-        const {sum, added, lended, currency }= await goalData[0];
+        const {sum, added, lended, currency } = await goalData[0];
         const {sendSum} = await req.body
         // Check action type and send suitable request
         if(actionType === "add"){
             // Send add request & recount values of other fields
             let goal = await Goal.updateOne({_id: req.body._id}, {$set:{added:added+sendSum, residue:sum-added-sendSum+lended}});
+            // Get updated goal and check lended value - if it's not empty, then decrease it 
+            goal = await Goal.updateOne({_id: req.body._id, lended:{$gt: 0}}, {$set:{lended:lended-sendSum, residue:sum-added-sendSum+lended}})
+            // Prevent negative debt value
+            goal = await Goal.updateOne({_id: req.body._id, lended:{$lt: sendSum}}, {$set:{lended:0, residue:sum-added-sendSum+lended}})
             // Add history record
             const addHistoryRecord = await new History({
                 action: 'add',

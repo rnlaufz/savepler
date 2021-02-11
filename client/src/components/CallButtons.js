@@ -1,19 +1,25 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
- const CallButtons = () =>  {
+import {showLendForm, showAddForm} from '../actions/ui';
+
+ const CallButtons = ({showAddForm, showLendForm, ui:{formAction}}) =>  {
     return (
         // Add toggle event to buttons so they might hide/show forms onClick
         <div className="call-buttons-container content-card-out pos-flex">
-            <div>
-            <Link to="/add"  className="pos-flex-split"><p>Add</p> <span>&#43;</span></Link>
+            <div className="line">
+            <button onClick={showAddForm}  className="pos-flex-split"><span>&#43;</span></button>
             </div>
-           <hr/>
             <div>
-            <Link to="/lend"  className="pos-flex-split"><p>Lend</p> <span>&minus;</span></Link>
+            <button onClick={showLendForm} className="pos-flex-split"><span>&minus;</span></button>
             </div>
         </div>
     )
 }
 
-export default CallButtons;
+const mapStateToProps = state => ({
+    ui: state.ui
+})
+
+export default connect(mapStateToProps, {showAddForm, showLendForm})(CallButtons);

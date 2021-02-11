@@ -8,12 +8,6 @@ import './App.scss';
 // Import components
 import NavBar from './components/NavBar';
 import ContentBox from './components/ContentBox';
-import CurrentGoal from './components/CurrentGoal';
-import InfoCards from './components/InfoCards';
-import CallButtons from './components/CallButtons';
-import AddMoney from './components/AddMoney';
-import LendMoney from './components/LendMoney';
-import LatestHistory from './components/LatestHistory';
 import History from './components/History';
 import EditGoal from './components/EditGoal';
 

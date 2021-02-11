@@ -323,15 +323,15 @@ html, body, .container{
     }
 
     .call-buttons-container {
-      // margin-top: 5rem;
-      width: 200px;
-      height: 15%;
-      
+      margin-top: 2%;
+      width: 20%;
+      height: 5%;
+      display: flex;
+      flex-direction: row;
 
-     hr{
-       border-color: $primary-contrast;
-       width: 100%;
-     }
+    .line {
+      border-right: $primary-contrast solid 2px;
+    }
 
       div {
         padding: 10px;
@@ -339,28 +339,27 @@ html, body, .container{
         height: 100%;
         text-align: start;
 
-        a {
-          padding-left: 20px;
+        button {
+          cursor: pointer;
+          background: transparent;
+          border: none;
           color: $primary-light;
-          font-size: 18px;
+          font-size: 20px;
           text-decoration: none;
           width: 100%;
           height: 100%;
-        }
-    
-          p{
-            display: inline;
-            width: 80%;
-         
-          }
+
           span {
-            width: 20%;
+            width: 100%;
             height: 100%;
             font-size: 24px;
           }
-     
 
-        
+        }
+
+        button:focus{
+          outline: none;
+        }
       }
 
      
@@ -440,7 +439,7 @@ html, body, .container{
         font-size: 22px;
         font-family: $title-font;
         color: $primary-contrast;
-        padding: 10px 0;
+        margin: 10% 10% auto ;
       }
 
       ul {
