@@ -17,7 +17,7 @@ import LendMoney from './LendMoney';
  const ContentBox = ({children, getGoal, goal:{uGoal}, ui:{formAction}})  => {
      useEffect(() => {
          getGoal()
-     }, [uGoal, getGoal, formAction]);
+     }, [uGoal]);
      const [goalState, updateState] = useState({
          callAdd: false,
          callLend: false

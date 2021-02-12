@@ -1,19 +1,31 @@
 import React, {Fragment, useState} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import { goalAction, getGoal } from '../actions/goal';
 
 import {hideForms} from '../actions/ui';
 
-const AddMoney = ({hideForms, ui:{formAction}}) => {
+const AddMoney = ({hideForms, ui:{formAction}, goalAction, getGoal}) => {
     // @TO_DO: write complete submit event
     const [formData, setFormData] = useState({
-        hide: ''
+        hide: '', 
+        action: 'add',
+        sendSum: 0
     });
 
-    const {hide} = formData;
+    const {hide, action, sendSum} = formData;
 
-    const onSubmit = () => {
+    const onChange = (e) => {
+        e.preventDefault()
+        setFormData({...formData, sendSum: Number.parseInt(e.target.value)})
+       
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault()
         setFormData({...formData, hide:formAction})
+        goalAction(action, sendSum);
+        getGoal()
     }
     return (
         <Fragment>
@@ -21,7 +33,7 @@ const AddMoney = ({hideForms, ui:{formAction}}) => {
         <form onSubmit={onSubmit}> 
             <div className="pos-flex-split">
             <div>
-                <input className="form-control" type="number" placeholder="Enter sum"/>
+                <input className="form-control" type="number" placeholder="Enter sum" onChange={onChange}/>
             </div>
             </div>
            
@@ -38,4 +50,4 @@ const mapStateToProps = state => ({
     ui: state.ui
 })
 
-export default connect(mapStateToProps, {hideForms})(AddMoney);
+export default connect(mapStateToProps, {hideForms, goalAction, getGoal})(AddMoney);

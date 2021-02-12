@@ -11,7 +11,7 @@ export default function(state = initialState, action){
     switch(type){
         case ADD_GOAL:
         case GET_GOAL:
-        case UPDATE_GOAL:        
+        case UPDATE_GOAL:     
             return {
                 ...state,
                 uGoal: payload,
