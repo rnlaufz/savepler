@@ -1,4 +1,4 @@
-import {CALL_ADD, CALL_LEND} from '../actions/types';
+import {CALL_ADD, CALL_LEND, HIDE_FORM} from '../actions/types';
 
 const initialState = {
     formAction: ""
@@ -9,12 +9,17 @@ export default function(state=initialState, action){
         case CALL_ADD: 
             return {
                 ...state,
-                formAction: "add"
+                formAction: action.payload
             };
         case CALL_LEND: 
             return {
                 ...state,
-                formAction: "lend"
+                formAction: action.payload
+            };
+        case HIDE_FORM: 
+            return {
+                ...state,
+                formAction: action.payload
             };
         default: 
             return state;    

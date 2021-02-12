@@ -25,3 +25,4 @@ export const HISTORY_ERROR = "HISTORY_ERROR";
 // UI 
 export const CALL_ADD = "CALL_ADD";
 export const CALL_LEND = "CALL_LEND";
+export const HIDE_FORM = "HIDE_FORM";

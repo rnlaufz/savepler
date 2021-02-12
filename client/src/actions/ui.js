@@ -1,14 +1,20 @@
-import {CALL_ADD, CALL_LEND} from './types';
+import {CALL_ADD, CALL_LEND, HIDE_FORM} from './types';
 
 export const showAddForm = () => dispatch => {
     dispatch({
         type: CALL_ADD,
-        formAction: "add"
+        payload: "add"
     })
 }
 export const showLendForm = () => dispatch => {
     dispatch({
         type: CALL_LEND,
-        formAction: "lend"
+        payload: "lend"
+    })
+}
+export const hideForms = () => dispatch => {
+    dispatch({
+        type: HIDE_FORM,
+        payload: "hide"
     })
 }

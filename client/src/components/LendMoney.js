@@ -1,20 +1,23 @@
 import React, {Fragment, useState} from 'react';
+import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
-const LendMoney = () => {
+import {hideForms} from '../actions/ui';
+
+const LendMoney = ({hideForms, ui:{formAction}}) => {
     // @TO_DO: write complete submit event
     const [formData, setFormData] = useState({
-        done: false
+        hide: ''
     });
 
-    const {done} = formData;
+    const {hide} = formData;
 
     const onSubmit = () => {
-        setFormData({...formData, done: !done})
+        setFormData({...formData, hide: formData})
     }
     return (
         <Fragment>
-        {done === true  ? (<Redirect to="/" />) : ( <div className='form-container'>
+        {hide === 'hide'  ? (null) : ( <div className='form-container'>
         <form onSubmit={onSubmit}> 
             <div>
                 <input className="form-control input-fix" type="number" placeholder="Enter sum"/>
@@ -28,4 +31,8 @@ const LendMoney = () => {
     )
 }
 
-export default LendMoney;
+const mapStateToProps = state => ({
+    ui: state.ui
+})
+
+export default connect(mapStateToProps, {hideForms})(LendMoney);
