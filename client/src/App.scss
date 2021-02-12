@@ -52,7 +52,7 @@ html, body, .container{
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 100vh 
+  height: 100%;
 }
 
 
@@ -167,15 +167,12 @@ html, body, .container{
 
   // Navigation
   .nav-box{
-    position: relative;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     width: 30%;
     height: 100%;
-    min-height: 100%;
-    max-height: 100%;
-    
+    border-right: $shadow-bottom-right-alpha outset 7px;
     background-color: $primary-dark;
     z-index: 1;
     text-align: start;
@@ -189,7 +186,7 @@ html, body, .container{
     .nav-list {
      padding: 20px;
      width: 100%;
-     height: 90%;
+     height: 100%;
 
 
       ul{
@@ -218,8 +215,7 @@ html, body, .container{
 
     .nav-footer {
       width: 100%;
-      height: 20%;
-
+      height: 30%;
       padding: 20px;
       text-align: center;
       color: $primary-light;
@@ -247,7 +243,7 @@ html, body, .container{
 
       p{
         width: 100%;
-        height: 30%;
+        height: 10%;
         font-size: 12px;
         opacity: 0.2;
       }
@@ -275,8 +271,7 @@ html, body, .container{
   #content-box {
     width: 70%;
     padding: 30px 0;
-    min-height: 100%;
-    max-height: 100%;
+    height: 100%;
     justify-content: flex-start;
 
     .curr-goal-card {
@@ -393,7 +388,7 @@ html, body, .container{
 
           input[type=number] {
             font-weight: bolder;
-            width: 300px;
+            width: 445px;
             border-bottom: 2px solid $primary-contrast;
             border-right: 2px solid $primary-contrast;
           }
@@ -402,17 +397,11 @@ html, body, .container{
           -webkit-appearance: none; 
           margin: 0; 
 }
-          input[type=number], select {
+          input[type=number] {
             padding: 10px 25px;
             border-radius: 5px;
           }
-
-          select {
-            width: 150px;
-            border: $primary-contrast solid 2px;
-          }
-
-          input[type=submit], select {
+          input[type=submit]{
             cursor: pointer;
           }
           input[type=submit] {
@@ -443,8 +432,9 @@ html, body, .container{
         font-size: 22px;
         font-family: $title-font;
         color: $primary-contrast;
-        margin: 10% 10% auto ;
+        // margin: 10% 10% auto ;
       }
+
 
       ul {
         text-align: start;
@@ -453,7 +443,7 @@ html, body, .container{
         width: 100%;
         li {
          width: 100%;
-          height: 20%;
+          height: 5%;
           color: $primary-light;
           font-size: 20px;
   
@@ -484,6 +474,65 @@ html, body, .container{
         }
       }
 
+      
+
+    }
+
+    .latest-history-container {
+       
+      width: 100%;
+      min-height: 10%;
+      margin-top: 2%;
+      padding: 10px 0;
+      text-align: start;
+
+      h2 {
+        font-size: 22px;
+        font-family: $title-font;
+        color: $primary-contrast;
+        // margin: 10% 10% auto ;
+      }
+
+
+      ul {
+        text-align: start;
+        list-style-type: none;
+        height: 100%;
+        width: 100%;
+        li {
+         width: 100%;
+          height: 15%;
+          color: $primary-light;
+          font-size: 20px;
+  
+        .sign {
+          width: 50px;
+          height: 5%;
+          font-size: 24px;
+          text-align: center;
+          color: $primary-contrast;
+          padding-right: 10px;
+          padding: 10px;
+        }
+
+        .sum {
+          padding: 0, 5px;
+          width: 300px;
+          height: 12%;
+          text-align: start;
+        }
+
+        .date {
+          width: 200px;
+          height: 12%;
+          text-align: end;
+          color: $secondary-dark;
+        }
+  
+        }
+      }
+  
+      
     }
 
     .settings-container {

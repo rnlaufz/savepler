@@ -23,13 +23,6 @@ const AddMoney = ({hideForms, ui:{formAction}}) => {
             <div>
                 <input className="form-control" type="number" placeholder="Enter sum"/>
             </div>
-            <div>
-                <select className="form-control" name="currency" id="curr">
-                    <option defaultChecked value="RUB">RUB</option>
-                    <option value="EUR">EUR</option>
-                    <option value="USD">USD</option>
-                </select>
-            </div>
             </div>
            
             <div>

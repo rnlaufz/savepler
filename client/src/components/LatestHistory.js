@@ -13,9 +13,9 @@ import HistoryItem from './HistoryItem';
     }, [getLatestRecords, recentRecords])
     return (
        
-        <div className="history-container pos-flex">
+        <div className="latest-history-container pos-flex">
             <h2>Latest Saving History:</h2>
-            <ul className="history-list">
+            <ul>
                {recentRecords.map((record) => (<HistoryItem id={uuid()} key={uuid()} record={record} />))}
                
             </ul>
