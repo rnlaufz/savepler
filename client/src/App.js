@@ -26,13 +26,18 @@ import setAuthToken from './utils/setAuthToken';
 // Import routing
 import PrivateRoute from './components/routing/PrivateRoute';
 import { getGoal } from './actions/goal';
+import CurrentGoal from './components/CurrentGoal';
+import InfoCards from './components/InfoCards';
+import LatestHistory from './components/LatestHistory';
+import CallButtons from './components/CallButtons';
+import AddMoney from './components/AddMoney';
+import LendMoney from './components/LendMoney';
 
 
 
 export class App extends Component {
    componentDidMount(){
       store.dispatch(loadUser())
-      store.dispatch(getGoal())
     }
       // Rendering application
       render() {
@@ -57,7 +62,41 @@ export class App extends Component {
                   
                          <div className="wrapper">
                       <NavBar />
-                      <ContentBox />
+                      <ContentBox>
+                     <CurrentGoal />
+                     <InfoCards />
+                     <CallButtons/>
+                     <LatestHistory />
+                     </ContentBox>    
+                      </div>
+                  
+             } />
+                
+                  <PrivateRoute exact path="/add" component={(props) => 
+                  
+                         <div className="wrapper">
+                      <NavBar />
+                      <ContentBox>
+                     <CurrentGoal />
+                     <InfoCards />
+                     <CallButtons/>
+                     <AddMoney />
+                     <LatestHistory />
+                     </ContentBox>    
+                      </div>
+                  
+             } />
+                  <PrivateRoute exact path="/lend" component={(props) => 
+                  
+                         <div className="wrapper">
+                      <NavBar />
+                      <ContentBox>
+                     <CurrentGoal />
+                     <InfoCards />
+                     <CallButtons/>
+                     <LendMoney />
+                     <LatestHistory />
+                     </ContentBox>    
                       </div>
                   
              } />

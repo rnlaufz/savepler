@@ -1,38 +1,51 @@
 import React, {Fragment, useState} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-
+import { goalAction, getGoal } from '../actions/goal';
 import {hideForms} from '../actions/ui';
 
-const LendMoney = ({hideForms, ui:{formAction}}) => {
-    // @TO_DO: write complete submit event
+const LendMoney = ({hideForms, ui:{formAction}, goalAction, getGoal}) => {
     const [formData, setFormData] = useState({
-        hide: ''
+        actionType: "lend",
+        sendSum: 0,
+        red: false,
     });
 
-    const {hide} = formData;
+    const {actionType, sendSum, red} = formData;
 
-    const onSubmit = () => {
-        setFormData({...formData, hide: formData})
+    const onChange = (e) => {
+        setFormData({...formData, sendSum: Number.parseInt(e.target.value)})
+       
     }
+
+    const onSubmit = async (e)  => { 
+        e.preventDefault() 
+        goalAction(actionType, sendSum); 
+        getGoal()
+        setFormData({...formData, red: !red}) 
+    
+    
+    }
+
     return (
         <Fragment>
-        {hide === 'hide'  ? (null) : ( <div className='form-container'>
+      {!red ? ( <div className='form-container'>
         <form onSubmit={onSubmit}> 
             <div>
-                <input className="form-control input-fix" type="number" placeholder="Enter sum"/>
+                <input className="form-control input-fix" type="number" placeholder="Enter sum" onChange={onChange} value={sendSum}/>
             </div>
             <div>
                 <input className="form-control" type="submit" value="Lend"/>
             </div>
         </form>
-    </div>)}
+    </div>) : <Redirect to="/" /> }
       </Fragment> 
     )
 }
 
 const mapStateToProps = state => ({
-    ui: state.ui
+    ui: state.ui,
+    goal: state.goal
 })
 
-export default connect(mapStateToProps, {hideForms})(LendMoney);
+export default connect(mapStateToProps, {hideForms, goalAction, getGoal})(LendMoney);

@@ -4,11 +4,14 @@ import { connect } from 'react-redux';
 import {getGoal} from '../actions/goal';
 
 
- const CurrentGoal = ({uGoal}) => {
-   
+ const CurrentGoal = ({getGoal, goal:{uGoal}}) => {
+    useEffect(() => {
+        getGoal()
+    }, [getGoal, uGoal]);
     //  console.log(uGoal.length !==0 ? uGoal : "Not loaded")
     return (
-        <Fragment>
+    <Fragment>
+     { uGoal.length!==0 ?(
         <div className="content-card-out curr-goal-card pos-flex">
             {/* Create redux action for getting the name of goal and the money */}
             <h2 className="title-l">{uGoal[0].goal}</h2>
@@ -17,7 +20,8 @@ import {getGoal} from '../actions/goal';
             </div>
         </div>
         
-        </Fragment>
+      ) : null}
+      </Fragment>
     )
 }
 

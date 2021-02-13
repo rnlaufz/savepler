@@ -81,12 +81,13 @@ router.get('/me', auth, async (req, res) => {
 // @desc    Update goal data and add record to history 
 // @access  Private
 
-router.post('/:action', auth, async (req, res) => {
+router.post('/update', auth, async (req, res) => {
 // Get action type to add or lend money
+    const {actionType, sendSum} = await req.body;
+    console.log(actionType, sendSum)
     try {
-        const actionType = req.params.action;
-        const {sendSum} = await req.body
- 
+        // const actionType = req.params.action;
+       
         // Get user's current data
         const goalData = await Goal.find({user: req.user.id});
         // goalData is an array
@@ -103,7 +104,7 @@ router.post('/:action', auth, async (req, res) => {
             goal = await Goal.updateOne({_id:_id, lended:{$lt: sendSum}}, {$set:{lended:0, residue:sum-added-sendSum+lended}})
             // Add history record
             const addHistoryRecord = await new History({
-                action: 'add',
+                action: "add",
                 amount: sendSum,
                 currency: currency,
                 user: req.user.id
@@ -116,7 +117,7 @@ router.post('/:action', auth, async (req, res) => {
             let goal = await Goal.updateOne({_id:_id}, {$set:{lended:lended+sendSum, residue:sum-added+sendSum+lended}});
             // Add history record
             const addHistoryRecord = await new History({
-                action: 'lend',
+                action: "lend",
                 amount: sendSum,
                 currency: currency,
                 user: req.user.id

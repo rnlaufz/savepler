@@ -14,11 +14,12 @@ export const getGoal = () => async dispatch => {
         })
     }
 }
-export const goalAction = (action, sendSum) => async dispatch => {
-    console.log(sendSum)
+export const goalAction = (actionType, sendSum) => async dispatch => {
+    const body = await {actionType, sendSum}
     try {
-       const body = {sendSum}
-        const res = await axios.post(`/api/goals/${action}`, body);
+       
+        const res = await axios.post(`/api/goals/update`, body);
+        console.log(body)
         dispatch ({
             type: UPDATE_GOAL,
             payload: res.data

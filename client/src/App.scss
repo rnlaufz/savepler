@@ -338,8 +338,9 @@ html, body, .container{
         height: 100%;
         text-align: start;
 
-        button {
+        a {
           cursor: pointer;
+          text-align: center;
           background: transparent;
           border: none;
           color: $primary-light;
@@ -356,9 +357,7 @@ html, body, .container{
 
         }
 
-        button:focus{
-          outline: none;
-        }
+       
       }
 
      

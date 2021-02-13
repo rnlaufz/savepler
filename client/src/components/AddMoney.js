@@ -8,12 +8,12 @@ import {hideForms} from '../actions/ui';
 const AddMoney = ({hideForms, ui:{formAction}, goalAction, getGoal}) => {
     // @TO_DO: write complete submit event
     const [formData, setFormData] = useState({
-        hide: '', 
-        action: 'add',
+        red: false, 
+        actionType: "add",
         sendSum: 0
     });
 
-    const {hide, action, sendSum} = formData;
+    const {red, actionType, sendSum} = formData;
 
     const onChange = (e) => {
         e.preventDefault()
@@ -21,15 +21,15 @@ const AddMoney = ({hideForms, ui:{formAction}, goalAction, getGoal}) => {
        
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
-        setFormData({...formData, hide:formAction})
-        goalAction(action, sendSum);
-        getGoal()
+        setFormData({...formData, red: true})  
+    await goalAction(actionType, sendSum);
+  
     }
     return (
         <Fragment>
-        {hide === "hide"  ? (null) : ( <div className='form-container'>
+        {!red ? ( <div className='form-container'>
         <form onSubmit={onSubmit}> 
             <div className="pos-flex-split">
             <div>
@@ -41,13 +41,14 @@ const AddMoney = ({hideForms, ui:{formAction}, goalAction, getGoal}) => {
                 <input className="form-control" type="submit" value="Add"/>
             </div>
         </form>
-    </div>)}
+    </div>) :  <Redirect to="/" />}
       </Fragment> 
     )
 }
 
 const mapStateToProps = state => ({
-    ui: state.ui
+    ui: state.ui,
+    goal: state.goal
 })
 
 export default connect(mapStateToProps, {hideForms, goalAction, getGoal})(AddMoney);
