@@ -77,6 +77,36 @@ router.get('/me', auth, async (req, res) => {
     }
 
 })
+// @route   POST api/goals/me
+// @desc    Update logged in user's goal data (name, sum, currency)
+// @access  Private
+
+router.post('/me', auth, async (req, res) => {
+
+    try {
+        const goalData = await Goal.find({user: req.user.id}).sort({date: -1});
+        const {_id} = goalData[0];
+        const {goal, sum, currency} = req.body;
+      if(goal !== ''){
+        let updateGoal = await Goal.updateOne({_id: _id}, {$set: {goal: goal}})
+        return res.json(updateGoal)
+        };
+    
+      if(sum !== 0){
+        let updateGoal = await Goal.updateOne({_id: _id}, {$set: {sum: sum}})
+        return res.json(updateGoal)
+        };
+          
+      if(currency !== ''){
+       let updateGoal = await Goal.updateOne({_id: _id}, {$set: {currency: currency}});
+        return res.json(updateGoal)
+        };    
+    } catch (err) {
+        console.error(err.message)
+        res.status(500).send('Server error')
+    }
+
+})
 // @route   POST api/goals/update
 // @desc    Update goal data and add record to history 
 // @access  Private
