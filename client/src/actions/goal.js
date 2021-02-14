@@ -30,3 +30,16 @@ export const goalAction = (actionType, sendSum) => async dispatch => {
         })
     }
 }
+export const editGoal = (goalData) => async dispatch => {
+    try {
+        const res = await axios.post(`/api/goals/me`, goalData);
+        dispatch ({
+            type: UPDATE_GOAL,
+            payload: res.data
+        })
+    } catch (err) {
+        dispatch({
+            type: GOAL_ERROR
+        })
+    }
+}

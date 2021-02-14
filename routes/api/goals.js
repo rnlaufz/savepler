@@ -87,20 +87,9 @@ router.post('/me', auth, async (req, res) => {
         const goalData = await Goal.find({user: req.user.id}).sort({date: -1});
         const {_id} = goalData[0];
         const {goal, sum, currency} = req.body;
-      if(goal !== ''){
-        let updateGoal = await Goal.updateOne({_id: _id}, {$set: {goal: goal}})
+        let updateGoal = await Goal.updateOne({_id: _id}, {$set: {goal: goal, sum: sum, currency: currency}})
         return res.json(updateGoal)
-        };
-    
-      if(sum !== 0){
-        let updateGoal = await Goal.updateOne({_id: _id}, {$set: {sum: sum}})
-        return res.json(updateGoal)
-        };
-          
-      if(currency !== ''){
-       let updateGoal = await Goal.updateOne({_id: _id}, {$set: {currency: currency}});
-        return res.json(updateGoal)
-        };    
+      
     } catch (err) {
         console.error(err.message)
         res.status(500).send('Server error')
