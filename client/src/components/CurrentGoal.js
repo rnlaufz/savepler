@@ -8,15 +8,15 @@ import {getGoal} from '../actions/goal';
     useEffect(() => {
         getGoal()
     }, [getGoal, uGoal]);
-    //  console.log(uGoal.length !==0 ? uGoal : "Not loaded")
+   const goalData = uGoal[0]
     return (
     <Fragment>
-     { uGoal.length!==0 ?(
+     { goalData ?(
         <div className="content-card-out curr-goal-card pos-flex">
             {/* Create redux action for getting the name of goal and the money */}
-            <h2 className="title-l">{uGoal[0].goal}</h2>
+            <h2 className="title-l">{goalData.goal}</h2>
             <div className="content-money-card curr-goal-sum">
-                <span>{uGoal[0].sum} &#8381;</span>
+                <span>{goalData.sum} &#8381;</span>
             </div>
         </div>
         

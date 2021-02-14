@@ -19,10 +19,11 @@ const LendMoney = ({hideForms, ui:{formAction}, goalAction, getGoal}) => {
     }
 
     const onSubmit = async (e)  => { 
-        e.preventDefault() 
+        e.preventDefault()
+        setFormData({...formData, red: !red}) 
         goalAction(actionType, sendSum); 
         getGoal()
-        setFormData({...formData, red: !red}) 
+      
     
     
     }

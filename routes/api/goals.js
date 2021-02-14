@@ -84,7 +84,6 @@ router.get('/me', auth, async (req, res) => {
 router.post('/update', auth, async (req, res) => {
 // Get action type to add or lend money
     const {actionType, sendSum} = await req.body;
-    console.log(actionType, sendSum)
     try {
         // const actionType = req.params.action;
        
