@@ -1,4 +1,4 @@
-import {GET_HISTORY, GET_RECENT_HISTORY, HISTORY_ERROR} from '../actions/types';
+import {GET_HISTORY, GET_RECENT_HISTORY,  CLEAR_HISTORY, HISTORY_ERROR} from '../actions/types';
 
 const initialState = {
     allRecords: [],
@@ -21,6 +21,11 @@ export default function(state=initialState, action){
                 ...state,
                 recentRecords: payload,
                 loading: false
+            };
+        case CLEAR_HISTORY:
+            return{
+                ...state,
+     
             };
         case HISTORY_ERROR:
             return{

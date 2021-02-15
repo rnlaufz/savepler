@@ -43,3 +43,16 @@ export const editGoal = (goalData) => async dispatch => {
         })
     }
 }
+export const deleteGoal = (id) => async dispatch => {
+    try {
+        const res = await axios.delete(`/api/goals/${id}`);
+        dispatch ({
+            type: DELETE_GOAL,
+            payload: res.data
+        })
+    } catch (err) {
+        dispatch({
+            type: GOAL_ERROR
+        })
+    }
+}

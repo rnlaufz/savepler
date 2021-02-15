@@ -91,3 +91,18 @@ export const login = (email, password) => async dispatch => {
 export const logout = () => dispatch => {
     dispatch({type: LOGOUT});
 }
+
+// Delete user 
+export const deleteUser = () => async dispatch => {
+    try {
+        const res = await axios.delete(`/api/users`);
+        dispatch ({
+            type: DELETE_USER,
+            payload: res.data
+        })
+    } catch (err) {
+        dispatch({
+            type: GOAL_ERROR
+        })
+    }
+}
