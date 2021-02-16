@@ -555,6 +555,18 @@ html, body, .container{
                 color: $primary-light;
                 text-decoration: none;
               }
+
+              button {
+                cursor: pointer;
+                color: $primary-light;
+                text-decoration: none;
+                background: transparent;
+                border: none;
+              }
+
+              button:focus{
+                outline: none;
+              }
           }
           }
 
