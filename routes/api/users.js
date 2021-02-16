@@ -84,8 +84,6 @@ async (req, res) => {
 // @access  Private
 
 router.delete('/', auth, async (req, res) => {
-    
-    
     try {
         // Delete currently logged in user 
         await User.findOneAndDelete({_id: req.user.id});

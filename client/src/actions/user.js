@@ -102,7 +102,7 @@ export const deleteUser = () => async dispatch => {
         })
     } catch (err) {
         dispatch({
-            type: GOAL_ERROR
+            type: AUTH_ERROR
         })
     }
 }

@@ -33,7 +33,7 @@ export const removeRecords = () =>  async dispatch => {
     try {
         const res = await axios.delete('/api/histories/me');
         dispatch({
-            type: GET_RECENT_HISTORY,
+            type: CLEAR_HISTORY,
             payload: res.data
         })
     } catch (err) {

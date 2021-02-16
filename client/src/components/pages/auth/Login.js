@@ -38,11 +38,11 @@ if(isAuthenticated){
               <input className="form-control" type="password" placeholder="Password" name="password" onChange={onChange}/>
               <br/>
              
-              <input className="form-control" type="submit" value="Sign Up"/>    
+              <input className="form-control" type="submit" value="Sign In"/>    
           </form>
           <div className="links">
               <p>Don't have an account?</p>
-              <Link to="/sign_in"> Sign Up Here!</Link>
+              <Link to="/sign_up"> Sign Up Here!</Link>
           </div>
         </div>  
           
