@@ -35,6 +35,8 @@ import LendMoney from './components/LendMoney';
 
 
 
+
+
 export class App extends Component {
    componentDidMount(){
       store.dispatch(loadUser())
@@ -56,7 +58,6 @@ export class App extends Component {
                  <Route exact path="/sign_up" render={props =>(<Register  /> )}/>
                  <Route exact path="/about_app" render={props =>(<About  /> )}/>
                  <Route exact path="/contact" render={props =>(<Contact  /> )}/>
-                 <Route exact path="/set_goal" render={props =>(<NewGoal  /> )}/>
                 
                   <PrivateRoute exact path="/" component={(props) => 
                   
@@ -68,6 +69,13 @@ export class App extends Component {
                      <CallButtons/>
                      <LatestHistory />
                      </ContentBox>    
+                      </div>
+                  
+             } />
+                  <PrivateRoute exact path="/set_goal" component={(props) => 
+                  
+                         <div className="wrapper">
+                    <NewGoal  />  
                       </div>
                   
              } />

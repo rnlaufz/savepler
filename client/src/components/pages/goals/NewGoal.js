@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, Fragment} from 'react'
 
 // Import components
 import PagesNav from '../PagesNav';
@@ -22,26 +22,76 @@ import PagesFooter from '../PagesFooter';
                 path: '/settings'
             }
           
-        ]
+        ],
 
-        // @TO_DO: add links for non authenticated user 
+        // Stages of loading parts of the component
+        createName: true,
+        setSum: false,
+        checkAdded: false,
+        allowAdding: false
             
         } 
     );
-    const {pageNavLinks} = compState;
+
+    const {pageNavLinks, createName, setSum, checkAdded, allowAdding} = compState;
+
+    const setName = () => {
+        setCompState({...compState, createName: !createName, setSum: !setSum})
+    }
+    const setSumm = () => {
+        setCompState({...compState, setSum: !setSum, checkAdded: !checkAdded})
+    }
+    const allowAdd = () => {
+        setCompState({...compState, checkAdded: !checkAdded, allowAdding: !allowAdding})
+    }
+    const addSaving = () => {
+        setCompState({
+            ...compState,
+            createName: false,
+            setSum: false,
+            checkAdded: false,
+            allowAdding: false 
+            })
+            console.log('All stages completed')
+    }
+    const createGoal = () => {
+        setCompState({
+        ...compState,
+        createName: false,
+        setSum: false,
+        checkAdded: false,
+        allowAdding: false 
+        })
+        console.log('All stages completed')
+    }
+
     return (
         <div className="page-container pos-flex">
             <PagesNav pageNavLinks={pageNavLinks} /> 
              <div className="new-goal-form">
             <div className="goal-card">
             <h1 className="title-l">Let's get started!</h1>
-            <h2 className="title-sm">Create a new goal</h2>
-            <p>Give your goal a name, set the amount of money and the currency you prefer</p>
-            <form>
+
+            {/* Set goal name */}
+            <Fragment>
+           {createName ? ( <Fragment><p>Give your goal a name</p>
+            <form onSubmit={setName}>
             <div className="inputs">
             <div>
                 <input className="form-control" type="text" placeholder="Goal Name"/>
             </div>
+            <div>
+                <input className="form-control" type="submit" value="Continue"/>
+            </div>
+            </div>
+            </form> </Fragment>) : null}
+            </Fragment>
+
+            {/* Set goal sum and currency */}
+            <Fragment>
+           {setSum ? ( <Fragment><p>Set the sum you need</p>
+            <form onSubmit={setSumm}>
+            <div className="inputs">
             <div>
                 <input className="form-control" type="number" placeholder="Reqired sum"/>
             </div>
@@ -53,14 +103,44 @@ import PagesFooter from '../PagesFooter';
                 </select>
             </div>
             <div>
-                <input className="form-control" type="submit" value="Create Goal"/>
+                <input className="form-control" type="submit" value="Continue"/>
             </div>
             </div>
-           
-           
-            </form>
+            </form> </Fragment>) : null}
+            </Fragment>
+
+            {/* Ask user for any savings */}
+            <Fragment>
+           {checkAdded ? ( <Fragment>
+            <div>
+                <h2>Do you already have any savings?</h2>
+                <div>
+                    <button onClick={allowAdd}>Yes</button>
+                </div>
+                <div>
+                    <button onClick={createGoal}>No</button>
+                </div>
             </div>
-           
+             </Fragment>) : null}
+            </Fragment>
+
+             {/* Add existing savings*/}
+             <Fragment>
+           {allowAdding ? ( <Fragment><p>Add saving</p>
+            <form onSubmit={addSaving}>
+            <div className="inputs">
+            <div>
+                <input className="form-control" type="number" placeholder="Saving amount"/>
+            </div>
+            <div>
+                <input className="form-control" type="submit" value="Continue"/>
+            </div>
+            </div>
+            </form> </Fragment>) : null}
+            </Fragment>
+
+
+           </div>  
         </div>
         <PagesFooter />
         </div>
