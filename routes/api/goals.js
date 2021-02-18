@@ -27,7 +27,7 @@ async (req, res) => {
         return res.status(400).json({errors: errors.array()});
     }
 
-    const {goal, sum, currency} = req.body
+    const {goal, sum, currency, added} = req.body
 
     // Create new goal and the history record
     try {
@@ -35,9 +35,9 @@ async (req, res) => {
         goal,
         sum,
         currency,
-        added: 0,
+        added: added ? added : 0,
         lended: 0,
-        residue: sum - 0,
+        residue: added > 0 ? sum - added : sum - 0,
         user: req.user.id
 
         })
@@ -50,7 +50,7 @@ async (req, res) => {
 
      await createGoal.save();
      await addHistoryRecord.save();
-     return res.status(200).send('Goal created')
+     return res.json(createGoal)
 
     } catch (err) {
         console.error(err.message)

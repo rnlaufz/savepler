@@ -72,8 +72,7 @@ export class App extends Component {
                       </div>
                   
              } />
-                  <PrivateRoute exact path="/set_goal" component={(props) => 
-                  
+                  <PrivateRoute exact path="/set_goal" component={() => 
                          <div className="wrapper">
                     <NewGoal  />  
                       </div>

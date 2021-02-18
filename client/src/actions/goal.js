@@ -1,5 +1,21 @@
 import axios from 'axios';
+import goal from '../reducers/goal';
 import {ADD_GOAL, GET_GOAL, UPDATE_GOAL, DELETE_GOAL, GOAL_ERROR} from './types';
+
+export const createGoal = (goalData) => async dispatch => {
+    try{
+        console.log(goalData)
+       const res = await axios.post('/api/goals', goalData);
+       dispatch({
+           type: ADD_GOAL,
+           payload: res.data
+       })
+    } catch (err) {
+        dispatch({
+            type: GOAL_ERROR
+        })
+    }
+}
 
 export const getGoal = () => async dispatch => {
     try {

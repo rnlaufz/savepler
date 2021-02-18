@@ -11,7 +11,7 @@ import {getGoal} from '../actions/goal';
    const goalData = uGoal[0]
     return (
     <Fragment>
-     { goalData ?(
+     { goalData ? (
         <div className="content-card-out curr-goal-card pos-flex">
             {/* Create redux action for getting the name of goal and the money */}
             <h2 className="title-l">{goalData.goal}</h2>

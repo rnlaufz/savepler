@@ -5,20 +5,17 @@ import {connect} from 'react-redux';
 import {getGoal} from '../actions/goal';
 
 
- const ContentBox = ({children, goal: uGoal, getGoal})  => {
-     const checkGoal = uGoal[0]
-    console.log(uGoal.length)
+
+ const ContentBox = ({children, goal: {uGoal}, getGoal})  => {
+     useEffect(() => {
+        getGoal()
+     }, [uGoal, getGoal])
+     const goalData = uGoal[0];
     return (
         <Fragment>
-            {
-            !checkGoal
-            ? 
-            <Redirect to="set_goal" /> 
-            :  
-            <div id="content-box" className='pos-flex'>
+           {goalData === undefined ? <Redirect to="/set_goal" /> : ( <div id="content-box" className='pos-flex'>
                 {children}
-            </div>
-        }
+            </div>)}
        </Fragment>
     )
 }

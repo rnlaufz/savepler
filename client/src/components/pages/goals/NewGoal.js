@@ -1,10 +1,16 @@
-import React, {useState, Fragment} from 'react'
+import React, {useState, Fragment, useEffect} from 'react';
+import {connect} from 'react-redux';
 
 // Import components
 import PagesNav from '../PagesNav';
 import PagesFooter from '../PagesFooter';
 
- const NewGoal = () =>  {
+import {createGoal, getGoal} from '../../../actions/goal';
+import { Redirect } from 'react-router-dom';
+
+
+ const NewGoal = ({createGoal, goal: {uGoal}, getGoal}) =>  {
+
     const [compState, setCompState] = useState({
 
         // Links for authenticated user
@@ -28,23 +34,41 @@ import PagesFooter from '../PagesFooter';
         createName: true,
         setSum: false,
         checkAdded: false,
-        allowAdding: false
+        allowAdding: false,
+
+        // Goal data
+        goal: '',
+        sum: 0,
+        currency: 'RUB',
+        added: 0
             
         } 
     );
 
-    const {pageNavLinks, createName, setSum, checkAdded, allowAdding} = compState;
+    const checkGoal = uGoal[0];
 
-    const setName = () => {
+    const {pageNavLinks, createName, setSum, checkAdded, allowAdding} = compState;
+    const nameGoal = (e) => {setCompState({...compState, goal: e.target.value})}
+    const setName = (e) => {
+        e.preventDefault()
         setCompState({...compState, createName: !createName, setSum: !setSum})
     }
-    const setSumm = () => {
+
+    const sumGoal = (e) => {setCompState({...compState, sum: e.target.value})}
+    const currencyGoal = (e) => {setCompState({...compState, currency: e.target.value})}
+    const setSumm = (e) => {
+        e.preventDefault()
         setCompState({...compState, setSum: !setSum, checkAdded: !checkAdded})
     }
+
+    
     const allowAdd = () => {
         setCompState({...compState, checkAdded: !checkAdded, allowAdding: !allowAdding})
     }
-    const addSaving = () => {
+    const addedToGoal = (e) => {if(allowAdding){setCompState({...compState, added: e.target.value})}}
+
+    const addSaving = (e) => {
+        e.preventDefault()
         setCompState({
             ...compState,
             createName: false,
@@ -52,9 +76,12 @@ import PagesFooter from '../PagesFooter';
             checkAdded: false,
             allowAdding: false 
             })
-            console.log('All stages completed')
+            const goalData = {goal: compState.goal, sum: Number.parseInt(compState.sum), currency: compState.currency, added: Number.parseInt(compState.added)}
+            createGoal(goalData)
+            getGoal()
+         
     }
-    const createGoal = () => {
+    const addGoal = () => {
         setCompState({
         ...compState,
         createName: false,
@@ -62,11 +89,15 @@ import PagesFooter from '../PagesFooter';
         checkAdded: false,
         allowAdding: false 
         })
-        console.log('All stages completed')
+        const goalData = {goal: compState.goal, sum: Number.parseInt(compState.sum), currency: compState.currency, added: Number.parseInt(compState.added)}
+        createGoal(goalData)
+        getGoal()
+       
     }
 
     return (
-        <div className="page-container pos-flex">
+        <Fragment>
+            {checkGoal === undefined ? (<div className="page-container pos-flex">
             <PagesNav pageNavLinks={pageNavLinks} /> 
              <div className="new-goal-form">
             <div className="goal-card">
@@ -78,7 +109,7 @@ import PagesFooter from '../PagesFooter';
             <form onSubmit={setName}>
             <div className="inputs">
             <div>
-                <input className="form-control" type="text" placeholder="Goal Name"/>
+                <input className="form-control" type="text" placeholder="Goal Name" onChange={nameGoal}/>
             </div>
             <div>
                 <input className="form-control" type="submit" value="Continue"/>
@@ -93,10 +124,10 @@ import PagesFooter from '../PagesFooter';
             <form onSubmit={setSumm}>
             <div className="inputs">
             <div>
-                <input className="form-control" type="number" placeholder="Reqired sum"/>
+                <input className="form-control" type="number" placeholder="Reqired sum" onChange={sumGoal}/>
             </div>
             <div>
-                <select className="form-control" name="currency" id="curr">
+                <select className="form-control" name="currency" id="curr" onChange={currencyGoal}>
                     <option defaultChecked value="RUB">RUB</option>
                     <option value="EUR">EUR</option>
                     <option value="USD">USD</option>
@@ -114,11 +145,13 @@ import PagesFooter from '../PagesFooter';
            {checkAdded ? ( <Fragment>
             <div>
                 <h2>Do you already have any savings?</h2>
+                <div className="button-holder">
                 <div>
                     <button onClick={allowAdd}>Yes</button>
                 </div>
                 <div>
-                    <button onClick={createGoal}>No</button>
+                    <button onClick={addGoal}>No</button>
+                </div>
                 </div>
             </div>
              </Fragment>) : null}
@@ -130,7 +163,7 @@ import PagesFooter from '../PagesFooter';
             <form onSubmit={addSaving}>
             <div className="inputs">
             <div>
-                <input className="form-control" type="number" placeholder="Saving amount"/>
+                <input className="form-control" type="number" placeholder="Saving amount" onChange={addedToGoal}/>
             </div>
             <div>
                 <input className="form-control" type="submit" value="Continue"/>
@@ -143,9 +176,16 @@ import PagesFooter from '../PagesFooter';
            </div>  
         </div>
         <PagesFooter />
-        </div>
+        </div>) : <Redirect to="/" />}
+      
+        </Fragment>
        
     )
 }
 
-export default NewGoal;
+const mapStateToProps = state => ({
+    goal: state.goal,
+    uGoal: state.goal.uGoal
+})
+
+export default connect(mapStateToProps, {createGoal, getGoal})(NewGoal);
