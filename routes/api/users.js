@@ -78,6 +78,43 @@ async (req, res) => {
 
     
 });
+// @route   POST api/users/me
+// @desc    Change email
+// @access  Private
+router.post('/me', auth, [
+    check('email', 'Please enter a valid email').isEmail(),
+], 
+
+async (req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array()})
+    }
+
+    const {email} = req.body;
+
+    try {
+        
+    // See if new email is registered 
+     let findUser = await User.findOne({email});
+       
+     if(findUser){
+        return res.status(400).json({errors: [{message: "User already exists"}]});
+     }
+
+       let user = await User.updateOne({_id:req.user.id}, {$set:{email:email}});
+       return res.json(user)
+   
+    } catch(err){
+
+        console.error(err.message);
+        res.status(500).send('Server error')
+
+    }
+
+
+    
+});
 
 // @route   DELETE api/user
 // @desc    Delete user

@@ -108,7 +108,7 @@ export class App extends Component {
                   
              } />
            
-                  <Route exact path="/history" render={(props) => 
+                  <PrivateRoute exact path="/history" component={(props) => 
                      <Fragment>
                       <NavBar />
                       <ContentBox>
@@ -116,7 +116,7 @@ export class App extends Component {
                       </ContentBox> 
                      </Fragment>
              } />
-                  <Route exact path="/edit" render={(props) => 
+                  <PrivateRoute exact path="/edit" component={(props) => 
                      <Fragment>
                       <NavBar />
                       <ContentBox>
@@ -124,23 +124,7 @@ export class App extends Component {
                       </ContentBox> 
                      </Fragment>
              } />
-                  {/* <Route exact path="/add" render={(props) => 
-                     <Fragment>
-                      <NavBar />
-                      <ContentBox>
-                         <AddMoney />
-                      </ContentBox> 
-                     </Fragment>
-             } />
-                  <Route exact path="/lend" render={(props) => 
-                     <Fragment>
-                      <NavBar />
-                      <ContentBox>
-                         <LendMoney />
-                      </ContentBox> 
-                     </Fragment>
-             } /> */}
-                  <Route exact path="/settings" render={(props) => 
+                  <PrivateRoute exact path="/settings" component={(props) => 
                      <Fragment>
                       <NavBar />
                       <ContentBox>

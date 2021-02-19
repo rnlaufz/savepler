@@ -87,6 +87,22 @@ export const login = (email, password) => async dispatch => {
     }
 };
 
+
+// Change email
+export const updateEmail = (email) => async  dispatch => {
+try {
+    const res = await axios.post('/api/users/me', email);
+    dispatch({
+        type: LOGOUT,
+    })
+    
+} catch (err) {
+    dispatch({
+        type: AUTH_ERROR
+    })
+}
+}
+
 // Logout 
 export const logout = () => dispatch => {
     dispatch({type: LOGOUT});

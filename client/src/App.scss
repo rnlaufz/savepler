@@ -554,12 +554,16 @@ html, body, .container{
               a {
                 color: $primary-light;
                 text-decoration: none;
+                font-family: $title-font;
+                font-size: 18px;
               }
 
               button {
                 cursor: pointer;
                 color: $primary-light;
                 text-decoration: none;
+                font-family: $title-font;
+                font-size: 18px;
                 background: transparent;
                 border: none;
               }
