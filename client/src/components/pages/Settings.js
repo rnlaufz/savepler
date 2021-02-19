@@ -9,15 +9,16 @@ import {removeRecords} from '../../actions/history';
  const Settings = ({goal:{uGoal}, deleteGoal, deleteUser, removeRecords, updateEmail})  => {
     const goal = uGoal[0];
    const [formData, setFormData] = useState({
+         email: '',
          callForm: false,
-         email: ''
+        
      });
 
      const {callForm, email} = formData; 
 
      useEffect(() => {
          return email
-     }, [email])
+     }, [email, uGoal])
 
    
 
@@ -25,32 +26,34 @@ import {removeRecords} from '../../actions/history';
 
     const onChange = (e) => {
         e.persist()
-        setFormData({...formData, [e.target.name]: e.target.value}); 
-        console.log(email)};
+        setFormData({...formData, [e.target.name]: e.target.value})};
 
     const onSubmit = (e) => {
         e.preventDefault()
         const conf = window.confirm('Are you sure you want to change your email?')
-        if(email !== '' && conf){
-            updateEmail(email)
-        }
-        
+        const sendEmail = email
+        if(sendEmail !== '' && conf){
+            updateEmail(sendEmail)
+        }  
     }
      
     const deleteData = () => {
-        if(goal._id){
+        const conf = window.confirm('Are you sure you want to delete your goal data?')
+        if(conf && goal._id){
             deleteGoal(goal._id)
             removeRecords()
         } 
     }
 
     const deleteAccount = () => {
+        const conf = window.confirm('Are you sure you want to delete your account?')
+       if(conf){ 
         deleteUser()
-        removeRecords()
+        removeRecords()}
     }
     return (
         <div className='settings-container pos-flex'>
-            <h2>Settings</h2>
+            <h2>{callForm ? "Change Email" : "Settings"}</h2>
             {!callForm ? (<ul>
                 <li><button onClick={showForm}>Change email</button></li>
                 <li><button onClick={deleteData}>Delete data</button></li>
@@ -58,8 +61,6 @@ import {removeRecords} from '../../actions/history';
             </ul>) : 
              <div className="form-card">
          <form onSubmit={onSubmit}>
-             <br/>
-             <br/>
                <input className="form-control" type="email" placeholder="New email Address" name="email" onChange={onChange}/>
                <br/>
                <input className="form-control" type="submit" value="Update email"/>    

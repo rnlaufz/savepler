@@ -4,7 +4,6 @@ import {ADD_GOAL, GET_GOAL, UPDATE_GOAL, DELETE_GOAL, GOAL_ERROR} from './types'
 
 export const createGoal = (goalData) => async dispatch => {
     try{
-        console.log(goalData)
        const res = await axios.post('/api/goals', goalData);
        dispatch({
            type: ADD_GOAL,
@@ -35,7 +34,6 @@ export const goalAction = (actionType, sendSum) => async dispatch => {
     try {
        
         const res = await axios.post(`/api/goals/update`, body);
-        console.log(body)
         dispatch ({
             type: UPDATE_GOAL,
             payload: res.data

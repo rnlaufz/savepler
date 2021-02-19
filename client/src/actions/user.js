@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import {setAlert} from "./alert";
 
-import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, DELETE_USER} from './types';
+import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, UPDATE_USER, DELETE_USER} from './types';
 
 import setAuthToken from '../utils/setAuthToken'
 
@@ -90,10 +90,17 @@ export const login = (email, password) => async dispatch => {
 
 // Change email
 export const updateEmail = (email) => async  dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json '
+        }
+    }
 try {
-    const res = await axios.post('/api/users/me', email);
+    const body = JSON.stringify({email})
+    const res = await axios.post('/api/users/me', body, config);
     dispatch({
-        type: LOGOUT,
+        type: UPDATE_USER,
+        payload: res.data
     })
     
 } catch (err) {

@@ -9,6 +9,7 @@ export const LOGOUT = "LOGOUT";
 
 // Account managing
 export const DELETE_USER = "DELETE_USER";
+export const UPDATE_USER = "UPDATE_USER";
 
 // Goal Managing
 export const ADD_GOAL = "ADD_GOAL";
