@@ -2,6 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Kufam&display=swap');  /* font-family: 'Kufam', cursive; */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); /* font-family: 'Montserrat', sans-serif; */
 
+
+
+
 // Variables 
 // Fonts 
 $title-font: 'Kufam', cursive;
@@ -808,11 +811,11 @@ html, body, .container{
         ul {
           padding: 10px 0;
           list-style: none;
-          text-align: start;
+          text-align: center;
 
           li {
             color: $primary-light;
-
+            padding: 5px;
             a {
               color: $primary-light;
               text-decoration: none;
@@ -842,7 +845,7 @@ html, body, .container{
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: start;
+      text-align: start; 
 
       h2{
         font-family: $title-font;
@@ -857,13 +860,15 @@ html, body, .container{
 
     .about-card {
       margin: 2rem 2rem 2rem 0;
-      width: 30%;
+      width: 50%;
       min-height: 600px;
       height: 100%;
       border-radius: 11px;        
-      background: url('./img/tired.jpeg') no-repeat center center/cover;
+      background: url('./img/sp_dashboard.jpg') no-repeat center center/cover;
       box-shadow:  -10px -10px 20px $shadow-top-left,
                 10px 10px 20px $shadow-bottom-right;
+
+                
      
     }
   }

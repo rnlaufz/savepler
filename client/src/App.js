@@ -32,6 +32,7 @@ import LatestHistory from './components/LatestHistory';
 import CallButtons from './components/CallButtons';
 import AddMoney from './components/AddMoney';
 import LendMoney from './components/LendMoney';
+import PrivateGoalRoute from './components/routing/PrivateGoalRoute';
 
 
 
@@ -72,7 +73,7 @@ export class App extends Component {
                       </div>
                   
              } />
-                  <PrivateRoute exact path="/set_goal" component={() => 
+                  <PrivateRoute exact path="/set_goal" component={(props) => 
                          <div className="wrapper">
                     <NewGoal  />  
                       </div>

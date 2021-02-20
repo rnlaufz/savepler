@@ -10,6 +10,9 @@ import { Redirect } from 'react-router-dom';
 
 
  const NewGoal = ({createGoal, goal: {uGoal}, getGoal}) =>  {
+     useEffect(() => {
+        getGoal()
+     }, [getGoal, uGoal])
 
     const [compState, setCompState] = useState({
 
@@ -97,7 +100,8 @@ import { Redirect } from 'react-router-dom';
 
     return (
         <Fragment>
-            {checkGoal === undefined ? (<div className="page-container pos-flex">
+            {checkGoal !== undefined ? <Redirect to="/" /> :
+            (<div className="page-container pos-flex">
             <PagesNav pageNavLinks={pageNavLinks} /> 
              <div className="new-goal-form">
             <div className="goal-card">
@@ -176,7 +180,8 @@ import { Redirect } from 'react-router-dom';
            </div>  
         </div>
         <PagesFooter />
-        </div>) : <Redirect to="/" />}
+        </div>)
+            }
       
         </Fragment>
        

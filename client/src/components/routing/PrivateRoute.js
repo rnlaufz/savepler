@@ -5,7 +5,7 @@ import propTypes from 'prop-types';
 
 
 const PrivateRoute = ({component: Component, user: {isAuthenticated, loading}, ...rest}) => (
-    <Route {...rest} render={ props => !isAuthenticated && !loading  ? (<Redirect to="/sign_in" />): (<Component {...props} />)} />
+    <Route {...rest} render={ props => !isAuthenticated && !loading  ? (<Redirect to="/about_app" />): (<Component {...props} />)} />
 )
 PrivateRoute.propTypes = {
       user: propTypes.object.isRequired
