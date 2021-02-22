@@ -1,9 +1,9 @@
 import {GET_HISTORY, GET_RECENT_HISTORY, CLEAR_HISTORY, HISTORY_ERROR} from './types';
 import axios from 'axios';
 
-export const getAllRecords = () =>  async dispatch => {
+export const getAllRecords = (page) =>  async dispatch => {
     try {
-        const res = await axios.get('/api/histories');
+        const res = await axios.get(`/api/histories/${page}`);
         dispatch({
             type: GET_HISTORY,
             payload: res.data

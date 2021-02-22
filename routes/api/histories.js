@@ -9,9 +9,10 @@ const History = require('../../models/History');
 // @desc get saving history | get all records
 // @access private
 
-router.get('/', auth, async (req, res) => {
+router.get('/:page', auth, async (req, res) => {
+    const page = req.params.page;
     try{
-        const history = await History.find({user: req.user.id}).sort({date: -1});
+        const history = await History.find({user: req.user.id}).limit(14).skip(14 * page).sort({date: -1});
        return res.json(history)
     }catch(err){
         console.error(err.message)
