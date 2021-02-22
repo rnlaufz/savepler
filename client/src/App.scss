@@ -459,7 +459,27 @@ html, body, .container{
         }
       }
 
-      
+      .history-nav-btns {
+        width: 100%;
+        margin: 0, auto;
+        text-align: center;
+        .history-nav-btn {
+          cursor: pointer;
+          background: transparent;
+          border: none;
+          color: $primary-light;
+          font-size: 18px;
+          padding: 10px;
+          transition: color ease .3s;
+        }
+
+        .history-nav-btn:focus {
+          outline: none;
+        }
+        .history-nav-btn:hover {
+          color: $primary-contrast;
+        }
+      }
 
     }
 
