@@ -3,6 +3,7 @@ import {GET_HISTORY, GET_RECENT_HISTORY,  CLEAR_HISTORY, HISTORY_ERROR} from '..
 const initialState = {
     allRecords: [],
     recentRecords: [],
+    pages: 0,
     loading: true 
 };
 
@@ -17,6 +18,7 @@ export default function(state=initialState, action){
                 loading: false
             };
         case GET_RECENT_HISTORY:
+            console.log(payload)
             return{
                 ...state,
                 recentRecords: payload,

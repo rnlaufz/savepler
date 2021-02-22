@@ -19,11 +19,11 @@ import HistoryItem from './HistoryItem';
    const numRecords = allRecords.length;
    const nextPage = () => {
     setCompState({currentPage: currentPage-1})
-    if(numRecords >= 14){getAllRecords(currentPage)}
+    if(numRecords >= 15 && currentPage > 0){getAllRecords(currentPage)}
    }
    const prevPage = () => {
-    setCompState({currentPage: currentPage+1})
-    if(numRecords >= 14){getAllRecords(currentPage)}
+   setCompState({currentPage: currentPage+1})
+    if(numRecords >= 15 && currentPage > 0){getAllRecords(currentPage)}
 
    }
     return (
