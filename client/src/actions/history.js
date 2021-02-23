@@ -32,7 +32,7 @@ export const getAllRecords = (page) =>  async dispatch => {
 }
 export const getLatestRecords = () =>  async dispatch => {
     try {
-        const res = await axios.get('/api/histories/me');
+        const res = await axios.get('/api/histories/latest/records');
         dispatch({
             type: GET_RECENT_HISTORY,
             payload: res.data

@@ -5,16 +5,14 @@ const router = express.Router();
 const auth = require('../../middleware/auth');
 const History = require('../../models/History');
 
-let pageLimit
-
 // @route api/histories 
 // @desc count pages amount
 // @access private
 
 router.get('/', auth, async (req, res) => {
-    pageLimit = 15
+   
     try{
-        const countRecords = Math.ceil(await History.find({user: req.user.id}).countDocuments()/pageLimit)
+        const countRecords = Math.ceil(await History.find({user: req.user.id}).countDocuments()/15)
         return res.json(countRecords)
        
     }catch(err){
@@ -28,11 +26,10 @@ router.get('/', auth, async (req, res) => {
 // @access private
 router.get('/:page', auth, async (req, res) => {
     const page = req.params.page;
-    pageLimit = 15
     try{
         const countRecords = await History.find({user: req.user.id}).countDocuments()
-        while(countRecords >= pageLimit){
-            const history = await History.find({user: req.user.id}).sort({date: -1}).limit(pageLimit).skip(pageLimit * page);
+        while(countRecords >= 15){
+            const history = await History.find({user: req.user.id}).sort({date: -1}).limit(15).skip(15 * page);
             return res.json(history)
         }
        
@@ -45,10 +42,10 @@ router.get('/:page', auth, async (req, res) => {
 // @desc get saving history | get five last records
 // @access private
 
-router.get('/me', auth, async (req, res) => {
-    pageLimit=5
+router.get('/latest/records', auth, async (req, res) => {
+ 
     try{
-        const history = await History.find({user: req.user.id}).sort({date: -1}).limit(pageLimit);
+        const history = await History.find({user: req.user.id}).sort({date: -1}).limit(5);
        return res.json(history)
     }catch(err){
         console.error(err.message)

@@ -19,28 +19,6 @@ import HistoryItem from './HistoryItem';
     }, [getAllRecords, allRecords, getPages]);
    const numRecords = allRecords.length;
    const pageNum = pages - 1;
-//    const nextPage = () => {
-//     if(currentPage > pageNum){
-//         setCompState({currentPage: 0})
-//        }
-//     if(currentPage >= 0 && currentPage <= pageNum){
-//         setCompState({currentPage: currentPage > pageNum ? 0 : currentPage-1})
-//         if(numRecords >= 15 && currentPage > 0 && currentPage <= pageNum){
-//             getAllRecords(currentPage)
-//         }
-//        }
-//    }
-//    const prevPage = () => {
-//        if(currentPage > pageNum){
-//         setCompState({currentPage: 0})
-//        }
-//        if(currentPage >= 0 && currentPage <= pageNum){
-//         setCompState({currentPage: currentPage > pageNum ? 0 : currentPage+1})
-//         if(numRecords >= 15 && currentPage > 0 && currentPage <= pageNum){
-//             getAllRecords(currentPage)
-//         }
-//        }
-//    }
    const nextPage = () => {
    setCompState({
        currentPage: numRecords >= 15 && currentPage === 0 && currentPage <= pageNum ? currentPage-1 : 0 

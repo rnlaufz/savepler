@@ -24,7 +24,6 @@ export default function(state=initialState, action){
                 loading: false
             };
         case GET_RECENT_HISTORY:
-            console.log(payload)
             return{
                 ...state,
                 recentRecords: payload,
