@@ -1,5 +1,21 @@
-import {GET_HISTORY, GET_RECENT_HISTORY, CLEAR_HISTORY, HISTORY_ERROR} from './types';
+import {GET_PAGES, GET_HISTORY, GET_RECENT_HISTORY, CLEAR_HISTORY, HISTORY_ERROR} from './types';
 import axios from 'axios';
+
+export const getPages = () => async dispatch => {
+    try {
+
+        const res = await axios.get('/api/histories');
+        dispatch({
+            type: GET_PAGES,
+            payload: res.data
+        })
+
+    } catch(err){
+        dispatch({
+            type: HISTORY_ERROR
+        })
+    }
+}
 
 export const getAllRecords = (page) =>  async dispatch => {
     try {

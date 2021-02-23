@@ -19,6 +19,7 @@ export const DELETE_GOAL = "DELETE_GOAL";
 export const GOAL_ERROR = "GOAL_ERROR";
 
 // History data 
+export const GET_PAGES = "GET_PAGES";
 export const GET_HISTORY = "GET_HISTORY";
 export const GET_RECENT_HISTORY = "GET_RECENT_HISTORY";
 export const CLEAR_HISTORY = "CLEAR_HISTORY";

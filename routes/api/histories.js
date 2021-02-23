@@ -7,10 +7,25 @@ const History = require('../../models/History');
 
 let pageLimit
 
+// @route api/histories 
+// @desc count pages amount
+// @access private
+
+router.get('/', auth, async (req, res) => {
+    pageLimit = 15
+    try{
+        const countRecords = Math.ceil(await History.find({user: req.user.id}).countDocuments()/pageLimit)
+        return res.json(countRecords)
+       
+    }catch(err){
+        console.error(err.message)
+        res.status(500).send("Server error")
+    }
+})
+
 // @route api/histories/me 
 // @desc get saving history | get all records
 // @access private
-
 router.get('/:page', auth, async (req, res) => {
     const page = req.params.page;
     pageLimit = 15
