@@ -23,8 +23,10 @@ const AddMoney = ({hideForms, ui:{formAction}, goalAction, getGoal}) => {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        setFormData({...formData, red: !red})  
+        if(sendSum !== 0){
+            setFormData({...formData, red: !red})  
         goalAction(actionType, sendSum);
+    }  setFormData({...formData, red: !red})
   
     }
     return (

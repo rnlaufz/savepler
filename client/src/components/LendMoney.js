@@ -8,6 +8,7 @@ const LendMoney = ({hideForms, ui:{formAction}, goalAction, getGoal}) => {
     const [formData, setFormData] = useState({
         actionType: "lend",
         sendSum: 0,
+        // red - is for checking if the goal was edited | if not and user submits, nothing happens and form hides 
         red: false,
     });
 
@@ -20,12 +21,11 @@ const LendMoney = ({hideForms, ui:{formAction}, goalAction, getGoal}) => {
 
     const onSubmit = async (e)  => { 
         e.preventDefault()
+      if(sendSum !== 0){  
         setFormData({...formData, red: !red}) 
         goalAction(actionType, sendSum); 
         getGoal()
-      
-    
-    
+    }  setFormData({...formData, red: !red})
     }
 
     return (
