@@ -33,7 +33,7 @@ const LendMoney = ({hideForms, ui:{formAction}, goalAction, getGoal}) => {
       {!red ? ( <div className='form-container'>
         <form onSubmit={onSubmit}> 
             <div>
-                <input className="form-control input-fix" type="number" placeholder="Enter sum" onChange={onChange} value={sendSum}/>
+                <input className="form-control input-fix" type="number" placeholder="Enter sum" onChange={onChange}/>
             </div>
             <div>
                 <input className="form-control" type="submit" value="Lend"/>
