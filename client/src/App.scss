@@ -618,10 +618,8 @@ input:-webkit-autofill:active  {
             border-left: 2px solid $primary-contrast;
             border-radius: 5px;
           }
-
-            }
-          }
-
+        }
+      }
     }
 
     .goal-form {
@@ -673,7 +671,6 @@ input:-webkit-autofill:active  {
           -webkit-appearance: none; 
           margin: 0; 
 }
-  
             input[type=text], input[type=number]{
             height: 100%;
             border-bottom: 2px solid $primary-contrast;
@@ -685,17 +682,11 @@ input:-webkit-autofill:active  {
             cursor: pointer;
             border-top: 2px solid $primary-contrast;
             border-left: 2px solid $primary-contrast;
-          }
+         }
         }
        }
-
-       
-
-       
-
       }
     }
-    
   }
 
 
@@ -764,14 +755,11 @@ input:-webkit-autofill:active  {
   .links {
     height: 20%;
 
-
     a {
       color: $primary-contrast;
       text-decoration: none;
-    }
-
-  }
-                
+      }
+    }            
   }
 }
 
@@ -790,7 +778,6 @@ input:-webkit-autofill:active  {
     justify-content: space-between;
     padding: 20px;
 
-    
     h2{
       font-family: $title-font;
       color: $primary-contrast;
@@ -814,10 +801,7 @@ input:-webkit-autofill:active  {
             color: $primary-light;
           }
         }
-      }
-  
-
-      
+      }    
   }
 
   // Contact page
@@ -898,9 +882,6 @@ input:-webkit-autofill:active  {
       background: url('./img/sp_dashboard.jpg') no-repeat center center/cover;
       box-shadow:  -10px -10px 20px $shadow-top-left,
                 10px 10px 20px $shadow-bottom-right;
-
-                
-     
     }
   }
 
@@ -971,11 +952,6 @@ input:-webkit-autofill:active  {
            }
          }
         }
- 
-        
- 
-        
- 
        }
 
        .button-holder {
@@ -1051,11 +1027,13 @@ input:-webkit-autofill:active  {
   
 }
 @media(max-width:920px){
+.nav-box, .nav-footer {
+  font-size: 16px !important;
+}  
 #content-box { 
+  justify-content: center;
   .curr-goal-card {
     width: 400px;
-    
-    
   }
   .info-cards {
     .info-card {
@@ -1076,10 +1054,28 @@ input:-webkit-autofill:active  {
 
   .call-buttons-container {
     width: 200px;
-  }
+    height: 50px;
+    }
+  .form-control {
+    width: 350px !important;
+    height: 40px !important;
+    font-size: 16px;
+  }  
 
-  
+  .latest-history-container {
+    h2 {
+      font-size: 20px;
+    }
+   ul {
+     font-size: 16px !important;
+     li {
+       height: 30px;
 
-  }
-  
+       .sum, .date {
+         font-size: 18px;
+       }
+        }
+      }
+    }
+  }  
 }
