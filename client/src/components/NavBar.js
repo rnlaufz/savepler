@@ -1,20 +1,18 @@
 import React, {Fragment, useEffect} from 'react';
 import { connect } from 'react-redux';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {v4 as uuid} from 'uuid';
 import propTypes from 'prop-types';
 import { logout} from '../actions/user';
 
-// @TO_DO: create logout func
-
- const NavBar = ({logout, user: {isAuthneticated, userData}})  => {
+ const NavBar = ({logout, user: {userData}})  => {
    useEffect(() => {
 
    }, [userData])
     return (
       <Fragment>
         <div className="nav-box">
-        <h2>{ userData.name}</h2>
+        <h2>{userData.name}</h2>
         <div className="nav-list">
         <ul>
           <li key={uuid()}><Link to="/">Dashboard</Link></li>

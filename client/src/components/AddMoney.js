@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import { goalAction, getGoal } from '../actions/goal';
 
-import {hideForms} from '../actions/ui';
 
-const AddMoney = ({hideForms, ui:{formAction}, goalAction, getGoal}) => {
+
+const AddMoney = ({goalAction, getGoal}) => {
     // @TO_DO: write complete submit event
     const [formData, setFormData] = useState({
         red: false, 
@@ -49,8 +49,7 @@ const AddMoney = ({hideForms, ui:{formAction}, goalAction, getGoal}) => {
 }
 
 const mapStateToProps = state => ({
-    ui: state.ui,
     goal: state.goal
 })
 
-export default connect(mapStateToProps, {hideForms, goalAction, getGoal})(AddMoney);
+export default connect(mapStateToProps, {goalAction, getGoal})(AddMoney);

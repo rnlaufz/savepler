@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+
 
 // Import fontawesome icons
 import {faGithub, faInstagram, faGooglePlus, faVk} from '@fortawesome/free-brands-svg-icons';

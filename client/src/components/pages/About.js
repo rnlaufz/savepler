@@ -9,7 +9,7 @@ import PagesFooter from './PagesFooter';
 import {loadUser} from '../../actions/user';
 
 
- const About = ({loadUser, user:{isAuthenticated, loading}}) => {
+ const About = ({loadUser, user:{isAuthenticated}}) => {
      useEffect(() => {
          loadUser()
      }, [loadUser, isAuthenticated])

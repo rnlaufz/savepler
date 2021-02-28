@@ -25,14 +25,13 @@ import setAuthToken from './utils/setAuthToken';
 
 // Import routing
 import PrivateRoute from './components/routing/PrivateRoute';
-import { getGoal } from './actions/goal';
 import CurrentGoal from './components/CurrentGoal';
 import InfoCards from './components/InfoCards';
 import LatestHistory from './components/LatestHistory';
 import CallButtons from './components/CallButtons';
 import AddMoney from './components/AddMoney';
 import LendMoney from './components/LendMoney';
-import PrivateGoalRoute from './components/routing/PrivateGoalRoute';
+
 
 
 

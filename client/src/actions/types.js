@@ -25,7 +25,4 @@ export const GET_RECENT_HISTORY = "GET_RECENT_HISTORY";
 export const CLEAR_HISTORY = "CLEAR_HISTORY";
 export const HISTORY_ERROR = "HISTORY_ERROR";
 
-// UI 
-export const CALL_ADD = "CALL_ADD";
-export const CALL_LEND = "CALL_LEND";
-export const HIDE_FORM = "HIDE_FORM";
+

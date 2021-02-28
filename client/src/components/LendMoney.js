@@ -2,9 +2,8 @@ import React, {Fragment, useState} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import { goalAction, getGoal } from '../actions/goal';
-import {hideForms} from '../actions/ui';
 
-const LendMoney = ({hideForms, ui:{formAction}, goalAction, getGoal}) => {
+const LendMoney = ({goalAction, getGoal}) => {
     const [formData, setFormData] = useState({
         actionType: "lend",
         sendSum: 0,
@@ -45,8 +44,7 @@ const LendMoney = ({hideForms, ui:{formAction}, goalAction, getGoal}) => {
 }
 
 const mapStateToProps = state => ({
-    ui: state.ui,
     goal: state.goal
 })
 
-export default connect(mapStateToProps, {hideForms, goalAction, getGoal})(LendMoney);
+export default connect(mapStateToProps, { goalAction, getGoal})(LendMoney);
