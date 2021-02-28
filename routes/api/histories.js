@@ -28,10 +28,10 @@ router.get('/:page', auth, async (req, res) => {
     const page = req.params.page;
     try{
         const countRecords = await History.find({user: req.user.id}).countDocuments()
-        while(countRecords >= 15){
+    
             const history = await History.find({user: req.user.id}).sort({date: -1}).limit(15).skip(15 * page);
             return res.json(history)
-        }
+  
        
     }catch(err){
         console.error(err.message)

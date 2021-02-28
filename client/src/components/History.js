@@ -22,18 +22,16 @@ import HistoryItem from './HistoryItem';
    const pageNum = pages - 1;
    const nextPage = () => {
    setCompState({
-       currentPage: numRecords >= 15 && currentPage === 0 && currentPage <= pageNum ? currentPage-1 : 0 
+       currentPage: currentPage === 0 && currentPage <= pageNum ? currentPage-1 : 0 
    })
    getAllRecords(currentPage)
    }
    const prevPage = () => {
     setCompState({
-        currentPage: numRecords >= 15 && currentPage === 0 && currentPage <= pageNum ? currentPage+1 : 0 
+        currentPage: currentPage === 0 && currentPage <= pageNum ? currentPage+1 : 0 
     })
     getAllRecords(currentPage)
    }
-   console.log(currentPage)
-   console.log(pageNum)
     return (
         <Fragment>
         <div className="history-container pos-flex">

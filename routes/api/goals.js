@@ -42,7 +42,7 @@ async (req, res) => {
 
         })
         const addHistoryRecord = new History({
-            action: `Goal "${goal}" created`,
+            action: 'Goal created',
             amount: 0,
             currency: currency,
             user: req.user.id
