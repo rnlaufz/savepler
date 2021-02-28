@@ -1,5 +1,6 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {connect} from 'react-redux';
+import propTypes from 'prop-types';
 
 import {getGoal, editGoal} from '../actions/goal';
 
@@ -73,6 +74,12 @@ import {getGoal, editGoal} from '../actions/goal';
         </Fragment>
        
     )
+}
+
+EditGoal.propTypes = {
+    goal: propTypes.object.isRequired,
+    getGoal: propTypes.func.isRequired,
+    editGoal: propTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

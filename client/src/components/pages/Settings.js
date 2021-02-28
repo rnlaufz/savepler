@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
+import propTypes from 'prop-types';
 
 import {deleteGoal} from '../../actions/goal';
 import {deleteUser, updateEmail} from '../../actions/user';
@@ -68,6 +69,14 @@ import {removeRecords} from '../../actions/history';
             }
         </div>
     )
+}
+
+Settings.propTypes = {
+    goal: propTypes.object.isRequired,
+    deleteGoal: propTypes.func.isRequired,
+    deleteUser: propTypes.func.isRequired,
+    removeRecords: propTypes.func.isRequired,
+    updateEmail: propTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

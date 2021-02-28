@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {v4 as uuid} from 'uuid';
+import propTypes from 'prop-types';
 
 import { getLatestRecords } from "../actions/history";
 import HistoryItem from './HistoryItem';
@@ -20,6 +21,11 @@ import HistoryItem from './HistoryItem';
         </div>
  
     )
+}
+
+LatestHistory.propTypes = {
+    history: propTypes.object.isRequired,
+    getLatestRecords: propTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

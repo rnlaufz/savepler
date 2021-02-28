@@ -1,6 +1,7 @@
 import React, {Fragment, useEffect} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+import propTypes from 'prop-types';
 
 import {getGoal} from '../actions/goal';
 
@@ -18,6 +19,11 @@ import {getGoal} from '../actions/goal';
             </div>)}
        </Fragment>
     )
+}
+
+ContentBox.propTypes = {
+    goal: propTypes.object.isRequired,
+    getGoal: propTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

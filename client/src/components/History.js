@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import React, {Fragment, useEffect, useState} from 'react';
 import {v4 as uuid} from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons'
+import {faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons';
+import propTypes from 'prop-types';
 
 import { getAllRecords, getPages } from "../actions/history";
 import HistoryItem from './HistoryItem';
@@ -54,6 +55,12 @@ import HistoryItem from './HistoryItem';
         </div>
        </Fragment>
     )
+}
+
+History.propTypes = {
+    history: propTypes.object.isRequired,
+    getAllRecords: propTypes.func.isRequired,
+    getPages: propTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

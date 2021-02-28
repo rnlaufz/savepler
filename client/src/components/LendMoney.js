@@ -2,6 +2,7 @@ import React, {Fragment, useState} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import { goalAction, getGoal } from '../actions/goal';
+import propTypes from 'prop-types';
 
 const LendMoney = ({goalAction, getGoal}) => {
     const [formData, setFormData] = useState({
@@ -41,6 +42,11 @@ const LendMoney = ({goalAction, getGoal}) => {
     </div>) : <Redirect to="/" /> }
       </Fragment> 
     )
+}
+
+LendMoney.propTypes = {
+    goalAction: propTypes.func.isRequired,
+    getGoal: propTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

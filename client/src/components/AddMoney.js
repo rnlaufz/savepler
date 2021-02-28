@@ -1,11 +1,11 @@
 import React, {Fragment, useState} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import { goalAction, getGoal } from '../actions/goal';
+import { goalAction} from '../actions/goal';
+import propTypes from 'prop-types';
 
 
-
-const AddMoney = ({goalAction, getGoal}) => {
+const AddMoney = ({goalAction}) => {
     // @TO_DO: write complete submit event
     const [formData, setFormData] = useState({
         red: false, 
@@ -48,8 +48,12 @@ const AddMoney = ({goalAction, getGoal}) => {
     )
 }
 
+AddMoney.propTypes = {
+    goalAction: propTypes.func.isRequired,
+}
+
 const mapStateToProps = state => ({
     goal: state.goal
 })
 
-export default connect(mapStateToProps, {goalAction, getGoal})(AddMoney);
+export default connect(mapStateToProps, {goalAction})(AddMoney);

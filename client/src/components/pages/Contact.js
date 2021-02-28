@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
-
+import propTypes from 'prop-types';
 
 // Import fontawesome icons
 import {faGithub, faInstagram, faGooglePlus, faVk} from '@fortawesome/free-brands-svg-icons';
@@ -82,6 +82,11 @@ import {loadUser} from '../../actions/user';
            <PagesFooter />
         </div>
     )
+}
+
+Contact.propTypes = {
+    user: propTypes.object.isRequired,
+    loadUser: propTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

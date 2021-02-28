@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
+import propTypes from 'prop-types';
 
 // Import components
 import PagesNav from './PagesNav';
@@ -64,6 +65,11 @@ import {loadUser} from '../../actions/user';
            <PagesFooter />
         </div>
     )
+}
+
+About.propTypes = {
+    user: propTypes.object.isRequired,
+    loadUser: propTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

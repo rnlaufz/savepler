@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import { connect } from 'react-redux';
+import propTypes from 'prop-types';
 
 import {getGoal} from '../actions/goal';
 
@@ -34,6 +35,10 @@ import {getGoal} from '../actions/goal';
     )
 }
 
+InfoCards.propTypes = {
+    goal: propTypes.object.isRequired,
+    getGoal: propTypes.func.isRequired,
+}
 
 const mapStateToProps = state =>  ({
     goal: state.goal,

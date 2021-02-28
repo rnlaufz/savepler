@@ -1,5 +1,6 @@
 import React, {useState, Fragment, useEffect} from 'react';
 import {connect} from 'react-redux';
+import propTypes from 'prop-types';
 
 // Import components
 import PagesNav from '../PagesNav';
@@ -187,6 +188,12 @@ import { Redirect } from 'react-router-dom';
        
     )
 }
+
+ NewGoal.propTypes = {
+     goal: propTypes.object.isRequired,
+     createGoal: propTypes.func.isRequired,
+     getGoal: propTypes.func.isRequired,
+ }
 
 const mapStateToProps = state => ({
     goal: state.goal,

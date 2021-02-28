@@ -42,7 +42,7 @@ import { logout} from '../actions/user';
 
 NavBar.propTypes = {
   logout: propTypes.func.isRequired,
-
+  user: propTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
