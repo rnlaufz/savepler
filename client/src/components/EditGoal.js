@@ -23,21 +23,16 @@ import {getGoal, editGoal} from '../actions/goal';
             }  
             setFormData(currGoal._id ? {...formData, _id: currGoal._id} : false)
         }
-     }, [getGoal, uGoal]);
+     }, []);
   
      const {_id, goal, sum, currency, edited } = formData;
-    const onChange = e => {
-        setFormData({...formData, [e.target.name]: e.target.value})
-        setFormData({...formData, sum: Number.parseInt(e.target.value)})
-     
-};
-    const setSum = e => {
-        setFormData({...formData, sum: Number.parseInt(e.target.value)})
-     
-};
+     const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
+ 
+
 
     const onSubmit = e => {
         e.preventDefault()
+        setFormData({...formData, sum: Number.parseInt(e.target.value)})
         const sendData = formData;
        editGoal(formData, goal, _id ? true && sendData : false);
        setFormData({...formData, edited: !edited})
@@ -54,7 +49,7 @@ import {getGoal, editGoal} from '../actions/goal';
                 <input className="form-control" type="text" placeholder="Goal Name" name="goal" value={goal} onChange={onChange} />
             </div>
             <div>
-                <input className="form-control" type="number" placeholder="Reqired sum" name="sum" value={sum} onChange={setSum} />
+                <input className="form-control" type="number" placeholder="Reqired sum" name="sum" value={sum} onChange={onChange} />
             </div>
             <div>
                 <select className="form-control" name="currency" id="curr" name="currency" value={currency} onChange={onChange} >
