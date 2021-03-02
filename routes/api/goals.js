@@ -32,7 +32,7 @@ async (req, res) => {
     // Create new goal and the history record
     try {
         const createGoal = new Goal({
-        goal,
+        goal: goal.trim(),
         sum,
         currency,
         added: added ? added : 0,
@@ -87,7 +87,7 @@ router.post('/me', auth, async (req, res) => {
         const goalData = await Goal.find({user: req.user.id}).sort({date: -1});
         const {_id} = goalData[0];
         const {goal, sum, currency} = req.body;
-        let updateGoal = await Goal.updateOne({_id: _id}, {$set: {goal: goal, sum: sum, currency: currency}})
+        let updateGoal = await Goal.updateOne({_id: _id}, {$set: {goal: goal.trim(), sum: sum, currency: currency}})
         return res.json(updateGoal)
       
     } catch (err) {

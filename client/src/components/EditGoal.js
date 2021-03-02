@@ -1,6 +1,9 @@
 import React, {Fragment, useEffect, useState} from 'react';
+import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import propTypes from 'prop-types';
+
+import Loader from '../components/Loader'
 
 import {getGoal, editGoal} from '../actions/goal';
 
@@ -40,7 +43,9 @@ import {getGoal, editGoal} from '../actions/goal';
   
     return (
         <Fragment>
-            {!edited ?  <div className="goal-form pos-flex">
+            {!edited ? (currGoal === undefined || currGoal === null ?(<Loader />) :
+        <Fragment>
+           <div className="goal-form pos-flex">
             <h2 className="title-l">Manage goal</h2>
             <p>Edit name, money amount or the currency</p>
             <form onSubmit={onSubmit}>
@@ -65,9 +70,10 @@ import {getGoal, editGoal} from '../actions/goal';
            
             
             </form>
-        </div> : null}
-        </Fragment>
-       
+        </div> 
+        </Fragment>) : <Redirect to="/" />
+        }
+       </Fragment>
     )
 }
 
