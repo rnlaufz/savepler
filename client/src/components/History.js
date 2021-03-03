@@ -6,7 +6,9 @@ import {faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 import propTypes from 'prop-types';
 
 import { getAllRecords, getPages } from "../actions/history";
+
 import HistoryItem from './HistoryItem';
+import Loader from '../components/Loader';
 
  const History = ({getAllRecords, history:{allRecords, pages}, getPages}) => {
     const [compState, setCompState] = useState({
@@ -20,6 +22,7 @@ import HistoryItem from './HistoryItem';
     }, [getAllRecords, allRecords, getPages]);
    const numRecords = allRecords.length;
    const pageNum = pages - 1;
+   console.log(allRecords)
    const nextPage = () => {
    setCompState({
        currentPage: currentPage === 0 && currentPage <= pageNum ? currentPage-1 : 0 
@@ -36,6 +39,7 @@ import HistoryItem from './HistoryItem';
         <Fragment>
         <div className="history-container pos-flex">
             <h2>Saving History:</h2>
+            {allRecords.length === 0 ?   <Loader /> : <Fragment>
             <ul className="history-list">
             {allRecords.map((record) => (<HistoryItem id={uuid()} key={uuid()} record={record} />))}
             </ul>
@@ -49,6 +53,7 @@ import HistoryItem from './HistoryItem';
                 </button>
               
             </div>
+           </Fragment>}
            
         </div>
        </Fragment>
