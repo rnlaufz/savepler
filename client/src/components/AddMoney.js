@@ -35,7 +35,7 @@ const AddMoney = ({goalAction}) => {
         <form onSubmit={onSubmit}> 
             <div className="pos-flex-split">
             <div>
-                <input className="form-control" type="number" placeholder="Enter sum" onChange={onChange}/>
+                <input className="form-control input-fix" type="number" placeholder="Enter sum" onChange={onChange}/>
             </div>
             </div>
            
