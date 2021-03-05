@@ -7,6 +7,7 @@ import './App.scss';
 
 // Import components
 import NavBar from './components/NavBar';
+import MediaFooter from './components/MediaFooter';
 import ContentBox from './components/ContentBox';
 import History from './components/History';
 import EditGoal from './components/EditGoal';
@@ -68,7 +69,9 @@ export class App extends Component {
                      <InfoCards />
                      <CallButtons/>
                      <LatestHistory />
-                     </ContentBox>    
+                     <MediaFooter />  
+                     </ContentBox>  
+                   
                       </div>
                   
              } />

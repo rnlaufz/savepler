@@ -1,14 +1,16 @@
-import React, {Fragment, useEffect} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import {v4 as uuid} from 'uuid';
 import propTypes from 'prop-types';
 import { logout} from '../actions/user';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
  const NavBar = ({logout, user: {userData}})  => {
-   useEffect(() => {
+  useEffect(() => {}, [userData,])
+ 
 
-   }, [userData])
     return (
       <Fragment>
         <div className="nav-box">
@@ -16,8 +18,8 @@ import { logout} from '../actions/user';
         <div className="nav-list">
         <ul>
           <li key={uuid()}><Link to="/">Dashboard</Link></li>
-          <li key={uuid()}><Link to="/edit">Manage Goal</Link></li>
-          <li key={uuid()}><Link to="/history">Saving History</Link></li>
+          <li key={uuid()}><Link to="/edit">Manage</Link></li>
+          <li key={uuid()}><Link to="/history">History</Link></li>
           <li key={uuid()}><Link to="/settings">Settings</Link></li>
           {/* Logout link */}
           <li key={uuid()}><a onClick={logout}>Logout</a></li>
