@@ -85,9 +85,9 @@ router.post('/me', auth, async (req, res) => {
 
     try {
         const goalData = await Goal.find({user: req.user.id}).sort({date: -1});
-        const {_id} = goalData[0];
+        const {_id, added, lended} = goalData[0];
         const {goal, sum, currency} = req.body;
-        let updateGoal = await Goal.updateOne({_id: _id}, {$set: {goal: goal.trim(), sum: sum, currency: currency}})
+        let updateGoal = await Goal.updateOne({_id: _id}, {$set: {goal: goal.trim(), sum: sum, currency: currency, residue: added > 0 ? sum - added + lended : sum - 0}})
         return res.json(updateGoal)
       
     } catch (err) {

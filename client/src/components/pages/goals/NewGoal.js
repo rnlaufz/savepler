@@ -5,6 +5,7 @@ import propTypes from 'prop-types';
 // Import components
 import PagesNav from '../PagesNav';
 import PagesFooter from '../PagesFooter';
+import Loader from '../../Loader';
 
 import {createGoal, getGoal} from '../../../actions/goal';
 import { Redirect } from 'react-router-dom';
@@ -101,7 +102,9 @@ import { Redirect } from 'react-router-dom';
 
     return (
         <Fragment>
-            {checkGoal !== undefined ? <Redirect to="/" /> :
+            {checkGoal !== undefined ?<Fragment> <Loader />
+                <Redirect to="/" />  
+                </Fragment>:
             (<div className="page-container pos-flex">
             <PagesNav pageNavLinks={pageNavLinks} /> 
              <div className="new-goal-form">
