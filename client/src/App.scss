@@ -323,6 +323,7 @@ input:-webkit-autofill:active  {
         height: 20px;
         font-size: 12px;
         opacity: 0.2;
+        color: $primary-contrast;
       }
     }
 
@@ -1164,7 +1165,9 @@ input:-webkit-autofill:active  {
 }
 
 @media(max-width: 720px){
-
+.container {
+   flex-direction: column !important;
+}
  .wrapper {
    flex-direction: column !important;
  } 
@@ -1316,9 +1319,129 @@ input:-webkit-autofill:active  {
           height: 20px;
           font-size: 12px;
           opacity: 0.2;
+           color: $primary-contrast;
         }
       }
 }
 
 
  }
+
+@media(max-width: 360px){
+   #content-box {
+   .curr-goal-card {
+    width: 250px;
+    height: 70px;
+
+    h2 {
+      font-size: 18px;
+    }
+
+    .curr-goal-sum{
+      height: 30px;
+      width: 150px;
+      span {
+        font-size: 16px;
+      }
+    }
+
+    
+  }
+
+  .info-cards {
+    flex-direction: column;
+    justify-content: space-around;
+    height: 500px;
+    .info-card {
+      width: 250px;
+      height: 70px;
+      font-size: 16px;
+      margin: 10px 0;
+      .content-money-card {
+        height: 20px;
+        width: 150px;
+        padding: 10px;
+        span {
+          font-size: 14px;
+        }
+      }
+
+      h4 {
+        font-size: 18px;
+      }
+  
+    }
+
+   
+  }
+    .form-container {
+      form {
+        input {
+          width: 300px !important;
+        }
+        input[type=number]{
+          width: 305px;
+        }
+      }
+    }
+    .latest-history-container {
+      h2 {
+        font-size: 18px;
+      }
+     ul {
+       font-size: 16px !important;
+       li {
+         height: 30px;
+  
+         .sign {
+           font-size: 18px;
+           height: .1%;
+           padding: 1px 10px 0 0;
+         }
+         .sum, .date, .history-action {
+           font-size: 16px;
+         }
+          }
+        }
+      }  
+
+      .media {
+        display: block;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        height: 120px;
+        padding: 20px;
+        text-align: center;
+        color: $primary-light;
+        ul {
+          list-style: none;
+          padding-bottom: 20px;
+          height: 50px;
+         
+          li {
+              padding: 5px 10px;
+  
+              a{
+                text-decoration: none;
+                color: $primary-light;
+                transition: all .5s ease;
+                opacity: 0.2;
+              }
+              a:hover{
+                color: $secondary-contrast;
+                opacity: 1;
+              }
+            }
+          
+        }
+  
+        p{
+          width: 100%;
+          height: 20px;
+          font-size: 12px;
+          opacity: 0.2;
+        }
+      }
+}
+}

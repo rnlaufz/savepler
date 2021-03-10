@@ -17,8 +17,8 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
         <h2>{userData.name}</h2>
         <div className="nav-list">
         <ul>
-          <li key={uuid()}><Link to="/">Dashboard</Link></li>
-          <li key={uuid()}><Link to="/edit">Manage</Link></li>
+          <li key={uuid()}><Link to="/">Home</Link></li>
+          <li key={uuid()}><Link to="/edit">Edit</Link></li>
           <li key={uuid()}><Link to="/history">History</Link></li>
           <li key={uuid()}><Link to="/settings">Settings</Link></li>
           {/* Logout link */}
