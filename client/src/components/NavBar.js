@@ -4,8 +4,7 @@ import {Link} from 'react-router-dom';
 import {v4 as uuid} from 'uuid';
 import propTypes from 'prop-types';
 import { logout} from '../actions/user';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+
 
  const NavBar = ({logout, user: {userData}})  => {
   useEffect(() => {}, [userData,])
@@ -29,7 +28,6 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
         <div className="nav-footer">
           <ul className="pos-flex-split">
             <li key={uuid()}><Link to="/about_app">About</Link></li>
-            <li key={uuid()}><Link to="/contact">Contact</Link></li>
           </ul>
           <p>2021&copy;All Rights Reserved
             <br/>

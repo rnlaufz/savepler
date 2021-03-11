@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import propTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+
 
 // Import components
 import PagesNav from './PagesNav';
@@ -19,13 +21,10 @@ import {loadUser} from '../../actions/user';
         // Links for authenticated user
         authNavLinks: [
             {
-                name: "Dashboard",
+                name: "",
                 path: '/'
             },
-            {
-                name: "Contact",
-                path: '/contact'
-            },
+    
             {
                 name: "Settings",
                 path: '/settings'
@@ -34,10 +33,7 @@ import {loadUser} from '../../actions/user';
         ],
 
         guestNavLinks: [
-            {
-                name: "Contact",
-                path: '/contact'
-            },
+          
             {
                 name: "Sign In",
                 path: '/sign_in'
@@ -50,19 +46,18 @@ import {loadUser} from '../../actions/user';
         } 
     );
     const {authNavLinks, guestNavLinks} = compState;
+    // @TO_DO: redo page UI
     return (
         <div className="page-container">
            <PagesNav pageNavLinks={isAuthenticated ? authNavLinks : guestNavLinks} /> 
-           <div className="about-content pos-flex ">
-               <div className="about-info">
-                   <h2>About Savepler</h2>
-                   <p>Savepler is a simple money manager tool, whish provides it's users an ability to track their savings. It's simple to use: you set up your goal and the amount of money it demands and Savepler tracks your savings as steps for reaching your desires.
-                   </p>
-               </div>
-               <div className="about-card">
+           <div className="about-content">
+               <div>
+               <h2>Money saving manager</h2>
+               <p>Savepler is a simple tool for tracking savings needed for particular goal.</p>
+               <Link to="sign_up">Get started!</Link>
                </div>
            </div>
-           <PagesFooter />
+           <PagesFooter />   
         </div>
     )
 }

@@ -16,7 +16,6 @@ import EditGoal from './components/EditGoal';
 import Register from './components/pages/auth/Register';
 import Login from './components/pages/auth/Login';
 import About from './components/pages/About';
-import Contact from './components/pages/Contact';
 import Settings from './components/pages/Settings';
 import NewGoal from './components/pages/goals/NewGoal';
 
@@ -58,7 +57,7 @@ export class App extends Component {
                  <Route exact path="/sign_in" render={props =>(<Login  />)}/>
                  <Route exact path="/sign_up" render={props =>(<Register  /> )}/>
                  <Route exact path="/about_app" render={props =>(<About  /> )}/>
-                 <Route exact path="/contact" render={props =>(<Contact  /> )}/>
+
                 
                   <PrivateRoute exact path="/" component={(props) => 
                   
