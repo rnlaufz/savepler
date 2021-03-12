@@ -728,13 +728,14 @@ input:-webkit-autofill:active  {
        .inputs {
          padding: 10px;
          width: 100%;
-         height: 100%;
+         height: 20%;
           div {
           padding: 15px;
           width: 100%;
             input, select {
             width: 100%;
             padding: 10px;
+            border-radius: 3px;
           }
 
             select {
@@ -948,7 +949,7 @@ input:-webkit-autofill:active  {
   .new-goal-form{
     margin: auto;
     width: 100%;
-    height: inherit;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -956,13 +957,14 @@ input:-webkit-autofill:active  {
 
     .goal-card {
       width: 40%;
-      min-height: 70%;
+      height: 40%;
       border-radius: 11px;
       box-shadow:  -10px -10px 15px $shadow-top-left-alpha,
                    10px 10px 15px $shadow-bottom-right-alpha;
 
       h1, h2 {
-        padding: 10px 0;
+        padding: 10px 0 5px 0;
+        height: 20%;
       } 
       
       form {
@@ -1142,6 +1144,31 @@ input:-webkit-autofill:active  {
       }
     }
   }  
+
+  .page-container{
+    .new-goal-form{
+ 
+      .goal-card {
+        width: 75%;
+        height: 40%;
+        h1, h2 {
+          padding: 10px 0 5px 0;
+          height: 20%;
+        } 
+        form {
+          .inputs {
+            padding: 5px;
+             div {
+               input, select {
+               padding: 5px;
+             }
+    
+           }
+          }
+         }
+      }
+    }
+  }
 }
 
 @media(max-width: 720px){
@@ -1358,6 +1385,29 @@ input:-webkit-autofill:active  {
 
   }
 
+  .new-goal-form{
+ 
+    .goal-card {
+      width: 75%;
+      height: 40%;
+      h1, h2 {
+        padding: 10px 0 5px 0;
+        height: 20%;
+      } 
+      form {
+        .inputs {
+          padding: 5px;
+           div {
+             input, select {
+             padding: 5px;
+           }
+  
+         }
+        }
+       }
+    }
+  }
+
 }
 
 
@@ -1551,6 +1601,29 @@ input:-webkit-autofill:active  {
   }
  
 
+}
+
+.new-goal-form{
+ 
+  .goal-card {
+    width: 75%;
+    height: 60%;
+    h1, h2 {
+      padding: 10px 0 5px 0;
+      height: 20%;
+    } 
+    form {
+      .inputs {
+        padding: 5px;
+         div {
+           input, select {
+           padding: 5px;
+         }
+
+       }
+      }
+     }
+  }
 }
 }
 }

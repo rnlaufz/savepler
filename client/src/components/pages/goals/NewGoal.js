@@ -25,10 +25,6 @@ import { Redirect } from 'react-router-dom';
                 path: '/about_app'
             },
             {
-                name: "Contact",
-                path: '/contact'
-            },
-            {
                 name: "Settings",
                 path: '/settings'
             }

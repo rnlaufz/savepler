@@ -21,7 +21,7 @@ import {loadUser} from '../../actions/user';
         // Links for authenticated user
         authNavLinks: [
             {
-                name: "",
+                name: "Home",
                 path: '/'
             },
     
