@@ -4,11 +4,13 @@ import {combineReducers} from 'redux';
 import user from './user'; 
 import goal from './goal'; 
 import history from './history'; 
+import alert from './alert';
 
 
 
 export default combineReducers({
     user,
     goal, 
-    history
+    history,
+    alert
 });
