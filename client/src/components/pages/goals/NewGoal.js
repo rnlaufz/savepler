@@ -7,8 +7,10 @@ import { Redirect } from 'react-router-dom';
 import PagesNav from '../PagesNav';
 import PagesFooter from '../PagesFooter';
 import Loader from '../../Loader';
+import Alert from '../../Alert';
 
 import {createGoal, getGoal} from '../../../actions/goal';
+import {setAlert} from '../../../actions/alert';
 
  const NewGoal = ({createGoal, goal: {uGoal}, getGoal, setAlert}) =>  {
      useEffect(() => {
@@ -92,6 +94,7 @@ import {createGoal, getGoal} from '../../../actions/goal';
         allowAdding: false 
         })
         const goalData = {goal: compState.goal, sum: Number.parseInt(compState.sum), currency: compState.currency, added: Number.parseInt(compState.added)}
+        setAlert("Goal successufuly created", "success")
         createGoal(goalData)
         getGoal()
        
@@ -109,7 +112,9 @@ import {createGoal, getGoal} from '../../../actions/goal';
             <PagesNav pageNavLinks={pageNavLinks} /> 
              <div className="new-goal-form">
             <div className="goal-card">
+            <Alert />
             <h1 className="title-l">Let's get started!</h1>
+               
             {/* Set goal name */}
             <Fragment>
            {createName ? ( <Fragment><p>Give your goal a name</p>
@@ -195,6 +200,7 @@ import {createGoal, getGoal} from '../../../actions/goal';
      goal: propTypes.object.isRequired,
      createGoal: propTypes.func.isRequired,
      getGoal: propTypes.func.isRequired,
+     setAlert: propTypes.func.isRequired,
  }
 
 const mapStateToProps = state => ({
@@ -202,4 +208,4 @@ const mapStateToProps = state => ({
     uGoal: state.goal.uGoal
 })
 
-export default connect(mapStateToProps, {createGoal, getGoal})(NewGoal);
+export default connect(mapStateToProps, {createGoal, getGoal, setAlert})(NewGoal);

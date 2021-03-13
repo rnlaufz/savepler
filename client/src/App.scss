@@ -23,6 +23,8 @@ $shadow-bottom-right: #2a2a2a;
 $shadow-bottom-right-alpha: rgba(24,24,24, 0.1);;
 $box-gradient-start: #1e1e1e;
 $box-gradiend-end: #232323;
+$alert-danger: #fc0f00;
+$alert-success: #00fc8d;
 
 // General styling rules 
 *{
@@ -249,6 +251,15 @@ input:-webkit-autofill:active  {
   color: $secondary-light;
   font-family: $title-font;
   font-size: 18px;
+}
+.alert.alert-danger{
+  background: $alert-danger;
+}
+
+.alert.alert-success{
+  width: 100%;
+  height: 15%;
+  background: $alert-success;
 }
 
 
