@@ -5,6 +5,8 @@ import propTypes from 'prop-types';
 
 import {login} from '../../../actions/user';
 
+import Alert from '../../Alert';
+
  const Login = ({login, isAuthenticated}) =>  {
   const [formData, setFormData] = useState({
     email:  "",
@@ -27,6 +29,7 @@ if(isAuthenticated){
 }
     return (
         <div className="auth-form-container pos-flex">
+          <Alert />
         <div className="form-card">
             <h2>Savepler</h2>  
             <p>Money saving manager</p>

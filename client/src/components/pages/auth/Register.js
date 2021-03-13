@@ -4,9 +4,12 @@ import propTypes from 'prop-types';
 import {connect} from 'react-redux'; 
 
 import {register} from '../../../actions/user';
+import {setAlert} from '../../../actions/alert';
+
+import Alert from '../../Alert';
 
 
- const Register = ({register, isAuthenticated}) => {
+ const Register = ({register, isAuthenticated, setAlert}) => {
     const [formData, setFormData] = useState({
         name: "",
         email:  "",
@@ -21,11 +24,8 @@ import {register} from '../../../actions/user';
     const onSubmit = async e => {
         e.preventDefault();
 
-        if(password !== passwordTwo){
-            // Tempo console.log()
-            //@TO_DO: add alert system
-            console.log('Passwords do not match')
-            // setAlert("Passwords do not match", 'danger')
+        if(password !== passwordTwo){ 
+            setAlert("Passwords do not match", 'danger')
         } else {
          register({name, email, password});
          setFormData({
@@ -43,6 +43,7 @@ import {register} from '../../../actions/user';
     }
     return (
         <div className="auth-form-container pos-flex">
+            <Alert />
           <div className="form-card">
               <h2>Savepler</h2>  
               <p>Money saving manager</p>
@@ -68,14 +69,13 @@ import {register} from '../../../actions/user';
 }
 
 Register.propTypes = {
-    // setAlert: propTypes.func.isRequired,
+    setAlert: propTypes.func.isRequired,
     register: propTypes.func.isRequired,
     isAuthenticated: propTypes.bool
 }
 
  const mapStateToProps = state => ({
-    // navTitle: state.navTitle.title,
     isAuthenticated: state.user.isAuthenticated
  })
 
-export default connect(mapStateToProps, {register})(Register);
+export default connect(mapStateToProps, {register, setAlert})(Register);

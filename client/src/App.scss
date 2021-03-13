@@ -236,6 +236,21 @@ input:-webkit-autofill:active  {
   }
 }
 
+// Alerts 
+.alert {
+  display: block;
+  width: 70%;
+  height: 20%;
+  margin: 10px;
+  padding: 10px;
+  background: $primary-contrast;
+  border: transparent solid 1px;
+  border-radius: 3px;
+  color: $secondary-light;
+  font-family: $title-font;
+  font-size: 18px;
+}
+
 
 // UI styling 
 
@@ -1010,6 +1025,11 @@ input:-webkit-autofill:active  {
              cursor: pointer;
              border-top: 2px solid $primary-contrast;
              border-left: 2px solid $primary-contrast;
+           }
+
+           input[type=submit]:disabled {
+             cursor: not-allowed;
+            opacity: 0.4; 
            }
          }
         }

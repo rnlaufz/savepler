@@ -33,7 +33,7 @@ async (req, res) => {
        let user = await User.findOne({email});
        
        if(user){
-          return res.status(400).json({errors: [{message: "User already exists"}]});
+          return res.status(400).json({errors: [{msg: "User already exists"}]});
        }
 
     // Create user instance
@@ -99,7 +99,7 @@ async (req, res) => {
      let findUser = await User.findOne({email});
        
      if(findUser){
-        return res.status(400).json({errors: [{message: "User already exists"}]});
+        return res.status(400).json({errors: [{msg: "This email is already used"}]});
      }
 
        let user = await User.updateOne({_id:req.user.id}, {$set:{email:email}});

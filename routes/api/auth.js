@@ -48,14 +48,14 @@ async (req, res) => {
        let user = await User.findOne({email});
        
        if(!user){
-          return res.status(401).json({errors: [{message: "Invalid email or password"}]});
+          return res.status(401).json({errors: [{msg: "Invalid email or password"}]});
        }
 
     //    Match the password and the email
        const isMatch = await bcrypt.compare(password, user.password);
 
        if(!isMatch){
-        return res.status(401).json({errors: [{message: "Invalid email or password"}]});
+        return res.status(401).json({errors: [{msg: "Invalid email or password"}]});
        }
 
     // Return jsonwebtoken

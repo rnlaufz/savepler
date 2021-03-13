@@ -1,6 +1,7 @@
 import React, {useState, Fragment, useEffect} from 'react';
 import {connect} from 'react-redux';
 import propTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 // Import components
 import PagesNav from '../PagesNav';
@@ -8,10 +9,8 @@ import PagesFooter from '../PagesFooter';
 import Loader from '../../Loader';
 
 import {createGoal, getGoal} from '../../../actions/goal';
-import { Redirect } from 'react-router-dom';
 
-
- const NewGoal = ({createGoal, goal: {uGoal}, getGoal}) =>  {
+ const NewGoal = ({createGoal, goal: {uGoal}, getGoal, setAlert}) =>  {
      useEffect(() => {
         getGoal()
      }, [getGoal, uGoal])
@@ -49,7 +48,9 @@ import { Redirect } from 'react-router-dom';
     const checkGoal = uGoal[0];
 
     const {pageNavLinks, createName, setSum, checkAdded, allowAdding} = compState;
-    const nameGoal = (e) => {setCompState({...compState, goal: e.target.value})}
+    const nameGoal = (e) => {
+        setCompState({...compState, goal: e.target.value})
+    }
     const setName = (e) => {
         e.preventDefault()
         setCompState({...compState, createName: !createName, setSum: !setSum})
@@ -96,6 +97,9 @@ import { Redirect } from 'react-router-dom';
        
     }
 
+    
+    const {goal, sum, currency, added } = compState;
+
     return (
         <Fragment>
             {checkGoal !== undefined ?<Fragment> <Loader />
@@ -106,7 +110,6 @@ import { Redirect } from 'react-router-dom';
              <div className="new-goal-form">
             <div className="goal-card">
             <h1 className="title-l">Let's get started!</h1>
-
             {/* Set goal name */}
             <Fragment>
            {createName ? ( <Fragment><p>Give your goal a name</p>
@@ -116,7 +119,7 @@ import { Redirect } from 'react-router-dom';
                 <input className="form-control" type="text" placeholder="Goal Name" onChange={nameGoal}/>
             </div>
             <div>
-                <input className="form-control" type="submit" value="Continue"/>
+                <input className="form-control" type="submit" value="Continue" disabled={goal === ''}/>
             </div>
             </div>
             </form> </Fragment>) : null}
@@ -138,7 +141,7 @@ import { Redirect } from 'react-router-dom';
                 </select>
             </div>
             <div>
-                <input className="form-control" type="submit" value="Continue"/>
+                <input className="form-control" type="submit" value="Continue" disabled={sum === 0}  />
             </div>
             </div>
             </form> </Fragment>) : null}
@@ -170,7 +173,7 @@ import { Redirect } from 'react-router-dom';
                 <input className="form-control" type="number" placeholder="Saving amount" onChange={addedToGoal}/>
             </div>
             <div>
-                <input className="form-control" type="submit" value="Continue"/>
+                <input className="form-control" type="submit" value="Continue" disabled={added === 0}/>
             </div>
             </div>
             </form> </Fragment>) : null}
