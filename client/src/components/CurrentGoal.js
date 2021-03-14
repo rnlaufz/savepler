@@ -7,7 +7,7 @@ import {getGoal} from '../actions/goal';
  const CurrentGoal = ({getGoal, goal:{uGoal}}) => {
     useEffect(() => {
         getGoal()
-    }, [getGoal, uGoal]);
+    }, []);
    const goalData = uGoal[0]
     return (
     <Fragment>

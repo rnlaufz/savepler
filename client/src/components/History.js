@@ -19,19 +19,18 @@ import Loader from '../components/Loader';
         getPages()
         getAllRecords(currentPage)
 
-    }, [getAllRecords, allRecords, getPages]);
+    }, [getPages, getAllRecords, currentPage]);
    const numRecords = allRecords.length;
-   const pageNum = pages - 1;
-   console.log(allRecords)
+   const pageNum = Math.abs(pages - 1);
    const nextPage = () => {
    setCompState({
-       currentPage: currentPage === 0 && currentPage <= pageNum ? currentPage-1 : 0 
+       currentPage: currentPage === 0 && currentPage <= pageNum ? Math.abs(currentPage+1) : 0 
    })
    getAllRecords(currentPage)
    }
    const prevPage = () => {
     setCompState({
-        currentPage: currentPage === 0 && currentPage <= pageNum ? currentPage+1 : 0 
+        currentPage: currentPage === 0 && currentPage <= pageNum ? Math.abs(currentPage-1) : Math.abs(pageNum-1) 
     })
     getAllRecords(currentPage)
    }
@@ -45,10 +44,10 @@ import Loader from '../components/Loader';
             </ul>
             <div className="history-nav-btns">
               
-                <button onClick={nextPage} className="history-nav-btn">
+                <button onClick={prevPage} className="history-nav-btn">
                 <FontAwesomeIcon icon={faChevronLeft}/>
                 </button>
-                <button onClick={prevPage} className="history-nav-btn">
+                <button onClick={nextPage} className="history-nav-btn">
                 <FontAwesomeIcon icon={faChevronRight}/>
                 </button>
               

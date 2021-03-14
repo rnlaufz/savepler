@@ -9,7 +9,7 @@ import HistoryItem from './HistoryItem';
  const LatestHistory = ({getLatestRecords, history:{recentRecords}}) => {
     useEffect(() => {
         getLatestRecords()
-    }, [getLatestRecords, recentRecords])
+    }, [])
     return (
        
         <div className="latest-history-container pos-flex">

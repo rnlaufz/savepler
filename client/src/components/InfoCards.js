@@ -7,7 +7,7 @@ import {getGoal} from '../actions/goal';
  const InfoCards = ({getGoal, goal:{uGoal}}) =>  {
     useEffect(() => {
         getGoal()
-    }, [getGoal, uGoal]);
+    }, []);
     const goalData = uGoal[0]
     return (
         <div className="info-cards pos-flex-split">
