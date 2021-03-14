@@ -6,7 +6,6 @@ import {deleteGoal} from '../../actions/goal';
 import {deleteUser, updateEmail} from '../../actions/user';
 import {removeRecords} from '../../actions/history';
 
-import Alert from '../Alert';
 
  const Settings = ({goal:{uGoal}, deleteGoal, deleteUser, removeRecords, updateEmail})  => {
     const goal = uGoal[0];
@@ -30,13 +29,11 @@ import Alert from '../Alert';
         e.persist()
         setFormData({...formData, [e.target.name]: e.target.value})};
 
-    const onSubmit = (e) => {
+    const onSubmit = async e => {
         e.preventDefault()
-        const conf = window.confirm('Are you sure you want to change your email?')
         const sendEmail = email
-        if(sendEmail !== '' && conf){
-            updateEmail(sendEmail)
-        }  
+        updateEmail(sendEmail)
+       
     }
      
     const deleteData = () => {
@@ -62,11 +59,11 @@ import Alert from '../Alert';
                 <li><button onClick={deleteAccount}>Delete account</button></li>
             </ul>) : 
              <div className="form-card">
-                 <Alert />
+           
          <form onSubmit={onSubmit}>
                <input className="form-control" type="email" placeholder="New email Address" name="email" onChange={onChange}/>
                <br/>
-               <input className="form-control" type="submit" value="Update email"/>    
+               <input className="form-control" type="submit" value="Update email" disabled={email === ''}/>    
            </form>
          </div>  
             }

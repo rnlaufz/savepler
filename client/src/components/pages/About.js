@@ -13,9 +13,6 @@ import {loadUser} from '../../actions/user';
 
 
  const About = ({loadUser, user:{isAuthenticated}}) => {
-     useEffect(() => {
-         loadUser()
-     }, [loadUser, isAuthenticated])
     const [compState, setCompState] = useState({
 
         // Links for authenticated user
@@ -46,7 +43,9 @@ import {loadUser} from '../../actions/user';
         } 
     );
     const {authNavLinks, guestNavLinks} = compState;
-    // @TO_DO: redo page UI
+    useEffect(() => {
+        loadUser()
+    }, [loadUser, isAuthenticated, authNavLinks, guestNavLinks])
     return (
         <div className="page-container">
            <PagesNav pageNavLinks={isAuthenticated ? authNavLinks : guestNavLinks} /> 

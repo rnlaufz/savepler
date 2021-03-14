@@ -725,6 +725,10 @@ input:-webkit-autofill:active  {
             border-left: 2px solid $primary-contrast;
             border-radius: 5px;
           }
+          input[type=submit]:disabled{
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
         }
       }
     }

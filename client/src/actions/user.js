@@ -97,24 +97,25 @@ export const updateEmail = (email) => async  dispatch => {
             'Content-Type': 'application/json '
         }
     }
+    const body = JSON.stringify({email}) 
 try {
-    const body = JSON.stringify({email})
+    
     const res = await axios.post('/api/users/me', body, config);
     dispatch({
         type: UPDATE_USER,
         payload: res.data
-    })
-    
+    });
+    dispatch(loadUser())
 } catch (err) {
     const errors = err.response.data.errors;
     if(errors){
         errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
     }
     dispatch({
-        type: AUTH_ERROR
-    })
+        type: REGISTER_FAIL
+    });
 }
-}
+};
 
 // Logout 
 export const logout = () => dispatch => {
