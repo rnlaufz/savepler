@@ -61,7 +61,6 @@ async (req, res) => {
     jwt.sign(
         payload, 
         config.get('secret'),
-        //@TO_DO change expiresIn value to less | current is for testing
         {expiresIn: 360000},
         (err, token) => {
             if(err) throw err;
@@ -99,7 +98,7 @@ async (req, res) => {
      let findUser = await User.findOne({email});
        
      if(findUser){
-        return res.status(400).json({errors: [{msg: "This email is already used"}]});
+        return res.status(400).json({errors: [{msg: "Email is already used."}]});
      }
 
        let user = await User.updateOne({_id:req.user.id}, {$set:{email:email}});

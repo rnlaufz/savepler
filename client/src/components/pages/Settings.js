@@ -6,6 +6,8 @@ import {deleteGoal} from '../../actions/goal';
 import {deleteUser, updateEmail} from '../../actions/user';
 import {removeRecords} from '../../actions/history';
 
+import Alert from '../../components/Alert';
+
 
  const Settings = ({goal:{uGoal}, deleteGoal, deleteUser, removeRecords, updateEmail})  => {
     const goal = uGoal[0];
@@ -59,7 +61,7 @@ import {removeRecords} from '../../actions/history';
                 <li><button onClick={deleteAccount}>Delete account</button></li>
             </ul>) : 
              <div className="form-card">
-           
+           <Alert />
          <form onSubmit={onSubmit}>
                <input className="form-control" type="email" placeholder="New email Address" name="email" onChange={onChange}/>
                <br/>

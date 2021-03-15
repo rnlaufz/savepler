@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {setAlert} from "./alert";
 
-import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, UPDATE_USER, DELETE_USER} from './types';
+import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, UPDATE_USER, UPDATE_FAIL, DELETE_USER} from './types';
 
 import setAuthToken from '../utils/setAuthToken'
 
@@ -112,7 +112,7 @@ try {
         errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
     }
     dispatch({
-        type: REGISTER_FAIL
+        type: UPDATE_FAIL
     });
 }
 };

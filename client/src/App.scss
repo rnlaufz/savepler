@@ -240,10 +240,12 @@ input:-webkit-autofill:active  {
 
 // Alerts 
 .alert {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 70%;
   height: 20%;
-  margin: 10px;
+  margin: 10px auto;
   padding: 10px;
   background: $primary-contrast;
   border: transparent solid 1px;
@@ -257,9 +259,8 @@ input:-webkit-autofill:active  {
 }
 
 .alert.alert-success{
-  width: 100%;
-  height: 15%;
   background: $alert-success;
+  margin: 20px auto;
 }
 
 
@@ -702,6 +703,13 @@ input:-webkit-autofill:active  {
             width: 100%;
             height: 50%;
 
+            .alert {
+              margin: 5px auto;
+              align-self: center;
+              width: 90%;
+              padding: 20px;
+            }
+
             form {
               width: 100%;
               height: 100%;
@@ -712,7 +720,7 @@ input:-webkit-autofill:active  {
               
               input[type=email] {
                 font-weight: bolder;
-                height: 55%;
+                height: 40px;
                 border-bottom: 2px solid $primary-contrast;
                 border-right: 2px solid $primary-contrast;
               }
@@ -720,7 +728,7 @@ input:-webkit-autofill:active  {
           input[type=submit] {
             cursor: pointer;
             margin-top: 10px;
-            height: 55%;
+            height: 40px;
             border-top: 2px solid $primary-contrast;
             border-left: 2px solid $primary-contrast;
             border-radius: 5px;
