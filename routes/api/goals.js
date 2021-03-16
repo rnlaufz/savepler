@@ -41,6 +41,8 @@ async (req, res) => {
         user: req.user.id
 
         })
+
+        // Add record of goal creation
         const addHistoryRecord = new History({
             action: 'Goal created',
             amount: 0,
@@ -48,8 +50,17 @@ async (req, res) => {
             user: req.user.id
         })
 
+        // If user has saving on goal creation step, add record
+        const actionRecord = added > 0 ? new History({
+            action: 'add',
+            amount: added,
+            currency: currency,
+            user: req.user.id
+        }) : null;
+
      await createGoal.save();
      await addHistoryRecord.save();
+     await actionRecord.save();
      return res.json(createGoal)
 
     } catch (err) {
@@ -87,7 +98,17 @@ router.post('/me', auth, async (req, res) => {
         const goalData = await Goal.find({user: req.user.id}).sort({date: -1});
         const {_id, added, lended} = goalData[0];
         const {goal, sum, currency} = req.body;
-        let updateGoal = await Goal.updateOne({_id: _id}, {$set: {goal: goal.trim(), sum: sum, currency: currency, residue: added > 0 ? sum - added + lended : sum - 0}})
+        let updateGoal = await Goal.updateOne({_id: _id}, {$set: {goal: goal.trim(), sum: sum, currency: currency, residue: added > 0 ? sum - added + lended : sum - 0}});
+
+        // Add history record
+        const updateRecord = new History({
+            action: 'Goal updated',
+            amount: 0,
+            currency: currency,
+            user: req.user.id
+        });
+
+        await updateRecord.save()
         return res.json(updateGoal)
       
     } catch (err) {
@@ -131,7 +152,7 @@ router.post('/update', auth, async (req, res) => {
         }
         if(actionType === "lend"){
             // Send lend request & recount values of other fields
-            let goal = await Goal.updateOne({_id:_id}, {$set:{lended:lended+sendSum, residue:sum-added+sendSum+lended}});
+            let goal = await Goal.updateOne({_id:_id}, {$set:{lended:lended+sendSum, residue:sum-added+sendSum+lended, added: added-sendSum}});
             // Add history record
             const addHistoryRecord = await new History({
                 action: "lend",
