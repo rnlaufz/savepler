@@ -103,9 +103,7 @@ router.post('/me', auth, async (req, res) => {
 router.post('/update', auth, async (req, res) => {
 // Get action type to add or lend money
     const {actionType, sendSum} = await req.body;
-    try {
-        // const actionType = req.params.action;
-       
+    try { 
         // Get user's current data
         const goalData = await Goal.find({user: req.user.id});
         // goalData is an array
@@ -118,8 +116,9 @@ router.post('/update', auth, async (req, res) => {
             let goal = await Goal.updateOne({_id: _id}, {$set:{added:added+sendSum, residue:sum-added-sendSum+lended}});
             // Get updated goal and check lended value - if it's not empty, then decrease it 
             goal = await Goal.updateOne({_id: _id, lended:{$gt: 0}}, {$set:{lended:lended-sendSum, residue:sum-added-sendSum+lended}})
-            // Prevent negative debt value
+            // Prevent negative left debt value
             goal = await Goal.updateOne({_id:_id, lended:{$lt: sendSum}}, {$set:{lended:0, residue:sum-added-sendSum+lended}})
+            goal = await Goal.updateOne({_id:_id, residue:{$lt: 0}}, {$set:{residue:0}})
             // Add history record
             const addHistoryRecord = await new History({
                 action: "add",
