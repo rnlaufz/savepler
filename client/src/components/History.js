@@ -12,28 +12,33 @@ import Loader from '../components/Loader';
 
  const History = ({getAllRecords, history:{allRecords, pages}, getPages}) => {
     const [compState, setCompState] = useState({
-        currentPage: 0
+        currentPage: 0,
+        debug: ''
      })
-     let {currentPage} = compState
+     let {currentPage, debug} = compState
     useEffect(() => {
         getPages()
         getAllRecords(currentPage)
 
     }, [getPages, getAllRecords, currentPage]);
-   const numRecords = allRecords.length;
-   const pageNum = Math.abs(pages - 1);
+
+   const pageNum = pages - 1;
    const nextPage = () => {
    setCompState({
-       currentPage: currentPage === 0 && currentPage <= pageNum ? Math.abs(currentPage+1) : 0 
+    currentPage: currentPage >= 0 && currentPage < pageNum ? currentPage+1 : 0,
+    debug: currentPage >= 0 && currentPage < pageNum ? "proper condition fires" : "else condition fires"
    })
    getAllRecords(currentPage)
    }
    const prevPage = () => {
     setCompState({
-        currentPage: currentPage === 0 && currentPage <= pageNum ? Math.abs(currentPage-1) : Math.abs(pageNum-1) 
+        currentPage: currentPage === 0  ? Math.abs(pageNum) : currentPage-1,
+        debug: currentPage >= 0 && currentPage < pageNum ? "proper condition fires" : "else condition fires"
     })
     getAllRecords(currentPage)
    }
+
+   console.log(`Page: ${currentPage}, pageNum:${pageNum}, status: ${debug}`)
     return (
         <Fragment>
         <div className="history-container pos-flex">

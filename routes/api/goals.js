@@ -134,11 +134,11 @@ router.post('/update', auth, async (req, res) => {
         // Check action type and send suitable request
         if(actionType === "add"){
             // Send add request & recount values of other fields
-            let goal = await Goal.updateOne({_id: _id}, {$set:{added:added+sendSum, residue:sum-added-sendSum+lended}});
+            let goal = await Goal.updateOne({_id: _id}, {$set:{added:added+sendSum, residue:sum-added-sendSum}});
             // Get updated goal and check lended value - if it's not empty, then decrease it 
-            goal = await Goal.updateOne({_id: _id, lended:{$gt: 0}}, {$set:{lended:lended-sendSum, residue:sum-added-sendSum+lended}})
+            goal = await Goal.updateOne({_id: _id, lended:{$gt: 0}}, {$set:{lended:lended-sendSum}})
             // Prevent negative left debt value
-            goal = await Goal.updateOne({_id:_id, lended:{$lt: sendSum}}, {$set:{lended:0, residue:sum-added-sendSum+lended}})
+            goal = await Goal.updateOne({_id:_id, lended:{$lt: 0}}, {$set:{lended:0}})
             goal = await Goal.updateOne({_id:_id, residue:{$lt: 0}}, {$set:{residue:0}})
             // Add history record
             const addHistoryRecord = await new History({
@@ -152,7 +152,7 @@ router.post('/update', auth, async (req, res) => {
         }
         if(actionType === "lend"){
             // Send lend request & recount values of other fields
-            let goal = await Goal.updateOne({_id:_id}, {$set:{lended:lended+sendSum, residue:sum-added+sendSum+lended, added: added-sendSum}});
+            let goal = await Goal.updateOne({_id:_id}, {$set:{lended:lended+sendSum, added: added-sendSum, residue:sum-added+sendSum}});
             // Add history record
             const addHistoryRecord = await new History({
                 action: "lend",
