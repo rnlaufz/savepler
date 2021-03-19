@@ -37,8 +37,6 @@ import Loader from '../components/Loader';
     })
     getAllRecords(currentPage)
    }
-
-   console.log(`Page: ${currentPage}, pageNum:${pageNum}, status: ${debug}`)
     return (
         <Fragment>
         <div className="history-container pos-flex">
