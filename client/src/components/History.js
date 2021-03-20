@@ -12,10 +12,9 @@ import Loader from '../components/Loader';
 
  const History = ({getAllRecords, history:{allRecords, pages}, getPages}) => {
     const [compState, setCompState] = useState({
-        currentPage: 0,
-        debug: ''
+        currentPage: 0
      })
-     let {currentPage, debug} = compState
+     let {currentPage} = compState
     useEffect(() => {
         getPages()
         getAllRecords(currentPage)
@@ -25,15 +24,14 @@ import Loader from '../components/Loader';
    const pageNum = pages - 1;
    const nextPage = () => {
    setCompState({
-    currentPage: currentPage >= 0 && currentPage < pageNum ? currentPage+1 : 0,
-    debug: currentPage >= 0 && currentPage < pageNum ? "proper condition fires" : "else condition fires"
+    currentPage: currentPage >= 0 && currentPage < pageNum ? currentPage+1 : 0
    })
    getAllRecords(currentPage)
    }
    const prevPage = () => {
     setCompState({
-        currentPage: currentPage === 0  ? Math.abs(pageNum) : currentPage-1,
-        debug: currentPage >= 0 && currentPage < pageNum ? "proper condition fires" : "else condition fires"
+        currentPage: currentPage === 0  ? Math.abs(pageNum) : currentPage-1
+
     })
     getAllRecords(currentPage)
    }

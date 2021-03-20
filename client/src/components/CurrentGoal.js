@@ -9,6 +9,7 @@ import {getGoal} from '../actions/goal';
         getGoal()
     }, []);
    const goalData = uGoal[0]
+   console.log(goalData.currency)
     return (
     <Fragment>
      { goalData ? (
@@ -16,7 +17,7 @@ import {getGoal} from '../actions/goal';
             {/* Create redux action for getting the name of goal and the money */}
             <h2 className="title-l">{goalData.goal}</h2>
             <div className="content-money-card curr-goal-sum">
-                <span>{goalData.sum} &#8381;</span>
+                <span>{goalData.sum} {goalData.currency === "RUB" ? <Fragment> &#8381;</Fragment> : goalData.currency === "EUR" ? <Fragment>&#8364;</Fragment> : goalData.currency === "USD" ? <Fragment>&#36;</Fragment> : null}</span>
             </div>
         </div>
         

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {Fragment, useEffect} from 'react'
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
@@ -15,7 +15,7 @@ import {getGoal} from '../actions/goal';
             <div className="info-card content-card-out pos-flex">
                 <h4>Saved</h4>
                 <div data-tip data-for="saved" className="content-money-card pos-flex">
-                <span>{goalData ? goalData.added : 0} &#8381;</span>
+                <span>{goalData ? goalData.added : 0} {goalData.currency === "RUB" ? <Fragment> &#8381;</Fragment> : goalData.currency === "EUR" ? <Fragment>&#8364;</Fragment> : goalData.currency === "USD" ? <Fragment>&#36;</Fragment> : null}</span>
                 </div>
                 <ReactTooltip id="saved" place="bottom" effect="solid" >
                     Amount of money you've saved.
@@ -24,7 +24,7 @@ import {getGoal} from '../actions/goal';
             <div className="info-card content-card-out pos-flex">
                 <h4>Left</h4>
                 <div data-tip data-for="residue"  className="content-money-card pos-flex">
-                <span>{goalData ? goalData.residue : 0} &#8381;</span>
+                <span>{goalData ? goalData.residue : 0} {goalData.currency === "RUB" ? <Fragment> &#8381;</Fragment> : goalData.currency === "EUR" ? <Fragment>&#8364;</Fragment> : goalData.currency === "USD" ? <Fragment>&#36;</Fragment> : null}</span>
                 </div>
                 <ReactTooltip id="residue" place="bottom" effect="solid">
                     Money left to save in order to reach goal.
@@ -33,7 +33,7 @@ import {getGoal} from '../actions/goal';
             <div className="info-card content-card-out pos-flex">
                 <h4>Debt</h4>
                 <div data-tip data-for="debt"  className="content-money-card pos-flex">
-                <span>{goalData ? goalData.lended : 0} &#8381;</span>
+                <span>{goalData ? goalData.lended : 0} {goalData.currency === "RUB" ? <Fragment> &#8381;</Fragment> : goalData.currency === "EUR" ? <Fragment>&#8364;</Fragment> : goalData.currency === "USD" ? <Fragment>&#36;</Fragment> : null}</span>
                 </div>
                 <ReactTooltip id="debt" place="bottom" effect="solid" min-height="100px" min-width="50px">
                     Debt increases every time you lend, even if goal was reached.

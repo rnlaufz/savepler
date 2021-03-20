@@ -101,7 +101,7 @@ import {setAlert} from '../../../actions/alert';
     }
 
     
-    const {goal, sum, currency, added } = compState;
+    const {goal, sum, added } = compState;
 
     return (
         <Fragment>

@@ -2,6 +2,8 @@ import React, {Fragment, useEffect, useState} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import propTypes from 'prop-types';
+import ReactTooltip from 'react-tooltip';
+
 
 import Loader from '../components/Loader'
 
@@ -57,11 +59,14 @@ import {getGoal, editGoal} from '../actions/goal';
                 <input className="form-control" type="number" placeholder="Reqired sum" name="sum" value={sum} onChange={onChange} />
             </div>
             <div>
-                <select className="form-control" name="currency" id="curr" name="currency" value={currency} onChange={onChange} >
+                <select data-tip data-for="new-currency" className="form-control" name="currency" id="curr" name="currency" value={currency} onChange={onChange} >
                     <option value="RUB">RUB</option>
                     <option value="EUR">EUR</option>
                     <option value="USD">USD</option>
                 </select>
+                <ReactTooltip id="new-currency" place="top" effect="solid" theme="danger" >
+                   Note: it will change currency everywhere exept for history records!
+                </ReactTooltip>  
             </div>
             <div>
                 <input className="form-control" type="submit" value="Change Goal Data"/>

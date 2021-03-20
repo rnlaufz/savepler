@@ -1,5 +1,4 @@
 import axios from 'axios';
-import goal from '../reducers/goal';
 import {ADD_GOAL, GET_GOAL, UPDATE_GOAL, DELETE_GOAL, GOAL_ERROR} from './types';
 
 export const createGoal = (goalData) => async dispatch => {
