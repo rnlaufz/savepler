@@ -15,7 +15,6 @@ import {getGoal, editGoal} from '../actions/goal';
         _id: '',
         goal: '',
         sum: 0,
-        currency: '',
         edited: false
      }) 
      useEffect(() => {
@@ -30,7 +29,7 @@ import {getGoal, editGoal} from '../actions/goal';
         }
      }, []);
   
-     const {_id, goal, sum, currency, edited } = formData;
+     const {_id, goal, sum, edited } = formData;
      const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
  
 
@@ -57,16 +56,6 @@ import {getGoal, editGoal} from '../actions/goal';
             </div>
             <div>
                 <input className="form-control" type="number" placeholder="Reqired sum" name="sum" value={sum} onChange={onChange} />
-            </div>
-            <div>
-                <select data-tip data-for="new-currency" className="form-control" name="currency" id="curr" name="currency" value={currency} onChange={onChange} >
-                    <option value="RUB">RUB</option>
-                    <option value="EUR">EUR</option>
-                    <option value="USD">USD</option>
-                </select>
-                <ReactTooltip id="new-currency" place="top" effect="solid" theme="danger" >
-                   Note: it will change currency everywhere exept for history records!
-                </ReactTooltip>  
             </div>
             <div>
                 <input className="form-control" type="submit" value="Change Goal Data"/>

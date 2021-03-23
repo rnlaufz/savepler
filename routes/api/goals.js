@@ -96,9 +96,9 @@ router.post('/me', auth, async (req, res) => {
 
     try {
         const goalData = await Goal.find({user: req.user.id}).sort({date: -1});
-        const {_id, added, lended} = goalData[0];
-        const {goal, sum, currency} = req.body;
-        let updateGoal = await Goal.updateOne({_id: _id}, {$set: {goal: goal.trim(), sum: sum, currency: currency, residue: added > 0 ? sum - added + lended : sum - 0}});
+        const {_id, added, lended, currency} = goalData[0];
+        const {goal, sum} = req.body;
+        let updateGoal = await Goal.updateOne({_id: _id}, {$set: {goal: goal.trim(), sum: sum, residue: added > 0 ? sum - added + lended : sum - 0}});
 
         // Add history record
         const updateRecord = new History({
