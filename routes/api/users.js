@@ -15,8 +15,9 @@ const auth = require('../../middleware/auth');
 router.post('/', [
     check('name', 'Name required').not().isEmpty(),
     check('email', 'Please enter a valid email').isEmail(),
-    // Make password validation more difficlt
-    check('password', 'Password must include 6 or more characters').isLength({min: 6})
+
+    check('password', 'Password must be at least 8 characters long').isLength({min:8}),
+    check('password', 'Password must have at least one uppercase letter, one lowercase letter and a special character').matches(/^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/)
 ], 
 
 async (req, res) => {
