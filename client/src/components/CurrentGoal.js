@@ -9,7 +9,6 @@ import {getGoal} from '../actions/goal';
         getGoal()
     }, []);
    const goalData = uGoal[0]
-   console.log(goalData.currency)
     return (
     <Fragment>
      { goalData ? (

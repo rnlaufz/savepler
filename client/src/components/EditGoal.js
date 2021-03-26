@@ -2,8 +2,6 @@ import React, {Fragment, useEffect, useState} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import propTypes from 'prop-types';
-import ReactTooltip from 'react-tooltip';
-
 
 import Loader from '../components/Loader'
 
