@@ -24,10 +24,6 @@ import {setAlert} from '../../../actions/alert';
             {
                 name: "About",
                 path: '/about_app'
-            },
-            {
-                name: "Settings",
-                path: '/settings'
             }
           
         ],
@@ -105,7 +101,8 @@ import {setAlert} from '../../../actions/alert';
 
     return (
         <Fragment>
-            {checkGoal !== undefined ?<Fragment> <Loader />
+            {checkGoal !== undefined ? <Fragment> 
+                {!createName && !setSum && !checkAdded && !allowAdding && checkGoal === undefined ? <Loader /> : null}
                 <Redirect to="/" />  
                 </Fragment>:
             (<div className="page-container pos-flex">

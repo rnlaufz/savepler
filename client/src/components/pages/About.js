@@ -20,11 +20,6 @@ import {loadUser} from '../../actions/user';
             {
                 name: "Home",
                 path: '/'
-            },
-    
-            {
-                name: "Settings",
-                path: '/settings'
             }
           
         ],
