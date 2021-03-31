@@ -19,6 +19,10 @@ const historySchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    form: {
+        type: String,
+        required: true
+    },
     date: {
        type: Date, 
        default: Date.now 

@@ -31,6 +31,14 @@ const goalSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    card: {
+        type: String,
+        required: true
+    },
+    cash: {
+        type: String,
+        required: true
+    },
     date: {
        type: Date, 
        default: Date.now 
