@@ -27,7 +27,7 @@ async (req, res) => {
         return res.status(400).json({errors: errors.array()});
     }
 
-    const {goal, sum, currency, added} = req.body
+    const {goal, sum, currency, added, card, cash} = req.body
 
     // Create new goal and the history record
     try {
@@ -38,6 +38,8 @@ async (req, res) => {
         added: added ? added : 0,
         lended: 0,
         residue: added > 0 ? sum - added : sum - 0,
+        card: 0,
+        cash: 0,
         user: req.user.id
 
         })
@@ -55,6 +57,8 @@ async (req, res) => {
             action: 'add',
             amount: added,
             currency: currency,
+            card: card > 0 ? card : 0,
+            cash: cash > 0 ? cash : 0,
             user: req.user.id
         }) : null;
 
