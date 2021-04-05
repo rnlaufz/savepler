@@ -20,8 +20,7 @@ const historySchema = new mongoose.Schema({
         required: true
     },
     form: {
-        type: String,
-        required: true
+        type: String
     },
     date: {
        type: Date, 

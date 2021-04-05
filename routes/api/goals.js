@@ -35,11 +35,11 @@ async (req, res) => {
         goal: goal.trim(),
         sum,
         currency,
-        added: added ? added : 0,
+        added: added > 0 ? added : 0,
         lended: 0,
         residue: added > 0 ? sum - added : sum - 0,
-        card: 0,
-        cash: 0,
+        card: card > 0 ? card : 0,
+        cash: cash > 0 ? cash : 0,
         user: req.user.id
 
         })
@@ -57,8 +57,7 @@ async (req, res) => {
             action: 'add',
             amount: added,
             currency: currency,
-            card: card > 0 ? card : 0,
-            cash: cash > 0 ? cash : 0,
+            form: card > 0 ? "card" : cash > 0 ? "cash" : null,
             user: req.user.id
         }) : null;
 
