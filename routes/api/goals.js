@@ -126,13 +126,13 @@ router.post('/me', auth, async (req, res) => {
 
 router.post('/update', auth, async (req, res) => {
 // Get action type to add or lend money
-    const {actionType, sendSum} = await req.body;
+    const {actionType, sendSum, holder} = await req.body;
     try { 
         // Get user's current data
         const goalData = await Goal.find({user: req.user.id});
         // goalData is an array
         // Since there could be one goal at a time index finding is permittable
-        const {_id, sum, added, lended, currency, residue } = await goalData[0];
+        const {_id, sum, added, lended, currency, residue, card, cash } = await goalData[0];
        
         // Check action type and send suitable request
         if(actionType === "add"){
@@ -144,12 +144,20 @@ router.post('/update', auth, async (req, res) => {
             goal = await Goal.updateOne({_id:_id, lended:{$lte: 0}}, {$set:{lended:0}});
             goal = await Goal.updateOne({_id:_id, residue:{$lte: 0}}, {$set:{residue:0}});
             goal = await Goal.updateOne({_id: _id, added: {$gte: sum}}, {$set:{residue:0}});
+            if(holder === "card"){
+                goal = await Goal.updateOne({_id: _id},  {$set:{card:Number.parseInt(card+sendSum)}});
+            }
+            if(holder === "cash"){
+                goal = await Goal.updateOne({_id: _id},  {$set:{cash:Number.parseInt(cash+sendSum)}});
+            }
+          
            
             // Add history record
             const addHistoryRecord = await new History({
                 action: "add",
                 amount: sendSum, 
                 currency: currency,
+                form: holder,
                 user: req.user.id
             })
             await addHistoryRecord.save();
@@ -162,11 +170,19 @@ router.post('/update', auth, async (req, res) => {
 
             // Prevent lended to become bigger than  goal 
             goal = await Goal.updateOne({_id: _id, lended: {$gte: sum}}, {$set:{lended:sum}});
+
+            if(holder === "card"){
+                goal = await Goal.updateOne({_id: _id},  {$set:{card:Number.parseInt(card-sendSum)}});
+            }
+            if(holder === "cash"){
+                goal = await Goal.updateOne({_id: _id},  {$set:{cash:Number.parseInt(cash-sendSum)}});
+            }
             // Add history record
             const addHistoryRecord = await new History({
                 action: "lend",
                 amount: sendSum,
                 currency: currency,
+                form: holder,
                 user: req.user.id
             })
             await addHistoryRecord.save();
