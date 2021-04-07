@@ -395,11 +395,23 @@ input:-webkit-autofill:active  {
       height: 200px;
       justify-content: space-around;
       .info-card {
+        position: relative;
         width: 250px;
         height: 100%;
         padding: auto, 5px ;
         color: $primary-light;
         font-size: 18px;
+
+        #saved-details {
+          cursor: pointer;
+          position: absolute;
+          bottom: 0;
+          font-size: 18px;
+          color: $primary-light;
+          width: 20px;
+          border: 0;
+          background: transparent;
+        }
 
         h4{
           font-family: $title-font;
@@ -551,6 +563,15 @@ input:-webkit-autofill:active  {
           }  
         }
 
+        .holder {
+          width: 30px;
+          opacity: 0.3;
+
+          i {
+            font-size: 10px;
+          }
+        }
+
         .sum {
           padding: 0, 5px;
           width: 300px;
@@ -641,6 +662,15 @@ input:-webkit-autofill:active  {
              color: $primary-light;
             font-size: 20px;
             }
+        }
+
+        .holder {
+          width: 30px;
+          opacity: 0.3;
+
+          i {
+            font-size: 10px;
+          }
         }
 
         .sum {

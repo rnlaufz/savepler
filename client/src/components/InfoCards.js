@@ -2,6 +2,8 @@ import React, {Fragment, useEffect} from 'react'
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faAngleDown} from '@fortawesome/free-solid-svg-icons';
 
 import {getGoal} from '../actions/goal';
 
@@ -20,6 +22,7 @@ import {getGoal} from '../actions/goal';
                 <ReactTooltip id="saved" place="bottom" effect="solid" >
                     Amount of money you've saved.
                 </ReactTooltip> 
+                <button id="saved-details"><FontAwesomeIcon icon={faAngleDown} /></button>
             </div>
             <div className="info-card content-card-out pos-flex">
                 <h4>Left</h4>
