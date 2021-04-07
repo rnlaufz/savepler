@@ -390,6 +390,7 @@ input:-webkit-autofill:active  {
     
 
     .info-cards {
+      position: relative;
       padding: 20px 5px;
       width: 100%;
       height: 200px;
@@ -413,11 +414,43 @@ input:-webkit-autofill:active  {
           background: transparent;
         }
 
+        #saved-details:focus{
+          outline: 0;
+        }
+
+        #saved-details:active{
+          color: $primary-contrast;
+        }
+
         h4{
           font-family: $title-font;
           color: $secondary-contrast;
           font-size: 20px;
           padding-bottom: 10px;
+        }
+      }
+
+      .holders{
+        position: absolute;
+        top: 100%;
+        left: 7.5%;
+        width: 250px;
+        height: 80px;
+        border: $secondary-dark;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        h2{
+          padding: 5px 0;
+          color: $secondary-light;
+          font-size: 18px;
+        }
+
+        hr{
+          width: 100%;
+         border: 1px solid $primary-contrast;
         }
       }
     }
