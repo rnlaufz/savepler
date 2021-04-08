@@ -29,8 +29,9 @@ import {getGoal} from '../actions/goal';
                 </div>
                 <ReactTooltip id="saved" place="bottom" effect="solid" >
                    Amount of money you've saved.
-                </ReactTooltip> 
-                <button onClick={toggleHolders} id="saved-details"><FontAwesomeIcon icon={faAngleDown} /></button>
+                </ReactTooltip>
+                {goalData.card === 0 && goalData.cash === 0 ? null : <button onClick={toggleHolders} id="saved-details"><FontAwesomeIcon icon={faAngleDown} /></button>}
+               
             </div>
             {showHolders ?  
             <div className="holders content-card-out">
