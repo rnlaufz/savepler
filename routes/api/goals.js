@@ -151,7 +151,9 @@ router.post('/update', auth, async (req, res) => {
                 goal = await Goal.updateOne({_id: _id},  {$set:{cash:Number.parseInt(cash+sendSum)}});
             }
           
-           
+            if(holder === "noholder"){
+                goal = await Goal.updateOne({_id: _id},  {$set:{cash: cash, card: card}});
+            }
             // Add history record
             const addHistoryRecord = await new History({
                 action: "add",
@@ -176,6 +178,9 @@ router.post('/update', auth, async (req, res) => {
             }
             if(holder === "cash"){
                 goal = await Goal.updateOne({_id: _id},  {$set:{cash:Number.parseInt(cash-sendSum)}});
+            }
+            if(holder === "noholder"){
+                goal = await Goal.updateOne({_id: _id},  {$set:{cash: cash, card: card}});
             }
             // Add history record
             const addHistoryRecord = await new History({

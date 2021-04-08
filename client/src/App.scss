@@ -542,6 +542,22 @@ input:-webkit-autofill:active  {
             border-radius: 5px;
           }
 
+          select {
+            margin: 5px 0;
+            padding: 10px 25px;
+            border-top: 2px transparent ;
+            border-bottom: 2px solid $primary-contrast;
+            border-right: 2px solid $primary-contrast;
+            border-left: 2px transparent;
+            border-radius: 5px;
+            font-weight: bolder;
+            color: rgba($color: #fff, $alpha: .4);
+
+            option {
+              border: 0;
+            }
+          }
+
         }
 
         

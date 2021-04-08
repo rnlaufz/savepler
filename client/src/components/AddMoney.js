@@ -10,10 +10,11 @@ const AddMoney = ({goalAction}) => {
     const [formData, setFormData] = useState({
         red: false, 
         actionType: "add",
-        sendSum: 0
+        sendSum: 0,
+        holder: 'noholder'
     });
 
-    const {red, actionType, sendSum} = formData;
+    const {red, actionType, sendSum, holder} = formData;
 
     const onChange = (e) => {
         e.preventDefault()
@@ -21,11 +22,15 @@ const AddMoney = ({goalAction}) => {
        
     }
 
+    const setHolder = (e) => {
+        setFormData({...formData, holder: e.target.value});
+    }
+
     const onSubmit = async (e) => {
         e.preventDefault()
         if(sendSum !== 0){
             setFormData({...formData, red: !red})  
-        goalAction(actionType, sendSum);
+        goalAction(actionType, sendSum, holder);
     }  setFormData({...formData, red: !red})
   
     }
@@ -38,7 +43,13 @@ const AddMoney = ({goalAction}) => {
                 <input className="form-control input-fix" type="number" placeholder="Enter sum" onChange={onChange}/>
             </div>
             </div>
-           
+            <div>
+                <select className="form-control input-fix" onChange={setHolder}>
+                    <option defaultChecked value="selectholder">Select holder</option>
+                    <option value="cash">Cash</option>
+                    <option value="card">Card</option>
+                </select>    
+            </div>
             <div>
                 <input className="form-control" type="submit" value="Add"/>
             </div>
