@@ -38,7 +38,8 @@ import {setAlert} from '../../../actions/alert';
         goal: '',
         sum: 0,
         currency: 'RUB',
-        added: 0
+        added: 0,
+        holder: 'noholder'
             
         } 
     );
@@ -67,6 +68,10 @@ import {setAlert} from '../../../actions/alert';
     }
     const addedToGoal = (e) => {if(allowAdding){setCompState({...compState, added: e.target.value})}}
 
+    const setHolder = (e) => {
+        setCompState({...compState, holder: e.target.value});
+    }
+
     const addSaving = (e) => {
         e.preventDefault()
         setCompState({
@@ -76,7 +81,7 @@ import {setAlert} from '../../../actions/alert';
             checkAdded: false,
             allowAdding: false 
             })
-            const goalData = {goal: compState.goal, sum: Number.parseInt(compState.sum), currency: compState.currency, added: Number.parseInt(compState.added)}
+            const goalData = {goal: compState.goal, sum: Number.parseInt(compState.sum), currency: compState.currency, added: Number.parseInt(compState.added), holder: compState.holder}
             createGoal(goalData)
             getGoal()
          
@@ -97,7 +102,7 @@ import {setAlert} from '../../../actions/alert';
     }
 
     
-    const {goal, sum, added } = compState;
+    const {goal, sum, added, holder } = compState;
 
     return (
         <Fragment>
@@ -173,6 +178,13 @@ import {setAlert} from '../../../actions/alert';
             <div className="inputs">
             <div>
                 <input className="form-control" type="number" placeholder="Saving amount" onChange={addedToGoal}/>
+            </div>
+            <div>
+                <select className="form-control input-fix" onChange={setHolder}>
+                    <option defaultChecked value="selectholder">Select holder</option>
+                    <option value="cash">Cash</option>
+                    <option value="card">Card</option>
+                </select>    
             </div>
             <div>
                 <input className="form-control" type="submit" value="Continue" disabled={added === 0}/>

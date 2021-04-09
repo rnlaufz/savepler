@@ -27,7 +27,7 @@ async (req, res) => {
         return res.status(400).json({errors: errors.array()});
     }
 
-    const {goal, sum, currency, added, card, cash} = req.body
+    const {goal, sum, currency, added, holder} = req.body
 
     // Create new goal and the history record
     try {
@@ -38,8 +38,8 @@ async (req, res) => {
         added: added > 0 ? added : 0,
         lended: 0,
         residue: added > 0 ? sum - added : sum - 0,
-        card: card > 0 ? card : 0,
-        cash: cash > 0 ? cash : 0,
+        card: holder === "card" ? added : 0,
+        cash: holder === "cash" ? added : 0,
         user: req.user.id
 
         })
@@ -57,7 +57,7 @@ async (req, res) => {
             action: 'add',
             amount: added,
             currency: currency,
-            form: card > 0 ? "card" : cash > 0 ? "cash" : null,
+            form: holder === "card" ? 'card' : holder === "cash" ? 'cash' : 'noholder',
             user: req.user.id
         }) : null;
 
@@ -143,7 +143,9 @@ router.post('/update', auth, async (req, res) => {
             // Prevent negative left debt value
             goal = await Goal.updateOne({_id:_id, lended:{$lte: 0}}, {$set:{lended:0}});
             goal = await Goal.updateOne({_id:_id, residue:{$lte: 0}}, {$set:{residue:0}});
+            
             goal = await Goal.updateOne({_id: _id, added: {$gte: sum}}, {$set:{residue:0}});
+            
             if(holder === "card"){
                 goal = await Goal.updateOne({_id: _id},  {$set:{card:Number.parseInt(card+sendSum)}});
             }
@@ -154,6 +156,8 @@ router.post('/update', auth, async (req, res) => {
             if(holder === "noholder"){
                 goal = await Goal.updateOne({_id: _id},  {$set:{cash: cash, card: card}});
             }
+            goal = await Goal.updateOne({_id:_id, cash:{$lte: 0}}, {$set:{cash:0}});
+            goal = await Goal.updateOne({_id:_id, card:{$lte: 0}}, {$set:{card:0}});
             // Add history record
             const addHistoryRecord = await new History({
                 action: "add",
@@ -173,6 +177,8 @@ router.post('/update', auth, async (req, res) => {
             // Prevent lended to become bigger than  goal 
             goal = await Goal.updateOne({_id: _id, lended: {$gte: sum}}, {$set:{lended:sum}});
 
+           
+
             if(holder === "card"){
                 goal = await Goal.updateOne({_id: _id},  {$set:{card:Number.parseInt(card-sendSum)}});
             }
@@ -182,6 +188,8 @@ router.post('/update', auth, async (req, res) => {
             if(holder === "noholder"){
                 goal = await Goal.updateOne({_id: _id},  {$set:{cash: cash, card: card}});
             }
+            goal = await Goal.updateOne({_id:_id, cash:{$lte: 0}}, {$set:{cash:0}});
+            goal = await Goal.updateOne({_id:_id, card:{$lte: 0}}, {$set:{card:0}});
             // Add history record
             const addHistoryRecord = await new History({
                 action: "lend",
