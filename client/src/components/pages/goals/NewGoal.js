@@ -180,7 +180,7 @@ import {setAlert} from '../../../actions/alert';
                 <input className="form-control" type="number" placeholder="Saving amount" onChange={addedToGoal}/>
             </div>
             <div>
-                <select className="form-control input-fix" onChange={setHolder}>
+                <select className="form-control" onChange={setHolder}>
                     <option defaultChecked value="selectholder">Select holder</option>
                     <option value="cash">Cash</option>
                     <option value="card">Card</option>

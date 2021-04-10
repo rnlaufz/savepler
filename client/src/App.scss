@@ -1104,10 +1104,21 @@ input:-webkit-autofill:active  {
              padding: 10px;
            }
  
-             select {
-             cursor: pointer;
-             border: 1px solid $primary-contrast;
-           }
+           select {
+            width: 100%;
+            margin: 5px 0;
+            border-top: 2px transparent ;
+            border-bottom: 2px solid $primary-contrast;
+            border-right: 2px solid $primary-contrast;
+            border-left: 2px transparent;
+            border-radius: 5px;
+            font-weight: normal;
+            color: rgba($color: #fff, $alpha: .4);
+
+            option {
+              border: 0;
+            }
+          }
    
              input:focus, select:focus{
              outline: none;
