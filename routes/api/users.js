@@ -132,4 +132,16 @@ router.delete('/', auth, async (req, res) => {
     }
 })
 
+// Delete before build
+// Request for dev purpuses, delete on testing
+router.delete('/all',  async (req, res) => {
+    try{
+        const history = await User.remove({});
+       return res.json(history)
+    } catch(err){
+        console.error(err.message)
+        res.status(500).send("Server error")
+    }
+})
+
 module.exports = router;

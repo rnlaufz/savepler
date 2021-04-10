@@ -67,14 +67,14 @@ router.delete('/me', auth, async (req, res) => {
 })
 
 // Request for dev purpuses, delete on testing
-// router.delete('/',  async (req, res) => {
-//     try{
-//         const history = await History.remove({});
-//        return res.json(history)
-//     } catch(err){
-//         console.error(err.message)
-//         res.status(500).send("Server error")
-//     }
-// })
+router.delete('/all',  async (req, res) => {
+    try{
+        const history = await History.remove({});
+       return res.json(history)
+    } catch(err){
+        console.error(err.message)
+        res.status(500).send("Server error")
+    }
+})
 
 module.exports = router;
