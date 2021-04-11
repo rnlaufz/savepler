@@ -1244,6 +1244,15 @@ input:-webkit-autofill:active  {
       }
     }
 
+    .holders {
+      width: 100px;
+      left: 10%;
+
+      h2{
+        font-size: 14px;
+      }
+    }
+
   }
   }
   
@@ -1394,9 +1403,16 @@ input:-webkit-autofill:active  {
     justify-content: space-around;
     height: 400px;
     .info-card {
+      position: relative;
       width: 350px;
-      height: 70px;
+      height: 80px;
       font-size: 16px;
+
+      #saved-details {
+        position: absolute;
+        top: 45%;
+        right: 5%;
+      }
 
       .content-money-card {
         height: 30px;
@@ -1411,6 +1427,15 @@ input:-webkit-autofill:active  {
         font-size: 18px;
       }
   
+    }
+
+    .holders {
+      width: 90px;
+      height: 60px;
+      top: 15%;
+      left: 83%;
+
+      animation: none;
     }
 
    
