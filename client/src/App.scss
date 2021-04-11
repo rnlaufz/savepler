@@ -238,6 +238,24 @@ input:-webkit-autofill:active  {
   }
 }
 
+@keyframes fadeIn {
+ from{
+   opacity: 0;
+ }
+ to{
+   opacity: 1;
+ }
+}
+@keyframes slideIn {
+ from{
+   top: -100%;
+ }
+ to{
+   top: 100%;
+ }
+}
+
+
 // Alerts 
 .alert {
   display: flex;
@@ -441,6 +459,7 @@ input:-webkit-autofill:active  {
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        animation: fadeIn .6s ease-in, slideIn .3s ease-in;
 
         h2{
           padding: 5px 0;
