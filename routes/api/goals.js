@@ -143,8 +143,10 @@ router.post('/update', auth, async (req, res) => {
                     added: added+sendSum,
                     lended: { $switch:{
                        branches: [
+                        {case: {$gte: [added+sendSum, sum]}, then: 0},
                         {case: {$gt:[lended-sendSum, 0]}, then: lended-sendSum},
-                        {case: {$lt: [lended-sendSum, 0]}, then: 0}
+                        {case: {$lt: [lended-sendSum, 0]}, then: 0},
+                       
                         
                     ],
                     default: 0
@@ -206,10 +208,12 @@ router.post('/update', auth, async (req, res) => {
                  }},
                 lended: { $switch:{
                    branches: [
+                    {case: {$gte: [added+sendSum, sum]}, then: 0},
                     {case: {$lt:[lended+sendSum, sum]}, then: lended+sendSum},
-                    {case: {$lt:[lended-sendSum, 0]}, then: 0},
+                    {case: {$lt:[lended+sendSum, 0]}, then: 0},
                     {case: {$lt: [lended, 0]}, then: 0},
                     {case: {$gt: [lended+sendSum, sum]}, then: sum},
+                    
                     
                 ],
                 default: 0
@@ -217,10 +221,10 @@ router.post('/update', auth, async (req, res) => {
                 residue: {$switch: {
                      branches: [
                         //  Prevent negative values
+                        {case: {$gte: [added+sendSum, sum]}, then: 0},
                         {case: {$lt: [residue, 0]}, then: 0},
                         {case: {$lt: [sum-added+sendSum, sum]}, then: sum-added+sendSum},
                         {case: {$gt: [sum-added+sendSum, sum]}, then: sum},
-                        {case: {$gte: [added+sendSum, sum]}, then: 0},
                         {case: {$lt: [sum-added-sendSum, sum]}, then: sum},
                      ],
                      default: 0
