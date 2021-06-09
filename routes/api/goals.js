@@ -136,13 +136,16 @@ router.post('/update', auth, async (req, res) => {
         const {_id, sum, added, lended, currency, residue, card, cash } = await goalData[0];
        
         // Check action type and send suitable request
+        // Add money
         if(actionType === "add"){
             // Send add request & recount values of other fields
             let goal = await Goal.updateOne({_id: _id}, [{$set: {
                     added: added+sendSum,
                     lended: { $switch:{
                        branches: [
-                        {case: {$lte: [lended, 0]}, then: 0}
+                        {case: {$gt:[lended-sendSum, 0]}, then: lended-sendSum},
+                        {case: {$lt: [lended-sendSum, 0]}, then: 0}
+                        
                     ],
                     default: 0
                     }},
@@ -150,8 +153,8 @@ router.post('/update', auth, async (req, res) => {
                          branches: [
                             //  Prevent negative values
                             {case: {$lt: [residue, 0]}, then: 0},
-                            {case: {$lt: [added+sendSum, 0]}, then: sum-added-sendSum},
-                            {case: {$gte: [added+sendSum, sum]}, then: 0},
+                            {case: {$lt: [added+sendSum, sum]}, then: sum-added-sendSum},
+                            {case: {$gte: [added+sendSum, sum]}, then: 0}
                          ],
                          default: 0
                      }},
@@ -189,7 +192,61 @@ router.post('/update', auth, async (req, res) => {
             await addHistoryRecord.save();
             return res.json(goal);
         }
+        // Lend money
         if(actionType === "lend"){
+
+            let goal = await Goal.updateOne({_id: _id}, [{$set: {
+                added: { $switch:{
+                    branches: [
+                        {case: {$gt:[added-sendSum, 0]}, then: added-sendSum},
+                        {case: {$lt: [added-sendSum, 0]}, then: 0},
+                        {case: {$lt: [added, 0]}, then: 0}
+                 ],
+                 default: 0
+                 }},
+                lended: { $switch:{
+                   branches: [
+                    {case: {$gt:[lended+sendSum, 0]}, then: lended+sendSum},
+                    {case: {$lt:[lended-sendSum, 0]}, then: 0},
+                    {case: {$lt: [lended, 0]}, then: 0},
+                    {case: {$gt: [lended, sum]}, then: sum},
+                    
+                ],
+                default: 0
+                }},
+                residue: {$switch: {
+                     branches: [
+                        //  Prevent negative values
+                        {case: {$lt: [residue, 0]}, then: 0},
+                        {case: {$gt: [sum-added+sendSum, 0]}, then: sum-added+sendSum},
+                        {case: {$gte: [added+sendSum, sum]}, then: 0},
+                        {case: {$lt: [sum-added-sendSum, sum]}, then: sum},
+                     ],
+                     default: 0
+                 }},
+                card: {$switch: {
+                     branches: [
+                        // // React on holder type
+                        {case: {$eq: [holder, "card"]}, then: Number.parseInt(card+sendSum)},
+                        {case: {$eq: [holder, "noholder"]}, then: card},
+                        // // Prevent holder negatives
+                        {case:{$lte: [card, 0]}, then:0},
+                     ],
+                     default: 0
+                 }},
+                cash: {$switch: {
+                     branches: [
+                        // // React on holder type
+                        {case: {$eq: [holder, "cash"]}, then: Number.parseInt(cash+sendSum)},
+                        {case: {$eq: [holder, "noholder"]}, then: cash},
+                        // // Prevent holder negatives
+                        {case:{$lte: [cash, 0]}, then:0},
+                     ],
+                     default: 0
+                 }}
+                 
+        }}])
+
             // Send lend request & recount values of other fields
             // let goal = await Goal.updateOne({_id:_id}, {$set:{lended:lended+sendSum, added: added-sendSum, residue:sum-added+sendSum}});
             // goal = await Goal.updateOne({_id: _id, added: {$gte: sum}}, {$set:{residue:0}});
@@ -211,14 +268,14 @@ router.post('/update', auth, async (req, res) => {
             // goal = await Goal.updateOne({_id:_id, cash:{$lte: 0}}, {$set:{cash:0}});
             // goal = await Goal.updateOne({_id:_id, card:{$lte: 0}}, {$set:{card:0}});
             // // Add history record
-            // const addHistoryRecord = await new History({
-            //     action: "lend",
-            //     amount: sendSum,
-            //     currency: currency,
-            //     form: holder,
-            //     user: req.user.id
-            // })
-            // await addHistoryRecord.save();
+            const addHistoryRecord = await new History({
+                action: "lend",
+                amount: sendSum,
+                currency: currency,
+                form: holder,
+                user: req.user.id
+            })
+            await addHistoryRecord.save();
             return res.json(goal);
         }   
     } catch (err) {
