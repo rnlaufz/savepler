@@ -4,7 +4,8 @@ const initialState = {
     allRecords: [],
     recentRecords: [],
     pages: 0,
-    loading: true 
+    loading: true,
+    error: {}
 };
 
 export default function(state=initialState, action){
@@ -37,7 +38,8 @@ export default function(state=initialState, action){
         case HISTORY_ERROR:
             return{
                 ...state,
-            //   Tempo
+                error: payload,
+                loading: false
             };
          
         default:

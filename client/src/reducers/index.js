@@ -6,8 +6,6 @@ import goal from './goal';
 import history from './history'; 
 import alert from './alert';
 
-
-
 export default combineReducers({
     user,
     goal, 

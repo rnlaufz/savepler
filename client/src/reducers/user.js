@@ -4,7 +4,8 @@ const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated: false,
     loading: true,
-    userData: {}
+    userData: {},
+    error: {}
 }
 
 export default function (state = initialState, action) {
@@ -51,7 +52,9 @@ export default function (state = initialState, action) {
         
         case UPDATE_FAIL: 
         return{
-            ...state
+            ...state,
+            error: payload,
+            loading: false
         }    
 
         default:
