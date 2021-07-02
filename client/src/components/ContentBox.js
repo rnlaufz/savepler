@@ -10,7 +10,7 @@ import {getGoal} from '../actions/goal';
  const ContentBox = ({children, goal: {uGoal}, getGoal})  => {
      useEffect(() => {
         getGoal()
-     }, [uGoal, getGoal])
+     }, [getGoal])
      const goalData = uGoal[0];
     return (
         <Fragment>
